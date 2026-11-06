@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Entrar</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+<script src="./assets/006b9949ae9e16e15b7586c26de23cca.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+html,body{scrollbar-width:none}html::-webkit-scrollbar,body::-webkit-scrollbar{display:none}
+body{margin:0;font-family:'Urbanist',system-ui,sans-serif;color:#17171c;background:transparent}
+a{color:#42424a}a:hover{color:#17171c}
+#app-entrar input::placeholder{color:#b6b6c1;opacity:1}
+/* wp-btn: estados do componente Button (Figma BUTTON) */
+.wp-btn{-webkit-tap-highlight-color:transparent;transition:background-color 120ms ease,border-color 120ms ease,color 120ms ease,box-shadow 120ms ease}
+.wp-btn *{transition:color 120ms ease,fill 120ms ease,stroke 120ms ease}
+.wp-btn:focus{outline:none}
+@media (hover:hover){.wp-btn--primary:not([aria-disabled="true"]):hover{background-color:#4b2bb9!important}}
+.wp-btn--primary:not([aria-disabled="true"]):focus-visible{background-color:#3c2395!important;box-shadow:0 0 0 2px #b3a4e9}
+.wp-btn--primary:not([aria-disabled="true"]):active{background-color:#2d1d72!important}
+@media (hover:hover){.wp-btn--outline:not([aria-disabled="true"]):hover{border-color:#4b2bb9!important}.wp-btn--outline:not([aria-disabled="true"]):hover,.wp-btn--outline:not([aria-disabled="true"]):hover *,.wp-btn--ghost:not([aria-disabled="true"]):hover,.wp-btn--ghost:not([aria-disabled="true"]):hover *{color:#4b2bb9!important}.wp-btn--outline:not([aria-disabled="true"]):hover [stroke="#5734d9"],.wp-btn--ghost:not([aria-disabled="true"]):hover [stroke="#5734d9"]{stroke:#4b2bb9}.wp-btn--outline:not([aria-disabled="true"]):hover [fill="#5734d9"],.wp-btn--ghost:not([aria-disabled="true"]):hover [fill="#5734d9"]{fill:#4b2bb9}}
+.wp-btn--outline:not([aria-disabled="true"]):focus-visible{border-color:#3c2395!important}
+.wp-btn--outline:not([aria-disabled="true"]):focus-visible,.wp-btn--outline:not([aria-disabled="true"]):focus-visible *,.wp-btn--ghost:not([aria-disabled="true"]):focus-visible,.wp-btn--ghost:not([aria-disabled="true"]):focus-visible *{color:#3c2395!important}
+.wp-btn--outline:not([aria-disabled="true"]):active{border-color:#2d1d72!important}
+.wp-btn--outline:not([aria-disabled="true"]):active,.wp-btn--outline:not([aria-disabled="true"]):active *,.wp-btn--ghost:not([aria-disabled="true"]):active,.wp-btn--ghost:not([aria-disabled="true"]):active *{color:#2d1d72!important}
+.wp-btn--outline:not([aria-disabled="true"]):active [stroke="#5734d9"],.wp-btn--ghost:not([aria-disabled="true"]):active [stroke="#5734d9"]{stroke:#2d1d72}
+.wp-btn--outline:not([aria-disabled="true"]):active [fill="#5734d9"],.wp-btn--ghost:not([aria-disabled="true"]):active [fill="#5734d9"]{fill:#2d1d72}
+@media (hover:hover){.wp-btn--ghost-neg:hover,.wp-btn--ghost-neg:hover *{color:#b92b43!important}}
+.wp-btn--ghost-neg:focus-visible,.wp-btn--ghost-neg:focus-visible *{color:#952336!important}
+.wp-btn--ghost-neg:active,.wp-btn--ghost-neg:active *{color:#721d2c!important}
+/* /wp-btn */
+</style>
+</helmet>
+<div id="app-entrar" style="position: relative; width: 360px; height: var(--wp-h, 780px); overflow: hidden; border-radius: 16px; background: #f7f6fc; font-family: 'Urbanist', system-ui, sans-serif; color: #17171c">
+<div style="position: absolute; left: 0; top: 0; width: 360px; height: 40px; background: #211551; z-index: 5">
+<span style="position: absolute; left: 15.5px; top: 12px; font-size: 14px; line-height: 17px; font-weight: 600; color: #ffffff; white-space: nowrap">{{statusTime}}</span>
+<div style="position: absolute; left: 168px; top: 8px; width: 24px; height: 24px; border-radius: 50%; background: #000000"></div>
+<img src="./assets/8b2d4d6b48dc65bf320ab274856d6d61.svg" alt="" style="position: absolute; left: 288.668px; top: 12.918px; width: 51.582px; height: 14.164px; display: block">
+</div>
+<!-- Área rolável: topo com o logo + formulário (só a status bar fica fixa) -->
+<div ref="{{f.scRef}}" style="position: absolute; left: 0; top: 40px; width: 360px; bottom: {{u.scBottom}}px; overflow-y: auto; overflow-x: hidden; scrollbar-width: none; overscroll-behavior: contain">
+<div style="position: relative; width: 360px; height: 542px">
+<div style="position: absolute; left: 0; top: -40px; width: 360px; height: 1px">
+<!-- Topo escuro com o logo (rola junto com o conteúdo) -->
+<div style="position: absolute; left: 0; top: 40px; width: 360px; height: 116px; background: #211551"></div>
+<svg width="106" height="52" viewBox="0 0 106 52" aria-hidden="true" style="position: absolute; left: 128px; top: 58px; display: block"><path d="M 67.28,39.46 L 65.70,41.08 C 65.19,41.60 65.19,42.44 65.70,42.96 L 67.28,44.57 C 67.78,45.08 67.78,45.91 67.28,46.42 L 64.83,43.91 C 63.80,42.87 63.80,41.17 64.83,40.12 L 67.28,37.62 C 67.78,38.13 67.78,38.95 67.28,39.46" fill="#ffffff"></path><path d="M 67.30,48.15 L 68.89,46.53 C 69.40,46.01 69.40,45.17 68.89,44.66 L 67.30,43.04 C 66.80,42.53 66.80,41.71 67.30,41.20 L 69.76,43.70 C 70.79,44.75 70.79,46.44 69.76,47.49 L 67.30,50 C 66.80,49.49 66.80,48.66 67.30,48.15" fill="#ffffff"></path><path d="M 86.79,42.26 C 85.29,42.26 84.32,43.30 84.31,44.91 L 84.31,47.05 C 84.31,47.27 84.41,47.52 84.88,47.52 C 85.34,47.52 85.42,47.27 85.42,47.05 L 85.42,44.91 C 85.42,43.84 85.94,43.17 86.78,43.17 L 86.79,43.17 C 87.63,43.17 88.15,43.84 88.15,44.91 L 88.15,47.05 C 88.15,47.27 88.25,47.52 88.69,47.52 C 89.14,47.52 89.26,47.27 89.26,47.05 L 89.26,44.91 C 89.25,43.30 88.28,42.26 86.78,42.26" fill="#ffffff"></path><path d="M 100.81,42.26 L 100.78,42.26 C 99.29,42.26 98.32,43.30 98.31,44.91 L 98.31,47.05 C 98.31,47.27 98.41,47.52 98.88,47.52 C 99.34,47.52 99.42,47.27 99.42,47.05 L 99.42,44.91 C 99.42,43.84 99.94,43.17 100.78,43.17 L 100.80,43.17 C 100.91,43.17 101.03,43.13 101.12,43.04 C 101.21,42.95 101.25,42.84 101.25,42.72 C 101.25,42.47 101.05,42.26 100.81,42.26" fill="#ffffff"></path><path d="M 75.99,43.13 C 75.21,42.80 74.54,42.50 74.54,41.87 C 74.54,41.28 75.04,40.91 75.82,40.91 C 76.25,40.91 76.61,41.01 77.05,41.27 C 77.09,41.30 77.14,41.33 77.17,41.35 C 77.31,41.43 77.39,41.49 77.49,41.49 C 77.76,41.49 77.98,41.18 77.98,40.93 C 77.98,40.71 77.78,40.55 77.57,40.41 C 77.09,40.09 76.46,39.91 75.82,39.91 C 74.41,39.91 73.45,40.72 73.45,41.92 C 73.45,43.19 74.53,43.66 75.48,44.08 C 76.31,44.44 77.03,44.75 77.03,45.49 C 77.03,46.16 76.46,46.61 75.60,46.61 C 75.14,46.61 74.73,46.47 74.28,46.15 L 74.18,46.08 C 74.02,45.97 73.92,45.90 73.79,45.90 C 73.53,45.90 73.31,46.20 73.31,46.45 C 73.31,46.64 73.43,46.80 73.70,47.00 C 74.23,47.39 74.88,47.60 75.59,47.60 C 77.10,47.60 78.12,46.73 78.12,45.43 C 78.12,44.05 76.98,43.57 75.99,43.13" fill="#ffffff"></path><path d="M 80.08,44.30 C 80.21,43.57 80.63,43.16 81.25,43.16 C 81.87,43.16 82.30,43.59 82.36,44.31 C 82.36,44.33 82.35,44.36 82.33,44.37 C 82.32,44.39 82.30,44.41 82.27,44.41 L 80.17,44.41 C 80.15,44.41 80.12,44.39 80.10,44.37 C 80.09,44.35 80.08,44.33 80.08,44.30 Z M 80.16,45.26 L 82.62,45.26 C 83.01,45.26 83.42,45.17 83.42,44.53 C 83.42,43.19 82.53,42.26 81.27,42.26 C 79.88,42.26 78.99,43.31 78.99,44.93 C 78.99,46.55 79.92,47.56 81.41,47.56 C 82.02,47.56 82.55,47.41 82.97,47.12 C 83.21,46.96 83.32,46.80 83.32,46.62 C 83.32,46.38 83.14,46.13 82.85,46.13 C 82.72,46.13 82.60,46.21 82.44,46.32 L 82.42,46.33 C 82.16,46.51 81.83,46.60 81.46,46.60 C 80.67,46.60 80.21,46.19 80.07,45.37 C 80.07,45.35 80.08,45.32 80.09,45.30 C 80.11,45.28 80.14,45.26 80.16,45.26" fill="#ffffff"></path><path d="M 90.89,42.32 C 90.45,42.32 90.36,42.57 90.36,42.78 L 90.36,47.05 C 90.36,47.27 90.46,47.52 90.91,47.52 C 91.36,47.52 91.43,47.27 91.43,47.05 L 91.43,42.78 C 91.43,42.57 91.34,42.32 90.89,42.32Z" fill="#ffffff"></path><path d="M 94.89,46.65 C 94.05,46.65 93.51,45.97 93.51,44.91 C 93.51,43.85 94.03,43.17 94.87,43.17 C 95.71,43.17 96.24,43.85 96.24,44.93 C 96.24,46.01 95.72,46.65 94.89,46.65 Z M 94.89,42.26 C 93.38,42.26 92.41,43.31 92.41,44.93 C 92.41,46.55 93.37,47.58 94.86,47.58 C 96.35,47.58 97.35,46.53 97.35,44.91 C 97.35,43.28 96.38,42.26 94.89,42.26" fill="#ffffff"></path><path d="M 52.71,47.46 C 52.15,47.46 51.63,47.32 51.27,47.12 C 50.97,46.94 50.97,46.74 50.97,46.53 L 50.97,40.46 C 50.97,40.27 51.08,40.17 51.30,40.17 C 51.51,40.17 51.61,40.27 51.61,40.46 L 51.61,43.14 C 51.95,42.84 52.38,42.70 52.89,42.70 C 54.17,42.70 55.03,43.60 55.03,45.05 C 55.03,46.5 54.12,47.46 52.71,47.46 Z M 52.71,46.92 C 53.73,46.92 54.36,46.21 54.36,45.08 C 54.36,44.01 53.78,43.24 52.77,43.24 C 52.33,43.24 51.94,43.37 51.61,43.66 L 51.61,46.61 C 51.89,46.81 52.30,46.92 52.71,46.92Z" fill="#ffffff"></path><path d="M 60.31,42.96 C 60.31,43.06 60.28,43.23 60.23,43.41 C 59.77,45.25 58.60,47.87 57.33,49.23 C 57.16,49.41 57.06,49.50 56.92,49.50 C 56.76,49.50 56.59,49.36 56.59,49.19 C 56.59,49.08 56.70,48.97 56.81,48.87 C 57.28,48.41 57.73,47.75 57.95,47.35 L 56.17,43.17 C 56.14,43.09 56.10,43.01 56.10,42.92 C 56.10,42.82 56.17,42.73 56.39,42.73 C 56.63,42.73 56.71,42.81 56.81,43.04 L 58.33,46.73 C 58.78,45.87 59.39,44.36 59.66,43.12 C 59.71,42.88 59.76,42.73 60.03,42.73 C 60.25,42.73 60.31,42.82 60.31,42.95Z" fill="#ffffff"></path><path d="M 90.90,40 C 90.50,40 90.21,40.29 90.21,40.69 C 90.21,41.08 90.50,41.39 90.90,41.39 C 91.30,41.39 91.59,41.09 91.59,40.69 C 91.59,40.28 91.30,40 90.90,40Z" fill="#ffffff"></path><path d="M 38.5,2 C 37.16,1.99 36.06,3.07 36.05,4.41 C 36.04,5.75 37.12,6.85 38.46,6.86 C 39.80,6.87 40.89,5.79 40.90,4.44 L 40.90,4.43 C 40.91,3.09 39.83,2.00 38.5,2Z" fill="#ffffff"></path><path d="M 48.68,2 C 47.35,1.99 46.25,3.07 46.24,4.41 C 46.23,5.75 47.31,6.85 48.65,6.86 C 49.99,6.87 51.08,5.79 51.09,4.44 L 51.09,4.43 C 51.09,3.09 50.02,2.00 48.69,2 L 48.68,2" fill="#ffffff"></path><path d="M 37.38,8.93 L 40.53,10.31 C 40.76,10.42 40.92,10.65 40.92,10.91 L 40.92,27.37 C 40.92,27.87 40.51,28.27 40.01,28.27 L 37.06,28.27 C 36.56,28.27 36.16,27.87 36.16,27.36 L 36.16,9.75 C 36.16,9.26 36.55,8.86 37.03,8.86 C 37.15,8.86 37.27,8.89 37.38,8.93Z" fill="#ffffff"></path><path d="M 100.25,12.89 C 99.35,11.33 98.05,10.06 96.48,9.19 C 93.17,7.42 89.20,7.42 85.89,9.19 C 84.32,10.07 83.01,11.36 82.12,12.93 C 81.23,14.52 80.76,16.33 80.78,18.16 C 80.76,20.00 81.23,21.82 82.14,23.42 C 83.01,24.98 84.31,26.26 85.88,27.12 C 87.51,28.01 89.33,28.47 91.19,28.45 C 93.04,28.48 94.87,28.01 96.49,27.10 C 98.06,26.22 99.35,24.93 100.24,23.37 C 101.14,21.78 101.61,19.99 101.60,18.16 C 101.62,16.32 101.15,14.5 100.24,12.89 M 96.05,21.14 C 95.58,22.00 94.89,22.72 94.04,23.20 C 93.17,23.69 92.18,23.95 91.18,23.94 C 90.18,23.95 89.20,23.70 88.33,23.20 C 87.49,22.70 86.80,21.98 86.33,21.11 C 85.84,20.20 85.60,19.19 85.62,18.16 C 85.60,17.12 85.84,16.10 86.33,15.18 C 86.79,14.32 87.49,13.60 88.33,13.12 C 90.11,12.14 92.26,12.14 94.04,13.12 C 94.89,13.62 95.58,14.34 96.05,15.21 C 96.53,16.12 96.77,17.13 96.76,18.16 C 96.77,19.20 96.53,20.22 96.05,21.14" fill="#ffffff"></path><path d="M 72.65,9.19 C 69.34,7.43 65.37,7.43 62.06,9.19 C 61.97,9.25 61.88,9.30 61.79,9.35 C 61.52,9.51 61.18,9.32 61.18,9.00 C 61.19,8.52 60.80,8.13 60.32,8.12 C 60.20,8.12 60.08,8.15 59.97,8.20 L 56.72,9.62 C 56.55,9.69 56.43,9.87 56.43,10.06 L 56.43,35.67 C 56.43,36.16 56.83,36.57 57.33,36.57 L 60.28,36.57 C 60.78,36.57 61.17,36.17 61.17,35.67 L 61.17,27.46 C 61.17,27.08 61.57,26.85 61.90,27.04 C 61.94,27.07 61.99,27.09 62.04,27.12 C 63.66,28.01 65.49,28.47 67.34,28.45 C 69.20,28.48 71.03,28.01 72.65,27.10 C 74.22,26.22 75.51,24.93 76.41,23.36 C 77.31,21.78 77.77,19.98 77.75,18.16 C 77.78,16.31 77.31,14.5 76.41,12.89 C 75.51,11.33 74.22,10.06 72.65,9.19 M 72.21,21.14 C 71.75,22.00 71.05,22.72 70.21,23.20 C 69.34,23.69 68.35,23.95 67.35,23.94 C 66.36,23.95 65.38,23.70 64.52,23.20 C 63.67,22.70 62.98,21.98 62.51,21.11 C 62.03,20.20 61.79,19.19 61.80,18.16 C 61.79,17.12 62.04,16.09 62.53,15.18 C 63,14.32 63.69,13.60 64.54,13.12 C 66.32,12.14 68.47,12.14 70.24,13.12 C 71.09,13.62 71.78,14.34 72.25,15.21 C 72.73,16.12 72.98,17.13 72.96,18.16 C 72.96,19.20 72.71,20.22 72.21,21.14Z" fill="#ffffff"></path><path d="M 49.88,8.93 L 46.73,10.31 C 46.5,10.42 46.34,10.65 46.34,10.91 L 46.34,27.37 C 46.34,27.87 46.75,28.27 47.25,28.27 L 50.20,28.27 C 50.70,28.27 51.10,27.86 51.10,27.36 L 51.10,9.75 C 51.10,9.26 50.72,8.87 50.24,8.86 C 50.11,8.86 49.99,8.88 49.87,8.93" fill="#ffffff"></path><path d="M 31.76,9.39 L 27.59,9.39 C 27.31,9.39 27.07,9.57 26.98,9.82 L 23.75,19.08 C 23.59,19.51 22.98,19.51 22.83,19.07 L 19.68,9.83 C 19.59,9.57 19.35,9.39 19.07,9.39 L 15.66,9.39 C 15.38,9.39 15.13,9.57 15.05,9.83 L 12.09,18.98 C 11.95,19.42 11.33,19.42 11.17,18.99 L 7.91,9.82 C 7.82,9.56 7.58,9.39 7.31,9.39 L 3.04,9.39 C 2.59,9.39 2.28,9.84 2.44,10.26 L 8.99,27.66 C 9.09,27.94 9.36,28.13 9.66,28.13 L 13.35,28.13 C 13.66,28.13 13.94,27.93 14.03,27.63 L 17.37,17.49 L 20.85,27.64 C 20.95,27.93 21.22,28.13 21.53,28.13 L 25.21,28.13 C 25.51,28.13 25.78,27.94 25.89,27.66 L 32.32,10.37 C 32.32,10.37 32.32,10.37 32.32,10.37 L 32.36,10.26 C 32.52,9.84 32.21,9.39 31.76,9.39 L 31.76,9.39Z" fill="#ffffff"></path></svg>
+<!-- Voltar (layout app-bar): mesmo chevron branco das outras app-bars escuras -->
+<a href="Login.dc.html" data-nav="back" aria-label="Voltar" style="position: absolute; left: 16px; top: 64px; width: 40px; height: 40px; display: block; text-decoration: none"><svg width="40" height="40" viewBox="16 64 40 40" aria-hidden="true" style="position: absolute; left: 0; top: 0; display: block"><path d="M 37.91 78.41 C 38.23 78.09 38.77 78.09 39.09 78.41 C 39.41 78.73 39.41 79.27 39.09 79.59 L 34.68 84 L 39.09 88.41 C 39.41 88.73 39.41 89.27 39.09 89.59 C 38.77 89.91 38.23 89.91 37.91 89.59 L 32.91 84.59 C 32.59 84.27 32.59 83.73 32.91 83.41Z" fill="#ffffff"></path></svg></a>
+<div onMouseDown="{{f.fora}}" style="position: absolute; left: 0; top: 128px; width: 360px; height: 454px; background: #f7f6fc; border-radius: 24px 24px 0 0"></div>
+<span style="position: absolute; left: 24px; top: 172.59px; transform: translateY(-1px); font-size: 20px; line-height: 24px; font-weight: 600; color: #17171c; white-space: pre">Bem-vindo de volta</span>
+<span style="position: absolute; left: 24px; top: 204.01px; font-size: 14px; line-height: 17px; font-weight: 400; color: #42424a; white-space: pre">Entre na sua conta para acessar os produtos e
+soluções da Wiipo.</span>
+<span style="position: absolute; left: 28px; top: 253.87px; font-size: 16px; line-height: 20px; font-weight: 600; color: #17171c; white-space: pre">CPF</span>
+<div onMouseDown="{{f.campoCpf}}" style="position: absolute; left: 24px; top: 281px; width: 312px; height: 48px; box-sizing: border-box; background: #ffffff; border: 1px solid {{u.cpfBorda}}; border-radius: 24px; cursor: text">
+<input ref="{{f.cpfRef}}" type="text" inputmode="none" autocomplete="off" spellcheck="false" value="{{u.cpfTxt}}" placeholder="Digite seu CPF" onChange="{{f.noop}}" onKeyDown="{{f.cpfKey}}" onFocus="{{f.cpfFocus}}" onBlur="{{f.blur}}" style="position: absolute; left: 15px; top: 13.37px; width: 280px; height: 20px; margin: 0; padding: 0; border: 0; outline: none; background: transparent; font-family: inherit; font-size: 16px; line-height: 20px; font-weight: 400; color: #17171c; caret-color: #42424a; transform: translateY(0.5px)">
+</div>
+<sc-if value="{{u.erroCpf}}" hint-placeholder-val="{{ false }}"><span style="position: absolute; left: 28px; top: 337.16px; font-size: 12px; line-height: 14px; font-weight: 400; color: #d9344f; white-space: pre">CPF inválido</span></sc-if>
+<div style="position: absolute; left: 0; top: {{u.dySenha}}px; width: 360px; height: 1px">
+<span style="position: absolute; left: 28px; top: 344.87px; font-size: 16px; line-height: 20px; font-weight: 600; color: #17171c; white-space: pre">Senha</span>
+<div onMouseDown="{{f.campoSenha}}" style="position: absolute; left: 24px; top: 372px; width: 312px; height: 48px; box-sizing: border-box; background: #ffffff; border: 1px solid {{u.senhaBorda}}; border-radius: 24px; cursor: text">
+<input ref="{{f.senhaRef}}" type="text" inputmode="none" autocomplete="off" spellcheck="false" value="{{u.senhaTxt}}" placeholder="Digite sua senha" onChange="{{f.noop}}" onKeyDown="{{f.senhaKey}}" onFocus="{{f.senhaFocus}}" onBlur="{{f.blur}}" style="position: absolute; left: 15px; top: 13.37px; width: 250px; height: 20px; margin: 0; padding: 0; border: 0; outline: none; background: transparent; font-family: inherit; font-size: 16px; line-height: 20px; font-weight: 400; color: #17171c; caret-color: #42424a; transform: translateY(0.5px)">
+<button type="button" aria-label="{{u.verAria}}" aria-pressed="{{u.verPressed}}" onMouseDown="{{f.semFoco}}" onClick="{{f.ver}}" style="position: absolute; left: 262px; top: 3px; width: 44px; height: 40px; margin: 0; padding: 0; border: 0; background: transparent; cursor: pointer"></button>
+<sc-if value="{{u.olhoAberto}}" hint-placeholder-val="{{ true }}"><svg width="24" height="20" viewBox="0 0 24 20" aria-hidden="true" style="position: absolute; left: 273px; top: 13px; display: block; pointer-events: none"><path d="M 12,3.33 C 13.94,3.33 15.83,3.91 17.44,4.98 C 18.95,6 20.15,7.41 20.90,9.05 L 21.05,9.39 L 21.06,9.42 C 21.20,9.79 21.20,10.20 21.06,10.57 C 21.05,10.58 21.05,10.59 21.05,10.60 C 20.31,12.39 19.05,13.93 17.44,15.01 C 15.83,16.08 13.94,16.66 12,16.66 C 10.06,16.66 8.16,16.08 6.55,15.01 C 4.94,13.93 3.68,12.39 2.94,10.60 C 2.94,10.59 2.94,10.58 2.93,10.57 C 2.79,10.20 2.79,9.79 2.93,9.42 L 2.94,9.39 C 3.68,7.60 4.94,6.06 6.55,4.98 C 8.16,3.91 10.06,3.33 12,3.33 Z M 12,5 C 10.39,5 8.81,5.47 7.48,6.37 C 6.15,7.26 5.11,8.52 4.5,10 C 5.11,11.47 6.15,12.73 7.48,13.62 C 8.81,14.52 10.39,15 12,15 C 13.60,15 15.18,14.52 16.51,13.62 C 17.84,12.73 18.88,11.47 19.5,10 C 18.88,8.52 17.84,7.26 16.51,6.37 C 15.18,5.47 13.60,5 12,5Z" fill="#b6b6c1"></path><path d="M 13.66,10 C 13.66,9.07 12.92,8.33 12,8.33 C 11.07,8.33 10.33,9.07 10.33,10 C 10.33,10.92 11.07,11.66 12,11.66 C 12.92,11.66 13.66,10.92 13.66,10 Z M 15.33,10 C 15.33,11.83 13.83,13.33 12,13.33 C 10.16,13.33 8.66,11.83 8.66,10 C 8.66,8.16 10.16,6.66 12,6.66 C 13.83,6.66 15.33,8.16 15.33,10Z" fill="#b6b6c1"></path></svg></sc-if>
+<sc-if value="{{u.olhoFechado}}" hint-placeholder-val="{{ false }}"><svg width="24" height="20" viewBox="0 0 24 20" aria-hidden="true" style="position: absolute; left: 273px; top: 13px; display: block; pointer-events: none"><path d="M 13.71,11.47 C 14.16,11.37 14.61,11.66 14.71,12.10 L 15.31,14.82 C 15.41,15.26 15.12,15.71 14.67,15.81 C 14.23,15.91 13.78,15.62 13.68,15.17 L 13.08,12.47 C 12.98,12.02 13.26,11.57 13.71,11.47Z" fill="#b6b6c1"></path><path d="M 3.38,5.88 C 3.81,5.72 4.29,5.94 4.44,6.38 C 5.01,7.92 6.04,9.26 7.39,10.21 C 8.74,11.15 10.35,11.66 12,11.66 C 13.64,11.66 15.25,11.15 16.60,10.21 C 17.95,9.26 18.98,7.92 19.55,6.38 C 19.70,5.94 20.18,5.72 20.61,5.88 C 21.05,6.04 21.27,6.51 21.11,6.95 C 20.43,8.82 19.19,10.43 17.56,11.57 C 15.93,12.71 13.98,13.33 12,13.33 C 10.01,13.33 8.06,12.71 6.43,11.57 C 4.80,10.43 3.56,8.82 2.88,6.95 C 2.72,6.51 2.94,6.04 3.38,5.88Z" fill="#b6b6c1"></path><path d="M 16.69,10.15 C 17.04,9.85 17.57,9.90 17.86,10.25 L 19.30,11.96 C 19.60,12.31 19.55,12.83 19.20,13.13 C 18.85,13.43 18.32,13.39 18.02,13.03 L 16.58,11.32 C 16.29,10.97 16.33,10.44 16.69,10.15Z" fill="#b6b6c1"></path><path d="M 6.13,10.25 C 6.42,9.90 6.95,9.85 7.30,10.15 C 7.66,10.44 7.70,10.97 7.41,11.32 L 5.96,13.03 C 5.67,13.39 5.14,13.43 4.79,13.13 C 4.44,12.83 4.39,12.31 4.69,11.96Z" fill="#b6b6c1"></path><path d="M 9.28,12.10 C 9.38,11.66 9.83,11.37 10.28,11.47 C 10.73,11.57 11.01,12.02 10.91,12.47 L 10.31,15.17 C 10.21,15.62 9.76,15.91 9.32,15.81 C 8.87,15.71 8.58,15.26 8.68,14.82Z" fill="#b6b6c1"></path></svg></sc-if>
+</div>
+<sc-if value="{{u.erroSenha}}" hint-placeholder-val="{{ false }}"><span style="position: absolute; left: 28px; top: 428.16px; font-size: 12px; line-height: 14px; font-weight: 400; color: #d9344f; white-space: pre">Senha inválida</span></sc-if>
+</div>
+<a class="wp-btn wp-btn--ghost" href="Recuperar.dc.html" data-nav="push:recuperar" style="position: absolute; left: 90px; top: {{u.esqueciTop}}px; width: 180px; height: 28px; display: block; text-decoration: none"><span style="position: absolute; left: 0px; top: 6.37px; width: 180px; text-align: center; transform: translateY(0.5px); font-size: 16px; line-height: 20px; font-weight: 600; color: #5734d9; white-space: pre">Esqueci minha senha</span></a>
+</div>
+</div>
+</div>
+<!-- Rodapé fixo: fica colado no fundo e sobe junto com o teclado quando um campo está em foco -->
+<div onMouseDown="{{f.semFoco}}" style="position: absolute; left: 0; bottom: {{u.footBottom}}px; width: 360px; height: 198px; z-index: 10; background: #f7f6fc; box-shadow: inset 0 1px 0 #e1dcf3">
+<button type="button" role="checkbox" aria-checked="{{u.lembrarAria}}" aria-label="Deseja deixar sua senha vinculada com seu CPF?" onClick="{{f.lembrar}}" style="position: absolute; left: 16px; top: 14px; width: 310px; height: 38px; margin: 0; padding: 0; border: 0; background: transparent; cursor: pointer; text-align: left; font-family: inherit">
+<span style="position: absolute; left: 10px; top: 11px; width: 16px; height: 16px"><sc-if value="{{u.lembrarOff}}" hint-placeholder-val="{{ true }}"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" style="position: absolute; left: -1px; top: -1px; display: block"><path d="M 13.80,15.80 L 13.80,17 L 4.19,17 L 4.19,15.80 Z M 15.80,13.80 L 15.80,4.19 C 15.80,3.09 14.90,2.19 13.80,2.19 L 4.19,2.19 C 3.09,2.19 2.19,3.09 2.19,4.19 L 2.19,13.80 C 2.19,14.90 3.09,15.80 4.19,15.80 L 4.19,17 L 4.03,16.99 C 2.39,16.91 1.08,15.60 1.00,13.96 L 1,13.80 L 1,4.19 C 1,2.43 2.43,1 4.19,1 L 13.80,1 C 15.56,1 17,2.43 17,4.19 L 17,13.80 C 17,15.51 15.65,16.91 13.96,16.99 L 13.80,17 L 13.80,15.80 C 14.90,15.80 15.80,14.90 15.80,13.80Z" fill="#7a7a86"></path></svg></sc-if><sc-if value="{{u.lembrarOn}}" hint-placeholder-val="{{ false }}"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" style="position: absolute; left: -1px; top: -1px; display: block"><path d="M 5,1 L 13,1 C 15.21,1 17,2.78 17,5 L 17,13 C 17,15.21 15.21,17 13,17 L 5,17 C 2.78,17 1,15.21 1,13 L 1,5 C 1,2.78 2.78,1 5,1Z" fill="#5734d9"></path><path d="M 13.86,4.52 C 14.12,4.26 14.54,4.26 14.80,4.52 C 15.06,4.78 15.06,5.21 14.80,5.47 L 7.47,12.80 C 7.21,13.06 6.78,13.06 6.52,12.80 L 3.19,9.47 C 2.93,9.21 2.93,8.78 3.19,8.52 C 3.45,8.26 3.87,8.26 4.13,8.52 L 7,11.39Z" fill="#ffffff"></path></svg></sc-if></span>
+<span style="position: absolute; left: 36px; top: 2.01px; font-size: 14px; line-height: 17px; font-weight: 400; color: #42424a; white-space: pre">Deseja deixar sua senha vinculada com seu
+CPF?</span>
+</button>
+<a class="wp-btn wp-btn--primary" href="#" data-nav="{{u.entrarNav}}" aria-disabled="{{u.entrarDis}}" onClick="{{f.entrar}}" style="position: absolute; left: 24px; top: 66px; width: 312px; height: 48px; border-radius: 24px; background: {{u.btnBg}}; display: block; text-decoration: none; cursor: {{u.btnCursor}}"><span style="position: absolute; left: 0; top: 14.37px; width: 312px; transform: translateY(0.5px); font-size: 16px; line-height: 20px; font-weight: 600; color: {{u.btnCor}}; text-align: center; white-space: nowrap">Entrar</span></a>
+<a class="wp-btn wp-btn--ghost" href="Cadastro.dc.html" data-nav="swap:cadastro" style="position: absolute; left: 60px; top: 134px; width: 240px; height: 32px; display: block; text-decoration: none"><span style="position: absolute; left: 0px; top: 6.37px; width: 240px; text-align: center; transform: translateY(0.5px); font-size: 16px; line-height: 20px; font-weight: 600; color: #5734d9; white-space: pre">Não tem conta? Criar cadastro</span></a>
+</div>
+<!-- Teclado do celular (padrão do projeto), aberto com um campo em foco -->
+<sc-if value="{{u.kbAlfa}}" hint-placeholder-val="{{ false }}">
+<div role="group" aria-label="Teclado" onMouseDown="{{f.semFoco}}" style="position: absolute; left: 0; bottom: 0; width: 360px; height: 244px; z-index: 20; user-select: none">
+<img src="./assets/019e4127357d010dac16509e60cf779e.png" alt="" style="width: 360px; height: 244px; display: block; pointer-events: none">
+<sc-for list="{{keys}}" as="k" hint-placeholder-count="40">
+<button type="button" aria-label="{{k.label}}" onClick="{{k.press}}" style="position: absolute; left: {{k.x}}px; top: {{k.y}}px; width: {{k.w}}px; height: {{k.h}}px; margin: 0; padding: 0; border: 0; border-radius: 6px; background: transparent; cursor: pointer"></button>
+</sc-for>
+</div>
+</sc-if>
+<!-- Teclado numérico (campo CPF) -->
+<sc-if value="{{u.kbNum}}" hint-placeholder-val="{{ false }}">
+<div role="group" aria-label="Teclado numérico" onMouseDown="{{f.semFoco}}" style="position: absolute; left: 0; bottom: 0; width: 360px; height: 238px; z-index: 20; user-select: none">
+<img src="./assets/270a8b3fcb123fb3d0cdbfa50237a6e1.png" alt="" style="width: 360px; height: 238px; display: block; pointer-events: none">
+<sc-for list="{{numKeys}}" as="k" hint-placeholder-count="16">
+<button type="button" aria-label="{{k.label}}" onClick="{{k.press}}" style="position: absolute; left: {{k.x}}px; top: {{k.y}}px; width: {{k.w}}px; height: {{k.h}}px; margin: 0; padding: 0; border: 0; border-radius: 6px; background: transparent; cursor: pointer"></button>
+</sc-for>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"estado":{"editor":"enum","default":"padrao","options":["padrao","verSenha","cpfInvalido","senhaInvalida","preenchido"]},"$preview":{"width":360,"height":780}}'>
+class Component extends DCLogic {
+componentDidMount() {
+var self = this;
+var proxMin = function () { var d = new Date(); return 60050 - d.getSeconds() * 1000 - d.getMilliseconds(); };
+var tick = function () { var d = new Date(); self.setState({ clockK: d.getHours() * 60 + d.getMinutes() }); self._clockT = setTimeout(tick, proxMin()); };
+// Relógio da status bar: acorda só na virada de cada minuto (em vez de checar a cada segundo)
+this._clockT = setTimeout(tick, proxMin());
+}
+componentWillUnmount() { clearTimeout(this._clockT); }
+// Estado inicial pelo Tweak "estado" (layouts do Figma); no protótipo começa vazio
+estadoAtual() {
+var est = this.props.estado || 'padrao';
+var CPF = '12346578901';
+var base = { cpf: '', senha: '', ver: false, lembrar: false, erro: null, foco: null, shift: false };
+if (est === 'verSenha') base = Object.assign(base, { cpf: CPF, senha: 'Wiipo123', ver: true });
+if (est === 'cpfInvalido') base = Object.assign(base, { cpf: CPF, senha: 'Wiipo12345', erro: 'cpf' });
+if (est === 'senhaInvalida') base = Object.assign(base, { cpf: CPF, senha: 'Wiipo12345', erro: 'senha' });
+if (est === 'preenchido') base = Object.assign(base, { cpf: CPF, senha: 'Wiipo12345', lembrar: true });
+return Object.assign(base, this.state || {});
+}
+renderVals() {
+var _d = new Date();
+var me = this;
+var st = this.estadoAtual();
+// Dados aceitos no protótipo
+// CPF: qualquer número digitado vale; senha: qualquer valor com mais de 3 caracteres
+var senhaOk = function (v) { return v.length > 3; };
+var fmt = function (d) { var s = d.slice(0, 3); if (d.length > 3) s += '.' + d.slice(3, 6); if (d.length > 6) s += '.' + d.slice(6, 9); if (d.length > 9) s += '-' + d.slice(9, 11); return s; };
+if (!this._f) {
+var put = function (campo, ch) {
+var s0 = me.estadoAtual(); var o = {};
+if (campo === 'cpf') { if (!/[0-9]/.test(ch) || s0.cpf.length >= 11) return; o.cpf = s0.cpf + ch; }
+else { var c = ch; if (/[a-z]/i.test(ch) && ch.length === 1 && s0.shift) c = ch.toUpperCase(); o.senha = s0.senha + c; o.shift = false; }
+if (s0.erro === campo) o.erro = null;
+me.setState(o);
+};
+var del = function (campo) { var s0 = me.estadoAtual(); var o = {}; o[campo] = s0[campo].slice(0, -1); if (s0.erro === campo) o.erro = null; me.setState(o); };
+// Com o teclado aberto, rola a tela para o campo ficar visível acima do rodapé
+var mostrar = function (campo) { var sc = me._sc; if (!sc) return; var s0 = me.estadoAtual(); var fundo = campo === 'cpf' ? 289 : 380 + (s0.erro === 'cpf' ? 22 : 0) + (s0.erro === 'senha' ? 22 : 0); var alvo = fundo + 16 - sc.clientHeight; if (alvo > sc.scrollTop) { try { sc.scrollTo({ top: alvo, behavior: 'smooth' }); } catch (e) { sc.scrollTop = alvo; } } };
+var focar = function (campo) { var el = campo === 'cpf' ? me._cpf : me._senha; if (el) { el.focus({ preventScroll: true }); try { var n = el.value.length; el.setSelectionRange(n, n); } catch (e) {} } };
+var acao = function () { var s0 = me.estadoAtual(); if (s0.foco === 'cpf') focar('senha'); else { if (me._senha) me._senha.blur(); } };
+var tecla = function (campo) { return function (e) {
+if (e.key === 'Tab') return;
+e.preventDefault();
+if (e.key === 'Backspace') { del(campo); return; }
+if (e.key === 'Enter') { acao(); return; }
+if (e.key && e.key.length === 1) put(campo, campo === 'senha' ? e.key : e.key);
+}; };
+var keys = [];
+var add = function (label, x, y, w, h, fn) { keys.push({ label: label, x: x, y: y, w: w, h: h, press: fn }); };
+var ins = function (ch) { var s0 = me.estadoAtual(); if (!s0.foco) return; put(s0.foco, s0.foco === 'senha' ? ch.toLowerCase() : ch); };
+'1234567890'.split('').forEach(function (ch, i) { add(ch, Math.round((2 + 35.95 * i) * 100) / 100, 7.75, 33, 40.25, function () { ins(ch); }); });
+'QWERTYUIOP'.split('').forEach(function (ch, i) { add(ch, Math.round((2 + 35.95 * i) * 100) / 100, 51.75, 33, 42.5, function () { ins(ch); }); });
+'ASDFGHJKL'.split('').forEach(function (ch, i) { add(ch, Math.round((20.5 + 35.9 * i) * 100) / 100, 97.5, 32.5, 42.75, function () { ins(ch); }); });
+add('Shift', 2.75, 143.75, 52.25, 42.5, function () { var s0 = me.estadoAtual(); me.setState({ shift: !s0.shift }); });
+'ZXCVBNM'.split('').forEach(function (ch, i) { add(ch, Math.round((58.75 + 35.4 * i) * 100) / 100, 143.75, 33, 42.5, function () { ins(ch); }); });
+add('Apagar', 305, 143.75, 52.25, 42.5, function () { var s0 = me.estadoAtual(); if (s0.foco) del(s0.foco); });
+add('Números e símbolos', 2.75, 191.75, 52.5, 46.5, function () {});
+add('Vírgula', 56.25, 191.75, 33, 46.5, function () { ins(','); });
+add('Espaço', 90.75, 191.75, 180, 46.5, function () { ins(' '); });
+add('Ponto', 272, 191.75, 32, 46.5, function () { ins('.'); });
+add('Próximo', 306, 191.75, 51.5, 46.5, acao);
+this._keys = keys;
+var nk = [];
+var NX = [4, 93, 182, 271], NY = [7, 56, 105, 154];
+[['1', '2', '3', '-'], ['4', '5', '6', 'Espaço'], ['7', '8', '9', 'Apagar'], [',', '0', '.', 'Próximo']].forEach(function (r, i) { r.forEach(function (c, j) {
+var fn = c === 'Apagar' ? function () { del('cpf'); } : (c === 'Próximo' ? acao : function () { put('cpf', c); });
+nk.push({ label: c, x: NX[j], y: NY[i], w: 85, h: 44, press: fn });
+}); });
+this._numKeys = nk;
+this._f = {
+noop: function () {},
+cpfRef: function (el) { me._cpf = el; }, senhaRef: function (el) { me._senha = el; },
+cpfKey: tecla('cpf'), senhaKey: tecla('senha'),
+cpfFocus: function () { me.setState({ foco: 'cpf' }, function () { mostrar('cpf'); }); }, senhaFocus: function () { me.setState({ foco: 'senha' }, function () { mostrar('senha'); }); },
+scRef: function (el) { me._sc = el; },
+blur: function () { setTimeout(function () { var a = document.activeElement; if (a !== me._cpf && a !== me._senha) me.setState({ foco: null, shift: false }); }, 0); },
+campoCpf: function (e) { if (e.target === me._cpf) return; e.preventDefault(); focar('cpf'); },
+campoSenha: function (e) { if (e.target === me._senha || (e.target.closest && e.target.closest('button'))) return; e.preventDefault(); focar('senha'); },
+fora: function () { if (me._cpf) me._cpf.blur(); if (me._senha) me._senha.blur(); },
+semFoco: function (e) { e.preventDefault(); },
+ver: function () { var s0 = me.estadoAtual(); me.setState({ ver: !s0.ver }); },
+lembrar: function () { var s0 = me.estadoAtual(); me.setState({ lembrar: !s0.lembrar }); },
+entrar: function (e) {
+var s0 = me.estadoAtual();
+var pronto = s0.cpf.length > 0 && s0.senha.length > 0 && !s0.erro;
+if (!pronto) { e.preventDefault(); return; }
+if (!senhaOk(s0.senha)) { e.preventDefault(); me.setState({ erro: 'senha' }, function () { mostrar('senha'); }); return; }
+if (me._cpf) me._cpf.blur(); if (me._senha) me._senha.blur();
+}
+};
+}
+var pronto = st.cpf.length > 0 && st.senha.length > 0 && !st.erro;
+var ok = pronto && senhaOk(st.senha);
+var mask = ''; for (var i = 0; i < st.senha.length; i++) mask += '*';
+var dy = st.erro === 'cpf' ? 22 : 0;
+return {
+statusTime: _d.getHours() + ':' + ('0' + _d.getMinutes()).slice(-2),
+f: this._f, keys: this._keys, numKeys: this._numKeys,
+u: {
+cpfTxt: fmt(st.cpf), senhaTxt: st.ver ? st.senha : mask,
+cpfBorda: st.erro === 'cpf' ? '#d9344f' : (st.foco === 'cpf' ? '#5734d9' : '#e5e5ea'), senhaBorda: st.erro === 'senha' ? '#d9344f' : (st.foco === 'senha' ? '#5734d9' : '#e5e5ea'),
+erroCpf: st.erro === 'cpf', erroSenha: st.erro === 'senha', dySenha: dy, esqueciTop: 444 + (st.erro ? 22 : 0),
+olhoAberto: !st.ver, olhoFechado: !!st.ver, verAria: st.ver ? 'Ocultar senha' : 'Mostrar senha', verPressed: st.ver ? 'true' : 'false',
+lembrarOn: !!st.lembrar, lembrarOff: !st.lembrar, lembrarAria: st.lembrar ? 'true' : 'false',
+btnBg: pronto ? '#5734d9' : '#e5e5ea', btnCor: pronto ? '#ffffff' : '#b6b6c1', btnCursor: pronto ? 'pointer' : 'default', entrarDis: pronto ? 'false' : 'true',
+entrarNav: ok ? 'auth:home' : '',
+kbAlfa: st.foco === 'senha', kbNum: st.foco === 'cpf',
+footBottom: st.foco === 'cpf' ? 238 : (st.foco ? 244 : 0), scBottom: (st.foco === 'cpf' ? 238 : (st.foco ? 244 : 0)) + 198
+}
+};
+}
+}
+</script>
+</body>
+</html>

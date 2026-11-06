@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Meu Holerite</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+<script src="./assets/006b9949ae9e16e15b7586c26de23cca.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+html,body{scrollbar-width:none}html::-webkit-scrollbar,body::-webkit-scrollbar{display:none}
+body{margin:0;font-family:'Urbanist',system-ui,sans-serif;color:#17171c;background:transparent}
+a{color:#42424a}a:hover{color:#17171c}
+.hol-lista{scrollbar-width:none}
+.hol-lista::-webkit-scrollbar{display:none}
+.hol-item:active{filter:brightness(0.97)}
+@keyframes holDropIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+@keyframes holFadeIn{from{opacity:0}to{opacity:1}}
+/* wp-btn: estados do componente Button (Figma BUTTON) */
+.wp-btn{-webkit-tap-highlight-color:transparent;transition:background-color 120ms ease,border-color 120ms ease,color 120ms ease,box-shadow 120ms ease}
+.wp-btn *{transition:color 120ms ease,fill 120ms ease,stroke 120ms ease}
+.wp-btn:focus{outline:none}
+@media (hover:hover){.wp-btn--primary:not([aria-disabled="true"]):hover{background-color:#4b2bb9!important}}
+.wp-btn--primary:not([aria-disabled="true"]):focus-visible{background-color:#3c2395!important;box-shadow:0 0 0 2px #b3a4e9}
+.wp-btn--primary:not([aria-disabled="true"]):active{background-color:#2d1d72!important}
+@media (hover:hover){.wp-btn--outline:not([aria-disabled="true"]):hover{border-color:#4b2bb9!important}.wp-btn--outline:not([aria-disabled="true"]):hover,.wp-btn--outline:not([aria-disabled="true"]):hover *,.wp-btn--ghost:not([aria-disabled="true"]):hover,.wp-btn--ghost:not([aria-disabled="true"]):hover *{color:#4b2bb9!important}.wp-btn--outline:not([aria-disabled="true"]):hover [stroke="#5734d9"],.wp-btn--ghost:not([aria-disabled="true"]):hover [stroke="#5734d9"]{stroke:#4b2bb9}.wp-btn--outline:not([aria-disabled="true"]):hover [fill="#5734d9"],.wp-btn--ghost:not([aria-disabled="true"]):hover [fill="#5734d9"]{fill:#4b2bb9}}
+.wp-btn--outline:not([aria-disabled="true"]):focus-visible{border-color:#3c2395!important}
+.wp-btn--outline:not([aria-disabled="true"]):focus-visible,.wp-btn--outline:not([aria-disabled="true"]):focus-visible *,.wp-btn--ghost:not([aria-disabled="true"]):focus-visible,.wp-btn--ghost:not([aria-disabled="true"]):focus-visible *{color:#3c2395!important}
+.wp-btn--outline:not([aria-disabled="true"]):active{border-color:#2d1d72!important}
+.wp-btn--outline:not([aria-disabled="true"]):active,.wp-btn--outline:not([aria-disabled="true"]):active *,.wp-btn--ghost:not([aria-disabled="true"]):active,.wp-btn--ghost:not([aria-disabled="true"]):active *{color:#2d1d72!important}
+.wp-btn--outline:not([aria-disabled="true"]):active [stroke="#5734d9"],.wp-btn--ghost:not([aria-disabled="true"]):active [stroke="#5734d9"]{stroke:#2d1d72}
+.wp-btn--outline:not([aria-disabled="true"]):active [fill="#5734d9"],.wp-btn--ghost:not([aria-disabled="true"]):active [fill="#5734d9"]{fill:#2d1d72}
+@media (hover:hover){.wp-btn--ghost-neg:hover,.wp-btn--ghost-neg:hover *{color:#b92b43!important}}
+.wp-btn--ghost-neg:focus-visible,.wp-btn--ghost-neg:focus-visible *{color:#952336!important}
+.wp-btn--ghost-neg:active,.wp-btn--ghost-neg:active *{color:#721d2c!important}
+/* /wp-btn */
+</style>
+</helmet>
+<div style="position: relative; width: 360px; height: var(--wp-h, 780px); overflow: hidden; border-radius: 16px; background: #f7f6fc; font-family: 'Urbanist', system-ui, sans-serif; color: #17171c; display: flex; flex-direction: column">
+
+<!-- Status bar (fixa) -->
+<div style="position: relative; height: 40px; flex-shrink: 0; background: #211551">
+<span style="position: absolute; left: 15.5px; top: 12px; font-size: 14px; line-height: 17px; font-weight: 600; color: #ffffff; white-space: nowrap">{{statusTime}}</span>
+<div style="position: absolute; left: 168px; top: 8px; width: 24px; height: 24px; border-radius: 50%; background: #000000"></div>
+<img src="./assets/8b2d4d6b48dc65bf320ab274856d6d61.svg" alt="" style="position: absolute; left: 288.668px; top: 12.918px; width: 51.582px; height: 14.164px; display: block">
+</div>
+
+<!-- Conteúdo rolável (AppBar rola junto e reaparece ao rolar para cima) -->
+<div ref="{{scrollerRef}}" onScroll="{{onScroll}}" style="flex: 1 1 0; min-height: 0; overflow-y: auto; overflow-x: hidden; scrollbar-width: none">
+<div style="position: sticky; top: 0; z-index: 12; transform: {{barTransform}}; background: linear-gradient(180deg, #211551 0, #211551 24px, #f7f6fc 24px)">
+<header style="position: relative; height: 72px; background: #f7f6fc; border-radius: 24px 24px 0 0">
+<h1 style="position: absolute; left: 0; top: 26px; transform: translateY(0.5px); width: 360px; margin: 0; font-size: 16px; line-height: 20px; font-weight: 600; color: #17171c; text-align: center; white-space: nowrap; pointer-events: none">Meu Holerite</h1>
+<sc-if value="{{v.visivel}}" hint-placeholder-val="{{ false }}"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" style="position: absolute; left: 312px; top: 24px; display: block"><path d="M 12,5.33 C 13.94,5.33 15.83,5.91 17.44,6.98 C 18.95,8 20.15,9.41 20.90,11.05 L 21.05,11.39 L 21.06,11.42 C 21.20,11.79 21.20,12.20 21.06,12.57 C 21.05,12.58 21.05,12.59 21.05,12.60 C 20.31,14.39 19.05,15.93 17.44,17.01 C 15.83,18.08 13.94,18.66 12,18.66 C 10.06,18.66 8.16,18.08 6.55,17.01 C 4.94,15.93 3.68,14.39 2.94,12.60 C 2.94,12.59 2.94,12.58 2.93,12.57 C 2.79,12.20 2.79,11.79 2.93,11.42 L 2.94,11.39 C 3.68,9.60 4.94,8.06 6.55,6.98 C 8.16,5.91 10.06,5.33 12,5.33 Z M 12,7 C 10.39,7 8.81,7.47 7.48,8.37 C 6.15,9.26 5.11,10.52 4.5,12 C 5.11,13.47 6.15,14.73 7.48,15.62 C 8.81,16.52 10.39,17 12,17 C 13.60,17 15.18,16.52 16.51,15.62 C 17.84,14.73 18.88,13.47 19.5,12 C 18.88,10.52 17.84,9.26 16.51,8.37 C 15.18,7.47 13.60,7 12,7Z" fill="#5734d9"></path><path d="M 13.66,12 C 13.66,11.07 12.92,10.33 12,10.33 C 11.07,10.33 10.33,11.07 10.33,12 C 10.33,12.92 11.07,13.66 12,13.66 C 12.92,13.66 13.66,12.92 13.66,12 Z M 15.33,12 C 15.33,13.83 13.83,15.33 12,15.33 C 10.16,15.33 8.66,13.83 8.66,12 C 8.66,10.16 10.16,8.66 12,8.66 C 13.83,8.66 15.33,10.16 15.33,12Z" fill="#5734d9"></path></svg></sc-if>
+<sc-if value="{{v.oculto}}" hint-placeholder-val="{{ true }}"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" style="position: absolute; left: 312px; top: 24px; display: block"><path d="M 13.71,13.47 C 14.16,13.37 14.61,13.66 14.71,14.10 L 15.31,16.82 C 15.41,17.26 15.12,17.71 14.67,17.81 C 14.23,17.91 13.78,17.62 13.68,17.17 L 13.08,14.47 C 12.98,14.02 13.26,13.57 13.71,13.47Z" fill="#5734d9"></path><path d="M 3.38,7.88 C 3.81,7.72 4.29,7.94 4.44,8.38 C 5.01,9.92 6.04,11.26 7.39,12.21 C 8.74,13.15 10.35,13.66 12,13.66 C 13.64,13.66 15.25,13.15 16.60,12.21 C 17.95,11.26 18.98,9.92 19.55,8.38 C 19.70,7.94 20.18,7.72 20.61,7.88 C 21.05,8.04 21.27,8.51 21.11,8.95 C 20.43,10.82 19.19,12.43 17.56,13.57 C 15.93,14.71 13.98,15.32 12,15.32 C 10.01,15.32 8.06,14.71 6.43,13.57 C 4.80,12.43 3.56,10.82 2.88,8.95 C 2.72,8.51 2.94,8.04 3.38,7.88Z" fill="#5734d9"></path><path d="M 16.69,12.15 C 17.04,11.85 17.57,11.90 17.86,12.25 L 19.30,13.96 C 19.60,14.31 19.55,14.83 19.20,15.13 C 18.85,15.43 18.32,15.39 18.02,15.03 L 16.58,13.32 C 16.29,12.97 16.33,12.44 16.69,12.15Z" fill="#5734d9"></path><path d="M 6.13,12.25 C 6.42,11.90 6.95,11.85 7.30,12.15 C 7.66,12.44 7.70,12.97 7.41,13.32 L 5.96,15.03 C 5.67,15.39 5.14,15.43 4.79,15.13 C 4.44,14.83 4.39,14.31 4.69,13.96Z" fill="#5734d9"></path><path d="M 9.28,14.10 C 9.38,13.66 9.83,13.37 10.28,13.47 C 10.73,13.57 11.01,14.02 10.91,14.47 L 10.31,17.17 C 10.21,17.62 9.76,17.91 9.32,17.81 C 8.87,17.71 8.58,17.26 8.68,16.82Z" fill="#5734d9"></path></svg></sc-if>
+<a href="#" onClick="{{toggleValores}}" aria-label="{{v.aria}}" aria-pressed="{{v.pressed}}" style="position: absolute; left: 304px; top: 16px; width: 40px; height: 40px; display: block"></a>
+</header>
+</div>
+
+<div style="position: relative; width: 360px; height: {{L.contentH}}px">
+<h2 style="position: absolute; left: 20px; top: 16px; margin: 0; font-size: 16px; line-height: 20px; font-weight: 600; color: #17171c; white-space: nowrap">Holerite referente a</h2>
+
+<!-- Campo "Holerite referente a" -->
+<sc-if value="{{ui.temHolerites}}" hint-placeholder-val="{{ true }}">
+<button type="button" aria-haspopup="listbox" aria-expanded="{{ui.abertoAria}}" onClick="{{toggleLista}}" style="position: absolute; left: 16px; top: 43px; width: 328px; height: 48px; margin: 0; padding: 0; box-sizing: border-box; background: #ffffff; border: 1px solid {{ui.campoBorda}}; border-radius: 24px; font-family: inherit; text-align: left; cursor: pointer">
+<span style="position: absolute; left: 15px; top: 8px; transform: translateY(0.5px); font-size: 10px; line-height: 12px; font-weight: 400; color: #7a7a86; white-space: nowrap">{{sel.empresa}}</span>
+<span style="position: absolute; left: 15px; top: 19px; font-size: 16px; line-height: 20px; font-weight: 400; color: #17171c; white-space: nowrap">{{sel.titulo}}</span>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#42424a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="position: absolute; left: 291px; top: 13px; display: block; transform: rotate({{ui.chevRot}}deg); transition: transform 200ms ease"><path d="m6 9 6 6 6-6"></path></svg>
+</button>
+</sc-if>
+<sc-if value="{{ui.vazio}}" hint-placeholder-val="{{ false }}">
+<div aria-disabled="true" style="position: absolute; left: 16px; top: 43px; width: 328px; height: 48px; box-sizing: border-box; background: #f3f3f6; border: 1px solid #e5e5ea; border-radius: 24px">
+<span style="position: absolute; left: 15px; top: 13px; transform: translateY(0.5px); font-size: 16px; line-height: 20px; font-weight: 400; color: #b6b6c1; white-space: nowrap">Escolha uma opção</span>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#b6b6c1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="position: absolute; left: 291px; top: 13px; display: block"><path d="m6 9 6 6 6-6"></path></svg>
+</div>
+<svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true" style="position: absolute; left: 158px; top: 219px; display: block"><path d="M 40,22 C 40,12.05 31.94,4 22,4 C 12.05,4 4,12.05 4,22 C 4,31.94 12.05,40 22,40 C 31.94,40 40,31.94 40,22 Z M 44,22 C 44,34.14 34.14,44 22,44 C 9.85,44 0,34.14 0,22 C 0,9.85 9.85,0 22,0 C 34.14,0 44,9.85 44,22Z" fill="#e5e5ea"></path><path d="M 28,26 C 28,25.46 27.78,24.96 27.41,24.58 C 27.03,24.21 26.53,24 26,24 L 18,24 C 16.41,24 14.88,23.36 13.75,22.24 C 12.63,21.11 12,19.58 12,18 C 12,16.41 12.63,14.88 13.75,13.75 C 14.88,12.63 16.41,12 18,12 L 30,12 C 31.10,12 32,12.89 32,14 C 32,15.10 31.10,16 30,16 L 18,16 C 17.46,16 16.96,16.21 16.58,16.58 C 16.21,16.96 16,17.46 16,18 C 16,18.53 16.21,19.03 16.58,19.41 C 16.96,19.78 17.46,20 18,20 L 26,20 C 27.58,20 29.11,20.63 30.24,21.75 C 31.36,22.88 32,24.41 32,26 C 32,27.58 31.36,29.11 30.24,30.24 C 29.11,31.36 27.58,32 26,32 L 14,32 C 12.89,32 12,31.10 12,30 C 12,28.89 12.89,28 14,28 L 26,28 C 26.53,28 27.03,27.78 27.41,27.41 C 27.78,27.03 28,26.53 28,26Z" fill="#e5e5ea"></path><path d="M 20,34 L 20,10 C 20,8.89 20.89,8 22,8 C 23.10,8 24,8.89 24,10 L 24,34 C 24,35.10 23.10,36 22,36 C 20.89,36 20,35.10 20,34Z" fill="#e5e5ea"></path></svg>
+<span style="position: absolute; left: 0; top: 273.13px; width: 360px; font-size: 14px; line-height: 17px; font-weight: 600; color: #42424a; text-align: center; white-space: nowrap">Nenhum holerite encontrado</span>
+<span style="position: absolute; left: 0; top: 294.25px; width: 360px; font-size: 12px; line-height: 14px; font-weight: 400; color: #7a7a86; text-align: center; white-space: nowrap">Não há holerites disponíveis para consulta.</span>
+</sc-if>
+
+<sc-if value="{{ui.temHolerites}}" hint-placeholder-val="{{ true }}">
+<!-- Resumo: a receber, gráfico e legenda -->
+<div style="position: absolute; left: 16px; top: 107px; width: 328px; height: 313px; box-sizing: border-box; background: #ffffff; border: 1px solid #e5e5ea; border-radius: 12px">
+<span style="position: absolute; left: 0; top: 15.25px; width: 326px; font-size: 12px; line-height: 14px; font-weight: 400; color: #42424a; text-align: center; white-space: nowrap">{{sel.recebeTxt}} <b style="font-weight: 600; color: #17171c">{{sel.pagoTxt}}</b></span>
+<div style="position: absolute; left: 15px; top: 44px; width: 296px; height: 1px; background: #e5e5ea"></div>
+<svg width="180" height="180" viewBox="0 0 180 180" aria-hidden="true" style="position: absolute; left: 73px; top: 61px; display: block">
+<circle cx="90" cy="90" r="81" fill="none" stroke="#e1dcf3" stroke-width="18"></circle>
+<circle cx="90" cy="90" r="81" fill="none" stroke="#5734d9" stroke-width="18" stroke-linecap="round" stroke-dasharray="{{g.dash}}" transform="{{g.rot}}" style="transition: stroke-dasharray 500ms cubic-bezier(0.22, 0.8, 0.26, 1)"></circle>
+</svg>
+<span style="position: absolute; left: 0; top: 132.25px; width: 326px; font-size: 12px; line-height: 14px; font-weight: 400; color: #7a7a86; text-align: center; white-space: nowrap">Salário bruto</span>
+<span style="position: absolute; left: 0; top: 145.75px; width: 326px; font-size: 20px; line-height: 24px; font-weight: 600; color: #17171c; text-align: center; white-space: nowrap">{{v.bruto}}</span>
+<div style="position: absolute; left: 0; top: 257.25px; width: 326px; display: flex; justify-content: center; gap: 25px">
+<div style="position: relative; padding-left: 20px">
+<span style="position: absolute; left: 0; top: 9.25px; transform: translateY(-0.5px); width: 12px; height: 12px; border-radius: 50%; background: #5734d9"></span>
+<span style="display: block; font-size: 12px; line-height: 14px; font-weight: 400; color: #7a7a86; white-space: nowrap">Líquido</span>
+<span style="display: block; font-size: 14px; line-height: 17px; font-weight: 600; color: #42424a; white-space: nowrap; margin-top: -0.12px">{{v.liquido}}</span>
+</div>
+<div style="position: relative; padding-left: 20px">
+<span style="position: absolute; left: 0; top: 9.25px; transform: translateY(-0.5px); width: 12px; height: 12px; border-radius: 50%; background: #e1dcf3"></span>
+<span style="display: block; font-size: 12px; line-height: 14px; font-weight: 400; color: #7a7a86; white-space: nowrap">Descontos</span>
+<span style="display: block; font-size: 14px; line-height: 17px; font-weight: 600; color: #42424a; white-space: nowrap; margin-top: -0.12px">{{v.desc}}</span>
+</div>
+</div>
+</div>
+
+<!-- Proventos e descontos -->
+<div style="position: absolute; left: 16px; top: {{L.cardTop}}px; width: 328px; height: {{L.cardH}}px; box-sizing: border-box; background: #ffffff; border: 1px solid #e5e5ea; border-radius: 12px; transition: height 280ms cubic-bezier(0.22, 0.8, 0.26, 1)">
+<button type="button" aria-expanded="{{ui.provAria}}" onClick="{{toggleProv}}" style="position: absolute; left: 0; top: 0; width: 326px; height: 86px; margin: 0; padding: 0; border: 0; background: transparent; font-family: inherit; text-align: left; cursor: pointer">
+<span style="position: absolute; left: 15px; top: 23px; width: 40px; height: 40px; box-sizing: border-box; background: #e9f6ef; border: 1px solid #dcf3e7; border-radius: 50%"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" style="position: absolute; left: 9px; top: 9px; display: block"><path d="M 17.5,10.83 L 17.5,6.66 C 17.5,6.44 17.41,6.23 17.25,6.07 C 17.10,5.92 16.88,5.83 16.66,5.83 L 3.33,5.83 C 3.11,5.83 2.90,5.92 2.74,6.07 C 2.58,6.23 2.5,6.44 2.5,6.66 L 2.5,13.33 C 2.5,13.55 2.58,13.76 2.74,13.92 C 2.90,14.07 3.11,14.16 3.33,14.16 L 10,14.16 C 10.46,14.16 10.83,14.53 10.83,15 C 10.83,15.46 10.46,15.83 10,15.83 L 3.33,15.83 C 2.67,15.83 2.03,15.57 1.56,15.10 C 1.09,14.63 0.83,13.99 0.83,13.33 L 0.83,6.66 C 0.83,6.00 1.09,5.36 1.56,4.89 C 2.03,4.42 2.67,4.16 3.33,4.16 L 16.66,4.16 C 17.32,4.16 17.96,4.42 18.43,4.89 C 18.90,5.36 19.16,6.00 19.16,6.66 L 19.16,10.83 C 19.16,11.29 18.79,11.66 18.33,11.66 C 17.87,11.66 17.5,11.29 17.5,10.83Z" fill="#2b955d"></path><path d="M 15.00,9.16 C 15.46,9.16 15.83,9.53 15.83,10 C 15.83,10.46 15.46,10.83 15.00,10.83 L 15,10.83 C 14.53,10.83 14.16,10.46 14.16,10 C 14.16,9.53 14.53,9.16 15,9.16Z" fill="#2b955d"></path><path d="M 15,18.33 L 15,13.33 C 15,12.87 15.37,12.5 15.83,12.5 C 16.29,12.5 16.66,12.87 16.66,13.33 L 16.66,18.33 C 16.66,18.79 16.29,19.16 15.83,19.16 C 15.37,19.16 15,18.79 15,18.33Z" fill="#2b955d"></path><path d="M 15.30,12.68 C 15.63,12.42 16.11,12.43 16.42,12.74 L 18.92,15.24 C 19.25,15.57 19.25,16.09 18.92,16.42 C 18.59,16.74 18.07,16.74 17.74,16.42 L 15.83,14.51 L 13.92,16.42 C 13.59,16.74 13.07,16.74 12.74,16.42 C 12.41,16.09 12.41,15.57 12.74,15.24 L 15.24,12.74Z" fill="#2b955d"></path><path d="M 5.00,9.16 C 5.46,9.16 5.83,9.53 5.83,10 C 5.83,10.46 5.46,10.83 5.00,10.83 L 5,10.83 C 4.53,10.83 4.16,10.46 4.16,10 C 4.16,9.53 4.53,9.16 5,9.16Z" fill="#2b955d"></path><path d="M 10.83,10 C 10.83,9.53 10.46,9.16 10,9.16 C 9.53,9.16 9.16,9.53 9.16,10 C 9.16,10.46 9.53,10.83 10,10.83 C 10.46,10.83 10.83,10.46 10.83,10 Z M 12.5,10 C 12.5,11.37 11.38,12.5 10,12.5 C 8.62,12.5 7.5,11.37 7.5,10 C 7.5,8.62 8.62,7.5 10,7.5 C 11.38,7.5 12.5,8.62 12.5,10Z" fill="#2b955d"></path></svg></span>
+<span style="position: absolute; left: 67px; top: 25px; font-size: 16px; line-height: 20px; font-weight: 600; color: #17171c; white-space: nowrap">Proventos</span>
+<span style="position: absolute; left: 67px; top: 44.13px; font-size: 14px; line-height: 17px; font-weight: 400; color: #23784b; white-space: nowrap">{{v.bruto}}</span>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#42424a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="position: absolute; left: 287px; top: 35px; display: block; transform: rotate({{ui.provRot}}deg); transition: transform 200ms ease"><path d="m6 9 6 6 6-6"></path></svg>
+</button>
+<sc-if value="{{ui.provOpen}}" hint-placeholder-val="{{ false }}">
+<div style="position: absolute; left: 14px; top: 75px; width: 2px; height: {{L.provBarH}}px; background: #34b26f; animation: holFadeIn 220ms ease both"></div>
+<sc-for list="{{prov}}" as="r" hint-placeholder-count="2">
+<span style="position: absolute; left: 27px; top: {{r.top}}px; font-size: 14px; line-height: 17px; font-weight: 400; color: #7a7a86; white-space: nowrap; animation: holFadeIn 220ms ease both">{{r.label}}</span>
+<span style="position: absolute; right: 23px; top: {{r.top}}px; font-size: 14px; line-height: 17px; font-weight: 400; color: #42424a; white-space: nowrap; text-align: right; animation: holFadeIn 220ms ease both">{{r.valor}}</span>
+</sc-for>
+</sc-if>
+<div style="position: absolute; left: 15px; top: {{L.sep}}px; width: 296px; height: 1px; background: #e5e5ea; transition: top 280ms cubic-bezier(0.22, 0.8, 0.26, 1)"></div>
+<button type="button" aria-expanded="{{ui.descAria}}" onClick="{{toggleDesc}}" style="position: absolute; left: 0; top: {{L.descTop}}px; width: 326px; height: 64px; margin: 0; padding: 0; border: 0; background: transparent; font-family: inherit; text-align: left; cursor: {{ui.descCursor}}; transition: top 280ms cubic-bezier(0.22, 0.8, 0.26, 1)">
+<span style="position: absolute; left: 15px; top: 0; width: 40px; height: 40px; box-sizing: border-box; background: #f6e9ec; border: 1px solid #f3dce2; border-radius: 50%"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" style="position: absolute; left: 9px; top: 9px; display: block"><path d="M 17.5,10.83 L 17.5,6.66 C 17.5,6.44 17.41,6.23 17.25,6.07 C 17.10,5.92 16.88,5.83 16.66,5.83 L 3.33,5.83 C 3.11,5.83 2.90,5.92 2.74,6.07 C 2.58,6.23 2.5,6.44 2.5,6.66 L 2.5,13.33 C 2.5,13.55 2.58,13.76 2.74,13.92 C 2.90,14.07 3.11,14.16 3.33,14.16 L 10,14.16 C 10.46,14.16 10.83,14.53 10.83,15 C 10.83,15.46 10.46,15.83 10,15.83 L 3.33,15.83 C 2.67,15.83 2.03,15.57 1.56,15.10 C 1.09,14.63 0.83,13.99 0.83,13.33 L 0.83,6.66 C 0.83,6.00 1.09,5.36 1.56,4.89 C 2.03,4.42 2.67,4.16 3.33,4.16 L 16.66,4.16 C 17.32,4.16 17.96,4.42 18.43,4.89 C 18.90,5.36 19.16,6.00 19.16,6.66 L 19.16,10.83 C 19.16,11.29 18.79,11.66 18.33,11.66 C 17.87,11.66 17.5,11.29 17.5,10.83Z" fill="#d9344f"></path><path d="M 17.74,15.24 C 18.07,14.91 18.59,14.91 18.92,15.24 C 19.25,15.57 19.25,16.09 18.92,16.42 L 16.42,18.92 C 16.09,19.24 15.57,19.24 15.24,18.92 L 12.74,16.42 C 12.41,16.09 12.41,15.57 12.74,15.24 C 13.07,14.91 13.59,14.91 13.92,15.24 L 15.83,17.15Z" fill="#d9344f"></path><path d="M 15.00,9.16 C 15.46,9.16 15.83,9.53 15.83,10 C 15.83,10.46 15.46,10.83 15.00,10.83 L 15,10.83 C 14.53,10.83 14.16,10.46 14.16,10 C 14.16,9.53 14.53,9.16 15,9.16Z" fill="#d9344f"></path><path d="M 15,18.33 L 15,13.33 C 15,12.87 15.37,12.5 15.83,12.5 C 16.29,12.5 16.66,12.87 16.66,13.33 L 16.66,18.33 C 16.66,18.79 16.29,19.16 15.83,19.16 C 15.37,19.16 15,18.79 15,18.33Z" fill="#d9344f"></path><path d="M 5.00,9.16 C 5.46,9.16 5.83,9.53 5.83,10 C 5.83,10.46 5.46,10.83 5.00,10.83 L 5,10.83 C 4.53,10.83 4.16,10.46 4.16,10 C 4.16,9.53 4.53,9.16 5,9.16Z" fill="#d9344f"></path><path d="M 10.83,10 C 10.83,9.53 10.46,9.16 10,9.16 C 9.53,9.16 9.16,9.53 9.16,10 C 9.16,10.46 9.53,10.83 10,10.83 C 10.46,10.83 10.83,10.46 10.83,10 Z M 12.5,10 C 12.5,11.37 11.38,12.5 10,12.5 C 8.62,12.5 7.5,11.37 7.5,10 C 7.5,8.62 8.62,7.5 10,7.5 C 11.38,7.5 12.5,8.62 12.5,10Z" fill="#d9344f"></path></svg></span>
+<span style="position: absolute; left: 67px; top: 2px; font-size: 16px; line-height: 20px; font-weight: 600; color: #17171c; white-space: nowrap">Descontos</span>
+<span style="position: absolute; left: 67px; top: 21.13px; font-size: 14px; line-height: 17px; font-weight: 400; color: #952336; white-space: nowrap">{{v.desc}}</span>
+<sc-if value="{{ui.temDescontos}}" hint-placeholder-val="{{ true }}">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#42424a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="position: absolute; left: 287px; top: 12px; display: block; transform: rotate({{ui.descRot}}deg); transition: transform 200ms ease"><path d="m6 9 6 6 6-6"></path></svg>
+</sc-if>
+</button>
+<sc-if value="{{ui.descOpen}}" hint-placeholder-val="{{ false }}">
+<div style="position: absolute; left: 14px; top: {{L.descBarTop}}px; width: 2px; height: {{L.descBarH}}px; background: #d9344f; animation: holFadeIn 220ms ease both"></div>
+<sc-for list="{{desc}}" as="r" hint-placeholder-count="2">
+<span style="position: absolute; left: 27px; top: {{r.top}}px; font-size: 14px; line-height: 17px; font-weight: 400; color: #7a7a86; white-space: nowrap; animation: holFadeIn 220ms ease both">{{r.label}}</span>
+<span style="position: absolute; right: 23px; top: {{r.top}}px; font-size: 14px; line-height: 17px; font-weight: 400; color: #42424a; white-space: nowrap; text-align: right; animation: holFadeIn 220ms ease both">{{r.valor}}</span>
+</sc-for>
+</sc-if>
+<a class="wp-btn wp-btn--outline" href="HoleritePDF.dc.html" data-nav="push:holeritepdf" onClick="{{abrirPdf}}" style="position: absolute; left: 15px; top: {{L.btnTop}}px; width: 296px; height: 40px; box-sizing: border-box; border: 1px solid #5734d9; border-radius: 20px; display: block; text-decoration: none; transition: top 280ms cubic-bezier(0.22, 0.8, 0.26, 1)">
+<span style="position: absolute; left: 0; top: 9px; transform: translateY(0.5px); width: 294px; font-size: 16px; line-height: 20px; font-weight: 600; color: #5734d9; text-align: center; white-space: nowrap">Visualizar PDF</span>
+</a>
+</div>
+
+<!-- Informe de rendimentos -->
+<a href="InformeRendimentos.dc.html" data-nav="push:informe" style="position: absolute; left: 16px; top: {{L.informeTop}}px; width: 328px; height: 89px; box-sizing: border-box; background: #ffffff; border: 1px solid #e5e5ea; border-radius: 12px; display: block; text-decoration: none; transition: top 280ms cubic-bezier(0.22, 0.8, 0.26, 1)">
+<span style="position: absolute; left: 15px; top: 23px; transform: translateY(0.5px); width: 40px; height: 40px; box-sizing: border-box; background: #f7f6fc; border: 1px solid #e1dcf3; border-radius: 50%"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" style="position: absolute; left: 9px; top: 9px; display: block"><path d="M 9.16,14.16 L 9.16,5.83 C 9.16,5.37 9.53,5 10,5 C 10.46,5 10.83,5.37 10.83,5.83 L 10.83,14.16 C 10.83,14.62 10.46,15 10,15 C 9.53,15 9.16,14.62 9.16,14.16Z" fill="#5734d9"></path><path d="M 12.5,11.66 C 12.5,11.44 12.41,11.23 12.25,11.07 C 12.09,10.92 11.88,10.83 11.66,10.83 L 8.33,10.83 C 7.67,10.83 7.03,10.57 6.56,10.10 C 6.09,9.63 5.83,8.99 5.83,8.33 C 5.83,7.67 6.09,7.03 6.56,6.56 C 7.03,6.09 7.67,5.83 8.33,5.83 L 13.33,5.83 C 13.79,5.83 14.16,6.20 14.16,6.66 C 14.16,7.12 13.79,7.5 13.33,7.5 L 8.33,7.5 C 8.11,7.5 7.90,7.58 7.74,7.74 C 7.58,7.90 7.5,8.11 7.5,8.33 C 7.5,8.55 7.58,8.76 7.74,8.92 C 7.90,9.07 8.11,9.16 8.33,9.16 L 11.66,9.16 C 12.32,9.16 12.96,9.42 13.43,9.89 C 13.90,10.36 14.16,11.00 14.16,11.66 C 14.16,12.32 13.90,12.96 13.43,13.43 C 12.96,13.90 12.32,14.16 11.66,14.16 L 6.66,14.16 C 6.20,14.16 5.83,13.79 5.83,13.33 C 5.83,12.87 6.20,12.5 6.66,12.5 L 11.66,12.5 C 11.88,12.5 12.09,12.41 12.25,12.25 C 12.41,12.10 12.5,11.88 12.5,11.66Z" fill="#5734d9"></path><path d="M 13.89,16.66 C 14.21,16.66 14.52,16.74 14.80,16.89 L 14.92,16.96 L 15.69,17.46 C 15.73,17.48 15.78,17.5 15.82,17.5 L 15.83,17.5 L 15.83,2.5 L 15.82,2.5 C 15.78,2.5 15.73,2.51 15.69,2.53 L 14.92,3.03 C 14.61,3.23 14.25,3.33 13.89,3.33 C 13.52,3.33 13.16,3.23 12.85,3.03 L 12.07,2.53 C 12.03,2.51 11.99,2.49 11.94,2.49 C 11.89,2.49 11.85,2.51 11.80,2.53 L 11.03,3.03 L 11.03,3.03 C 10.72,3.23 10.36,3.33 10,3.33 C 9.63,3.33 9.27,3.23 8.96,3.03 L 8.96,3.03 L 8.19,2.53 C 8.14,2.51 8.10,2.49 8.05,2.49 C 8.00,2.49 7.96,2.51 7.92,2.53 L 7.14,3.03 C 6.83,3.23 6.47,3.33 6.10,3.33 C 5.74,3.33 5.38,3.23 5.07,3.03 L 4.30,2.53 L 4.24,2.50 C 4.21,2.50 4.19,2.5 4.17,2.5 L 4.16,2.5 L 4.16,17.5 L 4.17,17.5 C 4.21,17.5 4.26,17.48 4.30,17.46 L 5.07,16.96 C 5.38,16.76 5.74,16.66 6.10,16.66 C 6.42,16.66 6.74,16.74 7.02,16.89 L 7.14,16.96 L 7.92,17.46 L 7.98,17.49 C 8.00,17.5 8.03,17.50 8.05,17.50 C 8.07,17.50 8.10,17.5 8.12,17.49 L 8.19,17.46 L 8.96,16.96 L 8.96,16.96 C 9.27,16.76 9.63,16.66 10,16.66 C 10.32,16.66 10.63,16.74 10.91,16.89 L 11.03,16.96 L 11.03,16.96 L 11.80,17.46 C 11.84,17.48 11.89,17.50 11.94,17.50 C 11.99,17.50 12.03,17.48 12.07,17.46 L 12.85,16.96 C 13.16,16.76 13.52,16.66 13.89,16.66 Z M 17.5,17.5 C 17.5,17.94 17.32,18.36 17.01,18.67 C 16.69,18.98 16.27,19.16 15.83,19.16 L 15.83,19.16 C 15.46,19.16 15.11,19.06 14.80,18.87 L 14.80,18.86 L 14.02,18.36 C 13.98,18.34 13.93,18.32 13.89,18.32 C 13.83,18.32 13.79,18.34 13.75,18.36 L 12.97,18.86 L 12.97,18.87 C 12.66,19.06 12.30,19.17 11.94,19.17 C 11.57,19.17 11.21,19.06 10.91,18.87 L 10.91,18.86 L 10.13,18.36 C 10.09,18.34 10.04,18.32 10,18.32 C 9.95,18.32 9.90,18.34 9.86,18.36 L 9.08,18.86 L 9.08,18.87 C 8.78,19.06 8.42,19.17 8.05,19.17 C 7.69,19.17 7.33,19.06 7.02,18.87 L 7.02,18.86 L 6.24,18.36 C 6.20,18.34 6.16,18.32 6.10,18.32 C 6.06,18.32 6.01,18.34 5.97,18.36 L 5.19,18.86 L 5.19,18.87 C 4.88,19.06 4.53,19.16 4.16,19.16 L 4.16,19.16 C 3.72,19.16 3.30,18.98 2.98,18.67 C 2.67,18.36 2.5,17.94 2.5,17.5 L 2.5,2.5 C 2.5,2.05 2.67,1.63 2.98,1.32 C 3.30,1.01 3.72,0.83 4.16,0.83 L 4.16,0.83 L 4.16,0.83 C 4.48,0.83 4.79,0.91 5.07,1.05 L 5.19,1.12 L 5.19,1.13 L 5.97,1.63 C 6.01,1.65 6.06,1.67 6.10,1.67 C 6.16,1.67 6.20,1.65 6.24,1.63 L 7.02,1.13 C 7.33,0.93 7.69,0.82 8.05,0.82 C 8.42,0.82 8.78,0.93 9.08,1.13 L 9.08,1.13 L 9.86,1.63 L 9.86,1.63 C 9.90,1.65 9.95,1.67 10,1.67 C 10.04,1.67 10.09,1.65 10.13,1.63 L 10.91,1.13 L 10.91,1.13 C 11.21,0.93 11.57,0.82 11.94,0.82 C 12.30,0.82 12.66,0.93 12.97,1.13 L 13.75,1.63 L 13.82,1.66 C 13.84,1.66 13.86,1.67 13.89,1.67 C 13.93,1.67 13.98,1.65 14.02,1.63 L 14.80,1.13 L 14.80,1.12 L 14.92,1.05 C 15.20,0.91 15.51,0.83 15.83,0.83 L 15.83,0.83 C 15.83,0.83 15.83,0.83 15.83,0.83 L 15.83,0.83 C 16.27,0.83 16.69,1.01 17.01,1.32 C 17.32,1.63 17.5,2.05 17.5,2.5Z" fill="#5734d9"></path></svg></span>
+<span style="position: absolute; left: 67px; top: 15px; font-size: 16px; line-height: 20px; font-weight: 600; color: #17171c; white-space: nowrap">Informe de rendimentos</span>
+<span style="position: absolute; left: 67px; top: 38.13px; font-size: 14px; line-height: 17px; font-weight: 400; color: #7a7a86; white-space: pre">Visualize e faça o download dos
+seus informes de rendimento</span>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5734d9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="position: absolute; left: 287px; top: 35px; display: block; transform: translateY(0.5px)"><path d="m9 18 6-6-6-6"></path></svg>
+</a>
+</sc-if>
+
+<span style="position: absolute; left: 125.55px; top: {{L.poweredTop}}px; font-size: 12px; line-height: 14px; font-weight: 400; color: #7a7a86; white-space: nowrap; transition: top 280ms cubic-bezier(0.22, 0.8, 0.26, 1)">Powered by</span>
+<img src="./assets/2255926581a6390a97385c9b13851758.svg" alt="Senior" style="position: absolute; left: 191.5px; top: {{L.poweredImg}}px; width: 43px; height: 14px; display: block; transition: top 280ms cubic-bezier(0.22, 0.8, 0.26, 1)">
+
+<!-- Lista de holerites (Filtrar) -->
+<sc-if value="{{ui.aberto}}" hint-placeholder-val="{{ false }}">
+<div onClick="{{fecharLista}}" style="position: absolute; left: 0; top: 0; width: 360px; height: {{L.contentH}}px; z-index: 8"></div>
+<div style="position: absolute; left: 10px; top: 97px; width: 340px; height: 400px; z-index: 9; pointer-events: none; animation: holDropIn 180ms cubic-bezier(0.22, 0.8, 0.26, 1) both">
+<img src="./assets/dd843ba8b734d70fd17f09a39db04eba.png" alt="" style="position: absolute; left: 0; top: 0; width: 340px; height: 400px; display: block">
+</div>
+<div role="listbox" aria-label="Holerites" style="position: absolute; left: 16px; top: 99px; width: 328px; height: 388px; z-index: 9; box-sizing: border-box; background: #ffffff; border-radius: 8px; overflow: hidden; animation: holDropIn 180ms cubic-bezier(0.22, 0.8, 0.26, 1) both">
+<div ref="{{listaRef}}" class="hol-lista" onScroll="{{onListaScroll}}" style="position: absolute; left: 0; top: 0; width: 328px; height: 388px; overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain">
+<div style="position: relative; width: 328px; height: {{L.listaH}}px">
+<sc-for list="{{linhas}}" as="h" hint-placeholder-count="8">
+<sc-if value="{{h.ehAno}}" hint-placeholder-val="{{ false }}">
+<div style="position: absolute; left: 8px; top: {{h.top}}px; width: 296px; height: 38px">
+<div style="position: absolute; left: 0; top: 18px; width: 126.5px; height: 1px; background: #e5e5ea"></div>
+<span style="position: absolute; left: 126.5px; top: 12.25px; width: 43px; font-size: 12px; line-height: 14px; font-weight: 600; color: #b6b6c1; text-align: center; white-space: nowrap">{{h.ano}}</span>
+<div style="position: absolute; left: 169.5px; top: 18px; width: 126.5px; height: 1px; background: #e5e5ea"></div>
+</div>
+</sc-if>
+<sc-if value="{{h.ehItem}}" hint-placeholder-val="{{ true }}">
+<button type="button" role="option" class="hol-item" aria-selected="{{h.selAria}}" onClick="{{h.escolher}}" style="position: absolute; left: 8px; top: {{h.top}}px; width: 296px; height: 40px; margin: 0; padding: 0; border: 0; border-radius: 8px; background: {{h.bg}}; font-family: inherit; text-align: left; cursor: pointer">
+<span style="position: absolute; left: 10px; top: 12px; width: 16px; height: 16px; box-sizing: border-box; border: 1.5px solid {{h.radio}}; border-radius: 50%"></span>
+<sc-if value="{{h.sel}}" hint-placeholder-val="{{ false }}"><span style="position: absolute; left: 13px; top: 15px; width: 10px; height: 10px; border-radius: 50%; background: #ffffff"></span></sc-if>
+<span style="position: absolute; left: 36px; top: 6.37px; transform: translateY(0.5px); font-size: 10px; line-height: 12px; font-weight: 400; color: {{h.cor2}}; white-space: nowrap">{{h.empresa}}</span>
+<span style="position: absolute; left: 36px; top: 17px; transform: translateY(0.5px); width: 248px; font-size: 14px; line-height: 17px; font-weight: 400; color: {{h.cor}}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{h.titulo}}</span>
+</button>
+</sc-if>
+</sc-for>
+</div>
+</div>
+<div aria-hidden="true" style="position: absolute; left: 312px; top: 16px; width: 8px; height: 356px; border-radius: 4px; background: #fafafb; pointer-events: none">
+<div style="position: absolute; left: 0; top: {{ui.thumbTop}}px; width: 8px; height: 40px; border-radius: 4px; background: #e5e5ea"></div>
+</div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 328px; height: 388px; box-sizing: border-box; border: 1px solid #f3f3f6; border-radius: 8px; pointer-events: none"></div>
+</div>
+</sc-if>
+</div>
+</div>
+
+<!-- Navegação inferior -->
+<div style="position: absolute; left: 0; bottom: 0; width: 360px; height: 92px; background: linear-gradient(180deg, rgba(0, 0, 0, 0) 7.5px, rgba(0, 0, 0, 0.254) 92px); pointer-events: none"></div>
+<img src="./assets/d49f7e773e0839a865a2cdb3b9713516.png" alt="" style="position: absolute; left: 1px; bottom: -1px; width: 358px; height: 82px; display: block; pointer-events: none">
+<img src="./assets/82c5e69442e02732dbc6f0cf936ed74a.png" alt="" style="position: absolute; left: 10px; bottom: 14px; width: 340px; height: 64px; display: block; pointer-events: none">
+<nav style="position: absolute; left: 16px; top: calc(704px + var(--wp-h, 780px) - 780px); width: 328px; height: 52px; box-sizing: border-box; background: #ffffff; border-radius: 26px">
+<div style="position: absolute; left: 0; top: 0; width: 328px; height: 52px; box-sizing: border-box; border-radius: 26px; box-shadow: inset 0 0 0 1px #f3f3f6; pointer-events: none"></div>
+<svg width="264" height="26" viewBox="0 0 264 26" aria-hidden="true" style="position: absolute; left: 32px; top: 5px; display: block"><path d="M 15.26,20.88 L 15.26,14.21 L 11.93,14.21 L 11.93,20.88 C 11.93,21.34 11.55,21.71 11.10,21.71 C 10.64,21.71 10.26,21.34 10.26,20.88 L 10.26,14.21 C 10.26,13.77 10.44,13.35 10.75,13.03 C 11.06,12.72 11.49,12.55 11.93,12.55 L 15.26,12.55 C 15.70,12.55 16.13,12.72 16.44,13.03 C 16.75,13.35 16.93,13.77 16.93,14.21 L 16.93,20.88 C 16.93,21.34 16.55,21.71 16.10,21.71 C 15.64,21.71 15.26,21.34 15.26,20.88Z" fill="#7a7a86"></path><path d="M 20.26,11.71 C 20.26,11.59 20.24,11.47 20.18,11.36 C 20.13,11.25 20.06,11.16 19.97,11.08 L 19.96,11.07 L 14.13,6.08 C 13.98,5.95 13.79,5.88 13.60,5.88 C 13.40,5.88 13.21,5.95 13.06,6.08 L 7.23,11.07 L 7.23,11.08 C 7.13,11.16 7.06,11.25 7.01,11.36 C 6.96,11.47 6.93,11.59 6.93,11.71 L 6.93,19.21 C 6.93,19.43 7.01,19.65 7.17,19.80 C 7.33,19.96 7.54,20.05 7.76,20.05 L 19.43,20.05 C 19.65,20.05 19.86,19.96 20.02,19.80 C 20.17,19.65 20.26,19.43 20.26,19.21 Z M 21.93,19.21 C 21.93,19.87 21.66,20.51 21.19,20.98 C 20.73,21.45 20.09,21.71 19.43,21.71 L 7.76,21.71 C 7.10,21.71 6.46,21.45 6,20.98 C 5.53,20.51 5.26,19.87 5.26,19.21 L 5.26,11.71 C 5.26,11.35 5.34,10.99 5.5,10.66 C 5.65,10.33 5.87,10.04 6.15,9.80 L 11.98,4.81 L 11.98,4.80 C 12.43,4.42 13.00,4.21 13.60,4.21 C 14.11,4.21 14.61,4.37 15.03,4.67 L 15.21,4.80 L 15.21,4.81 L 21.04,9.80 L 21.14,9.89 C 21.37,10.11 21.56,10.37 21.70,10.66 C 21.85,10.99 21.93,11.35 21.93,11.71Z" fill="#7a7a86"></path><path d="M 80.30,8.83 C 80.30,8.37 79.92,8 79.46,8 L 66.13,8 C 65.67,8 65.30,8.37 65.30,8.83 L 65.30,17.16 C 65.30,17.62 65.67,18 66.13,18 L 79.46,18 C 79.92,18 80.30,17.62 80.30,17.16 Z M 81.96,17.16 C 81.96,18.54 80.84,19.66 79.46,19.66 L 66.13,19.66 C 64.75,19.66 63.63,18.54 63.63,17.16 L 63.63,8.83 C 63.63,7.45 64.75,6.33 66.13,6.33 L 79.46,6.33 C 80.84,6.33 81.96,7.45 81.96,8.83Z" fill="#7a7a86"></path><path d="M 81.13,10.5 C 81.59,10.5 81.96,10.87 81.96,11.33 C 81.96,11.79 81.59,12.16 81.13,12.16 L 64.46,12.16 C 64.00,12.16 63.63,11.79 63.63,11.33 C 63.63,10.87 64.00,10.5 64.46,10.5Z" fill="#7a7a86"></path><path d="M 133.66,13.83 C 133.88,13.83 134.10,13.92 134.25,14.07 C 134.41,14.23 134.5,14.44 134.5,14.66 C 134.5,14.88 134.41,15.09 134.25,15.25 C 134.10,15.41 133.88,15.5 133.66,15.5 L 132.83,15.5 L 132.83,13.83Z" fill="#5734d9"></path><path d="M 131.16,10.5 L 131.16,12.16 L 130.33,12.16 C 130.11,12.16 129.90,12.07 129.74,11.92 C 129.58,11.76 129.5,11.55 129.5,11.33 C 129.5,11.11 129.58,10.89 129.74,10.74 C 129.90,10.58 130.11,10.5 130.33,10.5Z" fill="#5734d9"></path><path d="M 132,3.83 C 137.06,3.83 141.16,7.93 141.16,13 C 141.16,18.06 137.06,22.16 132,22.16 C 126.93,22.16 122.83,18.06 122.83,13 C 122.83,7.93 126.93,3.83 132,3.83 Z M 132,7.16 C 131.53,7.16 131.16,7.53 131.16,8 L 131.16,8.83 L 130.33,8.83 C 129.67,8.83 129.03,9.09 128.56,9.56 C 128.09,10.03 127.83,10.67 127.83,11.33 C 127.83,11.99 128.09,12.63 128.56,13.10 C 129.03,13.57 129.67,13.83 130.33,13.83 L 131.16,13.83 L 131.16,15.5 L 128.66,15.5 C 128.20,15.5 127.83,15.87 127.83,16.33 C 127.83,16.79 128.20,17.16 128.66,17.16 L 131.16,17.16 L 131.16,18 C 131.16,18.46 131.53,18.83 132,18.83 C 132.46,18.83 132.83,18.46 132.83,18 L 132.83,17.16 L 133.66,17.16 C 134.32,17.16 134.96,16.90 135.43,16.43 C 135.90,15.96 136.16,15.32 136.16,14.66 C 136.16,14.00 135.90,13.36 135.43,12.89 C 134.96,12.42 134.32,12.16 133.66,12.16 L 132.83,12.16 L 132.83,10.5 L 135.33,10.5 C 135.79,10.5 136.16,10.12 136.16,9.66 C 136.16,9.20 135.79,8.83 135.33,8.83 L 132.83,8.83 L 132.83,8 C 132.83,7.53 132.46,7.16 132,7.16Z" fill="#5734d9" fill-rule="evenodd"></path><path d="M 185.87,5.54 C 187.62,4.28 189.77,3.69 191.92,3.86 C 194.08,4.03 196.10,4.96 197.64,6.48 C 199.17,7.99 200.12,10.00 200.32,12.16 C 200.52,14.31 199.95,16.46 198.72,18.23 C 197.48,20.01 195.66,21.28 193.58,21.85 C 191.51,22.41 189.31,22.22 187.36,21.32 C 187.23,21.27 187.08,21.26 186.94,21.28 L 184.14,22.10 C 184.14,22.10 184.13,22.10 184.12,22.11 C 183.85,22.18 183.56,22.18 183.28,22.11 C 183.01,22.04 182.76,21.90 182.55,21.71 C 182.35,21.51 182.19,21.27 182.10,21 C 182.02,20.73 182.01,20.44 182.06,20.16 L 182.08,20.07 L 182.96,17.39 C 182.98,17.23 182.97,17.07 182.92,16.93 C 182.00,15 181.78,12.80 182.32,10.72 C 182.85,8.63 184.11,6.79 185.87,5.54 Z M 191.79,5.52 C 190.03,5.38 188.27,5.87 186.83,6.89 C 185.40,7.92 184.37,9.42 183.93,11.14 C 183.52,12.74 183.65,14.43 184.30,15.95 L 184.44,16.25 L 184.46,16.31 C 184.65,16.77 184.69,17.28 184.58,17.76 C 184.57,17.79 184.57,17.82 184.56,17.84 L 183.70,20.49 L 186.52,19.67 C 186.54,19.66 186.57,19.66 186.59,19.65 C 187,19.57 187.41,19.59 187.80,19.71 L 187.96,19.77 L 188.02,19.79 C 189.62,20.54 191.44,20.70 193.14,20.24 C 194.85,19.78 196.34,18.73 197.35,17.28 C 198.36,15.83 198.83,14.07 198.66,12.31 C 198.50,10.55 197.73,8.90 196.47,7.66 C 195.21,6.42 193.55,5.66 191.79,5.52Z" fill="#7a7a86"></path><path d="M 187.87,12.16 C 188.33,12.16 188.70,12.53 188.70,13 C 188.70,13.46 188.33,13.83 187.87,13.83 L 187.86,13.83 C 187.40,13.83 187.03,13.46 187.03,13 C 187.03,12.53 187.40,12.16 187.86,12.16Z" fill="#7a7a86"></path><path d="M 191.20,12.16 C 191.66,12.16 192.04,12.53 192.04,13 C 192.04,13.46 191.66,13.83 191.20,13.83 L 191.19,13.83 C 190.73,13.83 190.36,13.46 190.36,13 C 190.36,12.53 190.73,12.16 191.19,12.16Z" fill="#7a7a86"></path><path d="M 194.54,12.16 C 195,12.16 195.37,12.53 195.37,13 C 195.37,13.46 195,13.83 194.54,13.83 L 194.53,13.83 C 194.07,13.83 193.69,13.46 193.69,13 C 193.69,12.53 194.07,12.16 194.53,12.16Z" fill="#7a7a86"></path><path d="M 257.06,6.33 C 257.52,6.33 257.89,6.70 257.89,7.16 C 257.89,7.62 257.52,8 257.06,8 L 243.73,8 C 243.27,8 242.89,7.62 242.89,7.16 C 242.89,6.70 243.27,6.33 243.73,6.33Z" fill="#7a7a86"></path><path d="M 257.06,12.16 C 257.52,12.16 257.89,12.53 257.89,13 C 257.89,13.46 257.52,13.83 257.06,13.83 L 243.73,13.83 C 243.27,13.83 242.89,13.46 242.89,13 C 242.89,12.53 243.27,12.16 243.73,12.16Z" fill="#7a7a86"></path><path d="M 257.06,18 C 257.52,18 257.89,18.37 257.89,18.83 C 257.89,19.29 257.52,19.66 257.06,19.66 L 243.73,19.66 C 243.27,19.66 242.89,19.29 242.89,18.83 C 242.89,18.37 243.27,18 243.73,18Z" fill="#7a7a86"></path></svg>
+<span style="position: absolute; left: 34.16px; top: 33px; font-size: 10px; line-height: 12px; font-weight: 600; color: #7a7a86; white-space: nowrap">Início</span>
+<a href="Home.dc.html" data-nav="tab:home" aria-label="Início" style="position: absolute; left: 16px; top: 0; width: 59.2px; height: 52px; display: block"></a>
+<span style="position: absolute; left: 95.86px; top: 33px; font-size: 10px; line-height: 12px; font-weight: 600; color: #7a7a86; white-space: nowrap">Flex</span>
+<a href="Flex.dc.html" data-nav="tab:flex" aria-label="Flex" style="position: absolute; left: 75.2px; top: 0; width: 59.2px; height: 52px; display: block"></a>
+<span style="position: absolute; left: 146.82px; top: 33px; font-size: 10px; line-height: 12px; font-weight: 600; color: #5734d9; white-space: nowrap">Holerite</span>
+<a href="#" aria-current="page" aria-label="Holerite" style="position: absolute; left: 134.4px; top: 0; width: 59.2px; height: 52px; display: block"></a>
+<span style="position: absolute; left: 209.77px; top: 33px; font-size: 10px; line-height: 12px; font-weight: 600; color: #7a7a86; white-space: nowrap">Social</span>
+<a href="Social.dc.html" data-nav="tab:social" aria-label="Social" style="position: absolute; left: 193.6px; top: 0; width: 59.2px; height: 52px; display: block"></a>
+<span style="position: absolute; left: 269.9px; top: 33px; font-size: 10px; line-height: 12px; font-weight: 600; color: #7a7a86; white-space: nowrap">Menu</span>
+<a href="Main.dc.html" data-nav="tab:main" aria-label="Menu" style="position: absolute; left: 252.8px; top: 0; width: 59.2px; height: 52px; display: block"></a>
+</nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"estado":{"editor":"enum","default":"padrao","options":["padrao","verValores","filtrar","vazio"]},"$preview":{"width":360,"height":780}}'>
+class Component extends DCLogic {
+componentDidMount() {
+var self = this;
+var proxMin = function () { var d = new Date(); return 60050 - d.getSeconds() * 1000 - d.getMilliseconds(); };
+var tick = function () { var d = new Date(); self.setState({ clockK: d.getHours() * 60 + d.getMinutes() }); self._clockT = setTimeout(tick, proxMin()); };
+// Relógio da status bar: acorda só na virada de cada minuto (em vez de checar a cada segundo)
+this._clockT = setTimeout(tick, proxMin());
+}
+componentWillUnmount() { clearTimeout(this._clockT); }
+holerites() {
+// Holerites do protótipo (compartilhado por Início e Meu Holerite).
+// Base: salário de R$ 5.000,00. Regras de 2026: INSS progressivo (Portaria MPS/MF 13/2026, teto R$ 8.475,55)
+// e IRRF (Lei 15.191/2025) com a redução da Lei 15.270/2025 (isenção até R$ 5.000,00, inclusive no 13º).
+// A lista vai do mês atual (o mais recente) até janeiro do ano anterior e muda sozinha quando o mês vira.
+var hoje = new Date();
+var chave = hoje.getFullYear() + '-' + hoje.getMonth() + '-' + hoje.getDate();
+if (window.__wiipoHol && window.__wiipoHol.chave === chave) return window.__wiipoHol.lista;
+var SAL = 5000;
+var MESES = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+var r2 = function (v) { return Math.round((v + 1e-9) * 100) / 100; };
+var inss = function (b) {
+var F = [[1621.00, 0.075], [2902.84, 0.09], [4354.27, 0.12], [8475.55, 0.14]];
+var prev = 0, t = 0;
+for (var i = 0; i < F.length; i++) { var topo = Math.min(b, F[i][0]); if (topo > prev) t += (topo - prev) * F[i][1]; prev = F[i][0]; }
+return r2(t);
+};
+var irrf = function (rend, inssV) {
+var base = rend - Math.max(inssV, 607.20);
+var T = [[2428.80, 0, 0], [2826.65, 0.075, 182.16], [3751.05, 0.15, 394.16], [4664.68, 0.225, 675.49], [Infinity, 0.275, 908.73]];
+var imp = 0;
+for (var i = 0; i < T.length; i++) { if (base <= T[i][0]) { imp = base * T[i][1] - T[i][2]; break; } }
+imp = Math.max(0, imp);
+var red = rend <= 5000 ? 312.89 : (rend <= 7350 ? Math.max(0, 978.62 - 0.133145 * rend) : 0);
+return r2(Math.max(0, imp - red));
+};
+// Feriados nacionais (fixos + Sexta-feira Santa)
+var feriados = {};
+var pascoa = function (y) {
+var a = y % 19, b = Math.floor(y / 100), c = y % 100, d = Math.floor(b / 4), e = b % 4, f = Math.floor((b + 8) / 25), g = Math.floor((b - f + 1) / 3);
+var h = (19 * a + b - d - g + 15) % 30, i = Math.floor(c / 4), k = c % 4, l = (32 + 2 * e + 2 * i - h - k) % 7, m = Math.floor((a + 11 * h + 22 * l) / 451);
+var mes = Math.floor((h + l - 7 * m + 114) / 31), dia = ((h + l - 7 * m + 114) % 31) + 1;
+return new Date(y, mes - 1, dia);
+};
+var ehFeriado = function (dt) {
+var y = dt.getFullYear();
+if (!feriados[y]) {
+var fx = ['1-1', '4-21', '5-1', '9-7', '10-12', '11-2', '11-15', '11-20', '12-25'];
+var o = {}; fx.forEach(function (s) { o[s] = true; });
+var p = pascoa(y); var sexta = new Date(y, p.getMonth(), p.getDate() - 2); o[(sexta.getMonth() + 1) + '-' + sexta.getDate()] = true;
+feriados[y] = o;
+}
+return !!feriados[y][(dt.getMonth() + 1) + '-' + dt.getDate()];
+};
+var diaUtil = function (dt) { return dt.getDay() !== 0 && !ehFeriado(dt); }; // segunda a sábado, exceto feriados
+var quintoDiaUtil = function (y, m) { var n = 0, d = 1, dt; while (true) { dt = new Date(y, m, d); if (diaUtil(dt)) { n++; if (n === 5) return dt; } d++; } };
+var ateDiaUtil = function (dt) { while (!diaUtil(dt)) dt = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate() - 1); return dt; };
+var descansos = function (y, m) { var dias = new Date(y, m + 1, 0).getDate(), n = 0; for (var d = 1; d <= dias; d++) { var dt = new Date(y, m, d); if (dt.getDay() === 0 || ehFeriado(dt)) n++; } return { dias: dias, n: n }; };
+var soma = function (l) { var t = 0; l.forEach(function (x) { t += x.v; }); return r2(t); };
+var fecha = function (h) { h.bruto = soma(h.proventos); h.desc = soma(h.descontos); h.liquido = r2(h.bruto - h.desc); return h; };
+var mensal = function (y, m) {
+var ds = descansos(y, m);
+var normais = r2(SAL * (ds.dias - ds.n) / ds.dias);
+var vInss = inss(SAL);
+return fecha({ tipo: 'mensal', titulo: 'Cálculo mensal - ' + MESES[m] + ' ' + y, mesAno: MESES[m] + ' ' + y, ano: y, mes: m, pagamento: quintoDiaUtil(m === 11 ? y + 1 : y, (m + 1) % 12),
+proventos: [{ label: 'Horas normais', v: normais }, { label: 'Horas rep. rem. diurno', v: r2(SAL - normais) }],
+descontos: [{ label: 'Imposto de renda da fonte', v: irrf(SAL, vInss) }, { label: 'I.N.S.S.', v: vInss }] });
+};
+var adiant = function (y) {
+return fecha({ tipo: 'adiantamento', titulo: 'Adiantamento 13º Salário - Novembro ' + y, mesAno: 'Novembro ' + y, ano: y, mes: 10, pagamento: ateDiaUtil(new Date(y, 10, 30)),
+proventos: [{ label: 'Adiantamento 13º salário', v: r2(SAL / 2) }], descontos: [] });
+};
+var integral = function (y) {
+var vInss = inss(SAL);
+return fecha({ tipo: 'integral', titulo: '13º Salário Integral - Dezembro ' + y, mesAno: 'Dezembro ' + y, ano: y, mes: 11, pagamento: ateDiaUtil(new Date(y, 11, 20)),
+proventos: [{ label: '13º salário integral', v: SAL }],
+descontos: [{ label: 'Adiantamento 13º salário', v: r2(SAL / 2) }, { label: 'Imposto de renda 13º salário', v: irrf(SAL, vInss) }, { label: 'I.N.S.S. 13º salário', v: vInss }] });
+};
+var lista = [];
+var y0 = hoje.getFullYear(), m0 = hoje.getMonth();
+for (var y = y0; y >= y0 - 1; y--) {
+for (var m = (y === y0 ? m0 : 11); m >= 0; m--) {
+lista.push(mensal(y, m));
+if (m === 11) lista.push(integral(y));
+if (m === 10) lista.push(adiant(y));
+}
+}
+var p2 = function (n) { return ('0' + n).slice(-2); };
+var hoje0 = new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate());
+lista.forEach(function (h, i) {
+var pg = h.pagamento;
+h.id = h.tipo + '-' + h.ano + '-' + h.mes;
+h.empresa = 'Wiipo Labs';
+h.pagoTxt = p2(pg.getDate()) + '/' + p2(pg.getMonth() + 1) + '/' + pg.getFullYear();
+h.recebido = pg < hoje0;
+h.indice = i;
+});
+window.__wiipoHol = { chave: chave, lista: lista };
+return lista;
+}
+brl(v) {
+var p = Math.abs(v).toFixed(2).split('.');
+return (v < 0 ? '- ' : '') + 'R$ ' + p[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ',' + p[1];
+}
+
+handleScroll(e) {
+// AppBar "quick return": acompanha a rolagem para baixo e reaparece assim que o usuário rola um pouco para cima.
+var y = Math.max(0, e.currentTarget.scrollTop);
+var last = this._lastY || 0;
+this._lastY = y;
+var BAR = 72;
+var st = this.state || {};
+var prev = typeof st.barOffset === 'number' ? st.barOffset : 0;
+var next = Math.min(BAR, Math.max(0, prev + (y - last)));
+if (next > y) next = y;
+if (next !== prev) this.setState({ barOffset: next });
+}
+estadoAtual() {
+// Estado da tela com os valores iniciais do Tweak "estado" (no protótipo: holerite mais recente, valores ocultos)
+var est = this.props.estado || 'padrao';
+return Object.assign({ sel: est === 'pendente' ? 1 : 0, oculto: est !== 'verValores', provOpen: est === 'verValores', descOpen: est === 'verValores', aberto: est === 'filtrar' }, this.state || {});
+}
+renderVals() {
+var _d = new Date();
+var statusTime = _d.getHours() + ':' + ('0' + _d.getMinutes()).slice(-2);
+var me = this;
+var est = this.props.estado || 'padrao';
+// Estados do layout (Tweak "estado"); no protótipo abre sempre no holerite mais recente, com valores ocultos
+var st = this.estadoAtual();
+var prev = typeof st.barOffset === 'number' ? st.barOffset : 0;
+var next = Math.min(BAR, Math.max(0, prev + (y - last)));
+if (next > y) next = y;
+if (next !== prev) this.setState({ barOffset: next });
+}
+renderVals() {
+var _d = new Date();
+var statusTime = _d.getHours() + ':' + ('0' + _d.getMinutes()).slice(-2);
+var me = this;
+var est = this.props.estado || 'padrao';
+if (!this._ini) {
+// Estados do layout (Tweak "estado"); no protótipo abre sempre no holerite mais recente, com valores ocultos
+this._ini = true;
+this.state = Object.assign({}, this.state || {}, {
+sel: est === 'pendente' ? 1 : 0,
+oculto: est !== 'verValores',
+provOpen: est === 'verValores', descOpen: est === 'verValores',
+aberto: est === 'filtrar'
+});
+}
+var st = this.state || {};
+var lista = est === 'vazio' ? [] : this.holerites();
+var temHol = lista.length > 0;
+var selI = Math.min(st.sel || 0, Math.max(0, lista.length - 1));
+var h = lista[selI] || null;
+var oculto = st.oculto !== false;
+var MASK = 'R$ *****';
+var fmt = function (n) { return oculto ? MASK : me.brl(n); };
+if (!this._h) {
+var set = function (o) { me.setState(o); };
+this._h = {
+toggleValores: function (e) { if (e && e.preventDefault) e.preventDefault(); var s0 = me.estadoAtual(); set({ oculto: s0.oculto === false }); },
+toggleLista: function () { var s0 = me.estadoAtual(); set({ aberto: !s0.aberto, listaY: 0 }); },
+fecharLista: function () { set({ aberto: false }); },
+toggleProv: function () { var s0 = me.estadoAtual(); set({ provOpen: !s0.provOpen }); },
+toggleDesc: function () { var s0 = me.estadoAtual(); var hh = me.holerites()[s0.sel || 0]; if (!hh || !hh.descontos.length) return; set({ descOpen: !s0.descOpen }); },
+semAcao: function (e) { if (e && e.preventDefault) e.preventDefault(); },
+abrirPdf: function () { var s0 = me.estadoAtual(); try { window.sessionStorage.setItem('wiipo.holeritePdf', JSON.stringify({ indice: s0.sel || 0 })); } catch (e1) {} },
+scrollerRef: function (el) { me._scroller = el; },
+listaRef: function (el) { me._lista = el; },
+onListaScroll: function (e) { var el = e.currentTarget; set({ listaY: el.scrollTop, listaMax: Math.max(1, el.scrollHeight - el.clientHeight) }); },
+onScroll: function (e) { me.handleScroll(e); }
+};
+this._esc = {};
+}
+var H = this._h;
+this._temDesc = !!(h && h.descontos.length);
+// ---------- Layout (coordenadas do Figma: y da página − 112) ----------
+var pend = false; // card de pendência do holerite removido (nov/2026)
+var provOpen = !!st.provOpen, descOpen = !!st.descOpen && this._temDesc;
+var nP = h ? h.proventos.length : 0, nD = h ? h.descontos.length : 0;
+var cardTop = pend ? 578 : 436;
+var provBarH = nP * 25 - 8;
+var sep = provOpen ? 75 + provBarH + 23 : 86;
+var descTop = sep + 25;
+var descBarTop = descTop + 56, descBarH = nD * 25 - 8;
+var btnTop = (descOpen ? descBarTop + descBarH : descTop + 40) + 24;
+var cardH = btnTop + 57;
+var informeTop = cardTop + cardH + 16;
+var poweredTop = temHol ? informeTop + 89 + 24 : 490;
+var contentH = temHol ? poweredTop + 138 : 628;
+var prov = h ? h.proventos.map(function (p, i) { return { label: p.label, valor: fmt(p.v), top: 75.13 + i * 25 }; }) : [];
+var desc = h ? h.descontos.map(function (p, i) { return { label: p.label, valor: fmt(p.v), top: descBarTop + 0.13 + i * 25 }; }) : [];
+// ---------- Gráfico: arco do líquido (pontas arredondadas por dentro do arco), terminando no topo ----------
+var C = 2 * Math.PI * 81, CAP = 9, capDeg = CAP / 81 * 180 / Math.PI;
+var f = h && h.bruto > 0 ? Math.max(0, Math.min(1, h.liquido / h.bruto)) : 0;
+var arco = Math.max(0.01, f * C - 2 * CAP);
+var ini = 360 * (1 - f) + capDeg;
+var g = { dash: arco.toFixed(2) + ' ' + C.toFixed(2), rot: 'rotate(' + (ini - 90).toFixed(3) + ' 90 90)' };
+// ---------- Lista do filtro, agrupada por ano ----------
+var linhas = [];
+var y = 4, anoAtual = null, iItem = 0;
+lista.forEach(function (it, i) {
+if (it.ano !== anoAtual) { anoAtual = it.ano; linhas.push({ ehAno: true, ehItem: false, ano: String(it.ano), top: y }); y += 38; iItem = 0; }
+else { y += 4; }
+var sel = i === selI;
+if (!me._esc[i]) me._esc[i] = function () { me.setState({ sel: i, aberto: false, descOpen: false, provOpen: false }); };
+linhas.push({ ehAno: false, ehItem: true, top: y, empresa: it.empresa, titulo: it.titulo, sel: sel, selAria: sel ? 'true' : 'false',
+bg: sel ? '#5734d9' : 'transparent', radio: sel ? '#ffffff' : '#7a7a86', cor: sel ? '#ffffff' : '#29292f', cor2: sel ? '#ffffff' : '#7a7a86', escolher: me._esc[i] });
+y += 40;
+});
+var listaH = y + 8;
+var listaY = st.listaY || 0, listaMax = st.listaMax || Math.max(1, listaH - 388);
+var thumbTop = Math.round((listaY / listaMax) * (356 - 40) * 100) / 100;
+var sel = h ? { empresa: h.empresa, titulo: h.titulo, pagoTxt: h.pagoTxt, recebeTxt: h.recebido ? 'Recebido em' : 'A receber em' } : { empresa: '', titulo: '', pagoTxt: '', recebeTxt: '' };
+return {
+statusTime: statusTime,
+barTransform: 'translateY(' + (-(st.barOffset || 0)) + 'px)',
+onScroll: H.onScroll, scrollerRef: H.scrollerRef, listaRef: H.listaRef, onListaScroll: H.onListaScroll,
+toggleValores: H.toggleValores, toggleLista: H.toggleLista, fecharLista: H.fecharLista, toggleProv: H.toggleProv, toggleDesc: H.toggleDesc,
+semAcao: H.semAcao, abrirPdf: H.abrirPdf,
+v: { visivel: !oculto, oculto: oculto, aria: oculto ? 'Mostrar valores' : 'Ocultar valores', pressed: oculto ? 'true' : 'false',
+bruto: h ? fmt(h.bruto) : '', liquido: h ? fmt(h.liquido) : '', desc: h ? fmt(h.desc) : '' },
+sel: sel,
+ui: {
+temHolerites: temHol, vazio: !temHol, aberto: temHol && !!st.aberto, abertoAria: st.aberto ? 'true' : 'false',
+campoBorda: st.aberto ? '#5734d9' : '#e5e5ea', chevRot: st.aberto ? 180 : 0,
+pendente: pend, provOpen: provOpen, descOpen: descOpen, provAria: provOpen ? 'true' : 'false', descAria: descOpen ? 'true' : 'false',
+provRot: provOpen ? 180 : 0, descRot: descOpen ? 180 : 0, temDescontos: this._temDesc, descCursor: this._temDesc ? 'pointer' : 'default',
+thumbTop: thumbTop
+},
+L: { contentH: contentH, cardTop: cardTop, cardH: cardH, provBarH: provBarH, sep: sep, descTop: descTop, descBarTop: descBarTop, descBarH: descBarH, btnTop: btnTop,
+informeTop: informeTop, poweredTop: poweredTop + 0.25, poweredImg: poweredTop, listaH: listaH },
+g: g,
+prov: prov, desc: desc, linhas: linhas
+};
+}
+}
+</script>
+</body>
+</html>

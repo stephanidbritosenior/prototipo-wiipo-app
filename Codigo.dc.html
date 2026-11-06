@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Etapa de segurança — Código</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+<script src="./assets/006b9949ae9e16e15b7586c26de23cca.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+html,body{scrollbar-width:none}html::-webkit-scrollbar,body::-webkit-scrollbar{display:none}
+body{margin:0;font-family:'Urbanist',system-ui,sans-serif;color:#17171c;background:transparent}
+a{color:#42424a}a:hover{color:#17171c}
+@keyframes cdBlink{0%{opacity:1}50%{opacity:0}}
+@keyframes cdFade{from{opacity:0}to{opacity:1}}
+@keyframes cdPop{from{opacity:0;transform:scale(0.96)}to{opacity:1;transform:scale(1)}}
+/* wp-btn: estados do componente Button (Figma BUTTON) */
+.wp-btn{-webkit-tap-highlight-color:transparent;transition:background-color 120ms ease,border-color 120ms ease,color 120ms ease,box-shadow 120ms ease}
+.wp-btn *{transition:color 120ms ease,fill 120ms ease,stroke 120ms ease}
+.wp-btn:focus{outline:none}
+@media (hover:hover){.wp-btn--primary:not([aria-disabled="true"]):hover{background-color:#4b2bb9!important}}
+.wp-btn--primary:not([aria-disabled="true"]):focus-visible{background-color:#3c2395!important;box-shadow:0 0 0 2px #b3a4e9}
+.wp-btn--primary:not([aria-disabled="true"]):active{background-color:#2d1d72!important}
+@media (hover:hover){.wp-btn--outline:not([aria-disabled="true"]):hover{border-color:#4b2bb9!important}.wp-btn--outline:not([aria-disabled="true"]):hover,.wp-btn--outline:not([aria-disabled="true"]):hover *,.wp-btn--ghost:not([aria-disabled="true"]):hover,.wp-btn--ghost:not([aria-disabled="true"]):hover *{color:#4b2bb9!important}.wp-btn--outline:not([aria-disabled="true"]):hover [stroke="#5734d9"],.wp-btn--ghost:not([aria-disabled="true"]):hover [stroke="#5734d9"]{stroke:#4b2bb9}.wp-btn--outline:not([aria-disabled="true"]):hover [fill="#5734d9"],.wp-btn--ghost:not([aria-disabled="true"]):hover [fill="#5734d9"]{fill:#4b2bb9}}
+.wp-btn--outline:not([aria-disabled="true"]):focus-visible{border-color:#3c2395!important}
+.wp-btn--outline:not([aria-disabled="true"]):focus-visible,.wp-btn--outline:not([aria-disabled="true"]):focus-visible *,.wp-btn--ghost:not([aria-disabled="true"]):focus-visible,.wp-btn--ghost:not([aria-disabled="true"]):focus-visible *{color:#3c2395!important}
+.wp-btn--outline:not([aria-disabled="true"]):active{border-color:#2d1d72!important}
+.wp-btn--outline:not([aria-disabled="true"]):active,.wp-btn--outline:not([aria-disabled="true"]):active *,.wp-btn--ghost:not([aria-disabled="true"]):active,.wp-btn--ghost:not([aria-disabled="true"]):active *{color:#2d1d72!important}
+.wp-btn--outline:not([aria-disabled="true"]):active [stroke="#5734d9"],.wp-btn--ghost:not([aria-disabled="true"]):active [stroke="#5734d9"]{stroke:#2d1d72}
+.wp-btn--outline:not([aria-disabled="true"]):active [fill="#5734d9"],.wp-btn--ghost:not([aria-disabled="true"]):active [fill="#5734d9"]{fill:#2d1d72}
+@media (hover:hover){.wp-btn--ghost-neg:hover,.wp-btn--ghost-neg:hover *{color:#b92b43!important}}
+.wp-btn--ghost-neg:focus-visible,.wp-btn--ghost-neg:focus-visible *{color:#952336!important}
+.wp-btn--ghost-neg:active,.wp-btn--ghost-neg:active *{color:#721d2c!important}
+/* /wp-btn */
+</style>
+</helmet>
+<div id="app-codigo" style="position: relative; width: 360px; height: var(--wp-h, 780px); overflow: hidden; border-radius: 16px; background: #f7f6fc; font-family: 'Urbanist', system-ui, sans-serif; color: #17171c">
+<div style="position: absolute; left: 0; top: 0; width: 360px; height: 40px; background: #211551; z-index: 5">
+<span style="position: absolute; left: 15.5px; top: 12px; font-size: 14px; line-height: 17px; font-weight: 600; color: #ffffff; white-space: nowrap">{{statusTime}}</span>
+<div style="position: absolute; left: 168px; top: 8px; width: 24px; height: 24px; border-radius: 50%; background: #000000"></div>
+<img src="./assets/8b2d4d6b48dc65bf320ab274856d6d61.svg" alt="" style="position: absolute; left: 288.668px; top: 12.918px; width: 51.582px; height: 14.164px; display: block">
+</div>
+<!-- Cabeçalho fixo (fundo roxo só atrás do arredondado) -->
+<div style="position: absolute; left: 0; top: 40px; width: 360px; height: 72px; z-index: 5; background: linear-gradient(180deg, #211551 0, #211551 24px, #f7f6fc 24px)">
+<header style="position: relative; height: 72px; background: #f7f6fc; border-radius: 24px 24px 0 0">
+<a href="Seguranca.dc.html" data-nav="back" aria-label="Voltar" style="position: absolute; left: 16px; top: 16px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; text-decoration: none">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5734d9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+</a>
+<h1 style="position: absolute; left: 0; top: 26px; transform: translateY(0.5px); width: 360px; margin: 0; font-size: 16px; line-height: 20px; font-weight: 600; color: #17171c; text-align: center; white-space: nowrap; pointer-events: none">Etapa de segurança</h1>
+</header>
+</div>
+<!-- Área rolável (sobe com o teclado) -->
+<div ref="{{f.scRef}}" style="position: absolute; left: 0; top: 112px; width: 360px; bottom: {{u.scBottom}}px; overflow-y: auto; overflow-x: hidden; scrollbar-width: none; overscroll-behavior: contain">
+<div style="position: relative; width: 360px; height: 520px">
+<div style="position: absolute; left: 0; top: -112px; width: 360px; height: 1px">
+<span style="position: absolute; left: 16px; top: 128.55px; transform: translateY(-1px); font-size: 20px; line-height: 24px; font-weight: 600; color: #17171c; white-space: pre">Digite o código de verificação</span>
+<p style="position: absolute; left: 16px; top: 159.98px; margin: 0; font-size: 14px; line-height: 17px; font-weight: 400; color: #7a7a86; white-space: pre">Enviamos um código de 6 dígitos para
+{{u.destino}}</p>
+<div style="position: absolute; left: 16px; top: 210px; width: 328px; height: 221px; box-sizing: border-box; background: #ffffff; border: 1px solid #e5e5ea; border-radius: 12px"></div>
+<span style="position: absolute; left: 36px; top: 225.84px; font-size: 16px; line-height: 20px; font-weight: 600; color: #17171c; white-space: pre">Informe o código</span>
+<span aria-hidden="true" style="position: absolute; left: 319.25px; top: 230px; font-size: 11px; line-height: 12px; font-weight: 400; color: #b6b6c1">*</span>
+<div role="group" aria-label="Código de 6 dígitos" onMouseDown="{{f.campo}}" style="position: absolute; left: 32px; top: 253px; width: 296px; height: 48px; box-sizing: border-box; background: #ffffff; border: 1px solid {{u.borda}}; border-radius: 24px; cursor: text">
+<input ref="{{f.inRef}}" type="text" inputmode="none" autocomplete="one-time-code" aria-label="Código" value="{{u.codigo}}" onChange="{{f.noop}}" onKeyDown="{{f.tecla}}" onFocus="{{f.foco}}" onBlur="{{f.blur}}" style="position: absolute; left: 0; top: 0; width: 1px; height: 1px; opacity: 0; border: 0; padding: 0; margin: 0; outline: none">
+<span style="position: absolute; left: 3px; top: 13.34px; width: 48px; font-size: 16px; line-height: 20px; font-weight: 400; color: {{u.d0.cor}}; text-align: center; white-space: nowrap; transform: translate({{u.d0.dx}}px, 0.5px)">{{u.d0.t}}</span>
+<div style="position: absolute; left: 51px; top: 3px; width: 1px; height: 40px; background: #e5e5ea"></div>
+<span style="position: absolute; left: 51px; top: 13.34px; width: 48px; font-size: 16px; line-height: 20px; font-weight: 400; color: {{u.d1.cor}}; text-align: center; white-space: nowrap; transform: translate({{u.d1.dx}}px, 0.5px)">{{u.d1.t}}</span>
+<div style="position: absolute; left: 99px; top: 3px; width: 1px; height: 40px; background: #e5e5ea"></div>
+<span style="position: absolute; left: 99px; top: 13.34px; width: 48px; font-size: 16px; line-height: 20px; font-weight: 400; color: {{u.d2.cor}}; text-align: center; white-space: nowrap; transform: translate({{u.d2.dx}}px, 0.5px)">{{u.d2.t}}</span>
+<div style="position: absolute; left: 147px; top: 3px; width: 1px; height: 40px; background: #e5e5ea"></div>
+<span style="position: absolute; left: 147px; top: 13.34px; width: 48px; font-size: 16px; line-height: 20px; font-weight: 400; color: {{u.d3.cor}}; text-align: center; white-space: nowrap; transform: translate({{u.d3.dx}}px, 0.5px)">{{u.d3.t}}</span>
+<div style="position: absolute; left: 195px; top: 3px; width: 1px; height: 40px; background: #e5e5ea"></div>
+<span style="position: absolute; left: 195px; top: 13.34px; width: 48px; font-size: 16px; line-height: 20px; font-weight: 400; color: {{u.d4.cor}}; text-align: center; white-space: nowrap; transform: translate({{u.d4.dx}}px, 0.5px)">{{u.d4.t}}</span>
+<div style="position: absolute; left: 243px; top: 3px; width: 1px; height: 40px; background: #e5e5ea"></div>
+<span style="position: absolute; left: 243px; top: 13.34px; width: 48px; font-size: 16px; line-height: 20px; font-weight: 400; color: {{u.d5.cor}}; text-align: center; white-space: nowrap; transform: translate({{u.d5.dx}}px, 0.5px)">{{u.d5.t}}</span>
+<!-- Cursor do campo (input-otp.pdf): na casa do próximo dígito, piscando -->
+<sc-if value="{{u.caretOn}}" hint-placeholder-val="{{ false }}"><span style="position: absolute; left: {{u.caretX}}px; top: 13px; width: 2px; height: 20px; border-radius: 1px; background: #5734d9; animation: cdBlink 1s steps(1) infinite; pointer-events: none"></span></sc-if>
+</div>
+<span style="position: absolute; left: 32px; top: 316.98px; font-size: 14px; line-height: 17px; font-weight: 400; color: #7a7a86; white-space: pre">Não recebeu o código? Aguarde 120 segundos
+para solicitar um novo.</span>
+<button class="wp-btn wp-btn--ghost" type="button" aria-disabled="{{u.reDis}}" onMouseDown="{{f.semFoco}}" onClick="{{f.reenviar}}" style="position: absolute; left: 32px; top: 376px; width: 296px; height: 30px; margin: 0; padding: 0; border: 0; background: transparent; font-family: inherit; color: {{u.reCor}}; cursor: {{u.reCursor}}; display: flex; align-items: center; justify-content: center; gap: 8.3px"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" style="display: block; flex-shrink: 0"><path d="M 2.16,10 C 2.16,7.78 3.04,5.67 4.60,4.10 C 6.17,2.54 8.28,1.66 10.5,1.66 L 10.50,1.66 L 10.93,1.67 C 12.94,1.78 14.86,2.56 16.37,3.89 L 16.70,4.19 L 18.58,6.07 C 18.91,6.40 18.91,6.92 18.58,7.25 C 18.26,7.58 17.73,7.58 17.41,7.25 L 15.53,5.38 L 15.27,5.14 C 13.95,3.98 12.26,3.33 10.49,3.33 C 8.73,3.33 7.03,4.03 5.78,5.28 C 4.53,6.53 3.83,8.23 3.83,10 C 3.83,10.46 3.46,10.83 3,10.83 C 2.53,10.83 2.16,10.46 2.16,10Z" fill="currentColor"></path><path d="M 17.16,2.5 C 17.16,2.03 17.53,1.66 18,1.66 C 18.46,1.66 18.83,2.03 18.83,2.5 L 18.83,6.66 C 18.83,7.12 18.46,7.5 18,7.5 L 13.83,7.5 C 13.37,7.5 13,7.12 13,6.66 C 13,6.20 13.37,5.83 13.83,5.83 L 17.16,5.83Z" fill="currentColor"></path><path d="M 17.16,10 C 17.16,9.53 17.53,9.16 18,9.16 C 18.46,9.16 18.83,9.53 18.83,10 C 18.83,12.21 17.95,14.32 16.39,15.89 C 14.82,17.45 12.71,18.33 10.5,18.33 L 10.49,18.33 C 8.32,18.32 6.24,17.53 4.62,16.10 L 4.29,15.80 L 2.41,13.92 C 2.08,13.59 2.08,13.07 2.41,12.74 C 2.73,12.41 3.26,12.41 3.58,12.74 L 5.46,14.61 L 5.72,14.85 C 7.04,16.01 8.73,16.66 10.5,16.66 C 12.26,16.66 13.96,15.96 15.21,14.71 C 16.46,13.46 17.16,11.76 17.16,10Z" fill="currentColor"></path><path d="M 2.16,17.5 L 2.16,13.33 C 2.16,12.87 2.53,12.5 3,12.5 L 7.16,12.5 C 7.62,12.5 8,12.87 8,13.33 C 8,13.79 7.62,14.16 7.16,14.16 L 3.83,14.16 L 3.83,17.5 C 3.83,17.96 3.46,18.33 3,18.33 C 2.53,18.33 2.16,17.96 2.16,17.5Z" fill="currentColor"></path></svg><span style="font-size: 16px; line-height: 20px; font-weight: 600; white-space: nowrap; transform: translateY({{u.reDy}}px)">Reenviar código ({{u.seg}}s)</span></button>
+</div>
+</div>
+</div>
+<!-- Rodapé fixo (acompanha o fundo da tela) -->
+<div onMouseDown="{{f.semFoco}}" style="position: absolute; left: 0; bottom: {{u.footBottom}}px; width: 360px; height: 148px; z-index: 10; background: #f7f6fc; box-shadow: inset 0 1px 0 #e1dcf3">
+<a class="wp-btn wp-btn--primary" href="Alterar.dc.html" data-nav="{{u.nav}}" aria-disabled="{{u.btnDis}}" onClick="{{f.confirmar}}" style="position: absolute; left: 24px; top: 16px; width: 312px; height: 48px; border-radius: 24px; background: {{u.btnBg}}; display: block; text-decoration: none; cursor: {{u.btnCursor}}"><span style="position: absolute; left: 0; top: 14.34px; width: 312px; transform: translateY(0.5px); font-size: 16px; line-height: 20px; font-weight: 600; color: {{u.btnCor}}; text-align: center; white-space: nowrap">Confirmar</span></a>
+<a class="wp-btn wp-btn--ghost" href="Entrar.dc.html" data-nav="popto:entrar" style="position: absolute; left: 130px; top: 80px; width: 100px; height: 32px; display: block; text-decoration: none"><span style="position: absolute; left: 0px; top: 10.34px; width: 100px; text-align: center; transform: translateY(0.5px); font-size: 16px; line-height: 20px; font-weight: 600; color: #5734d9; white-space: pre">Cancelar</span></a>
+</div>
+<!-- Teclado numérico (padrão do projeto) -->
+<sc-if value="{{u.kb}}" hint-placeholder-val="{{ false }}">
+<div role="group" aria-label="Teclado numérico" onMouseDown="{{f.semFoco}}" style="position: absolute; left: 0; bottom: 0; width: 360px; height: 238px; z-index: 20; user-select: none">
+<img src="./assets/270a8b3fcb123fb3d0cdbfa50237a6e1.png" alt="" style="width: 360px; height: 238px; display: block; pointer-events: none">
+<sc-for list="{{numKeys}}" as="k" hint-placeholder-count="16">
+<button type="button" aria-label="{{k.label}}" onClick="{{k.press}}" style="position: absolute; left: {{k.x}}px; top: {{k.y}}px; width: {{k.w}}px; height: {{k.h}}px; margin: 0; padding: 0; border: 0; border-radius: 6px; background: transparent; cursor: pointer"></button>
+</sc-for>
+</div>
+</sc-if>
+<!-- Alerta "Código inválido ou expirado" (véu preto 50% sobre a tela toda) -->
+<sc-if value="{{u.erro}}" hint-placeholder-val="{{ false }}">
+<div style="position: absolute; left: 0; top: 0; width: 360px; height: var(--wp-h, 780px); z-index: 40">
+<div onClick="{{f.fecharErro}}" style="position: absolute; left: 0; top: 0; width: 360px; height: var(--wp-h, 780px); background: rgba(0, 0, 0, 0.5); animation: {{u.scrimAnim}}"></div>
+<div style="position: absolute; left: 16px; top: calc(253px + (var(--wp-h, 780px) - 780px) / 2); width: 328px; height: 321px; transform: translateY(0.5px)">
+<div role="alertdialog" aria-modal="true" aria-label="Código inválido ou expirado" style="position: absolute; left: 0; top: 0; width: 328px; height: 321px; background: #ffffff; border-radius: 16px; overflow: hidden; animation: {{u.modalAnim}}">
+<a href="#" aria-label="Fechar" onClick="{{f.fecharErro}}" style="position: absolute; left: 16px; top: 20px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; text-decoration: none">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5734d9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+</a>
+<div style="position: absolute; left: 140px; top: 72px; width: 48px; height: 48px; box-sizing: border-box; background: #fcf5f7; border: 1px solid #f3dce2; border-radius: 50%"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" style="position: absolute; left: 11px; top: 11px; display: block"><path d="M 21,12 C 21,7.03 16.96,3 12,3 C 7.03,3 3,7.03 3,12 C 3,16.96 7.03,21 12,21 C 16.96,21 21,16.96 21,12 Z M 23,12 C 23,18.07 18.07,23 12,23 C 5.92,23 1,18.07 1,12 C 1,5.92 5.92,1 12,1 C 18.07,1 23,5.92 23,12Z" fill="#d9344f"></path><path d="M 11,12 L 11,8 C 11,7.44 11.44,7 12,7 C 12.55,7 13,7.44 13,8 L 13,12 C 13,12.55 12.55,13 12,13 C 11.44,13 11,12.55 11,12Z" fill="#d9344f"></path><path d="M 12.01,15 C 12.56,15 13.01,15.44 13.01,16 C 13.01,16.55 12.56,17 12.01,17 L 12,17 C 11.44,17 11,16.55 11,16 C 11,15.44 11.44,15 12,15Z" fill="#d9344f"></path></svg></div>
+<p style="position: absolute; left: 0; top: 127.87px; width: 328px; margin: 0; font-size: 16px; line-height: 20px; font-weight: 600; color: #17171c; text-align: center; white-space: nowrap">Código inválido ou expirado</p>
+<p style="position: absolute; left: 0; top: 151.02px; width: 328px; margin: 0; font-size: 14px; line-height: 17px; font-weight: 400; color: #42424a; text-align: center; white-space: pre">Verifique se informou corretamente
+ou solicite outro.</p>
+<div style="position: absolute; left: 0; top: 233px; width: 328px; height: 1px; background: #e1dcf3"></div>
+<a class="wp-btn wp-btn--primary" href="#" onClick="{{f.fecharErro}}" style="position: absolute; left: 24px; top: 249px; width: 280px; height: 48px; border-radius: 24px; background: #5734d9; display: block; text-decoration: none"><span style="position: absolute; left: 0; top: 14.37px; width: 280px; transform: translateY(0.5px); font-size: 16px; line-height: 20px; font-weight: 600; color: #ffffff; text-align: center; white-space: nowrap">Entendi</span></a>
+</div>
+</div>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"estado":{"editor":"enum","default":"padrao","options":["padrao","preenchido","reenviar","erro"]},"$preview":{"width":360,"height":780}}'>
+class Component extends DCLogic {
+componentDidMount() {
+var self = this;
+var proxMin = function () { var d = new Date(); return 60050 - d.getSeconds() * 1000 - d.getMilliseconds(); };
+var tick = function () { var d = new Date(); self.setState({ clockK: d.getHours() * 60 + d.getMinutes() }); self._clockT = setTimeout(tick, proxMin()); };
+// Relógio da status bar: acorda só na virada de cada minuto (em vez de checar a cada segundo)
+this._clockT = setTimeout(tick, proxMin());
+// Contagem regressiva para reenviar o código (120 s)
+this._fim = Date.now() + 120000;
+if (this.props.estado !== 'reenviar' && this.props.estado !== 'erro') this._timerT = setInterval(function () { var s = Math.max(0, Math.ceil((self._fim - Date.now()) / 1000)); if (s !== self._seg) { self._seg = s; self.setState({ seg: s }); } }, 250);
+}
+componentWillUnmount() { clearTimeout(this._clockT); clearInterval(this._timerT); }
+estadoAtual() {
+var est = this.props.estado || 'padrao';
+var base = { codigo: '', foco: false, erro: false, seg: 120 };
+if (est === 'preenchido') base = Object.assign(base, { codigo: '642026', seg: 96 });
+if (est === 'reenviar') base = Object.assign(base, { seg: 0 });
+if (est === 'erro') base = Object.assign(base, { erro: true, seg: 0 });
+return Object.assign(base, this.state || {});
+}
+renderVals() {
+var _d = new Date();
+var me = this;
+var st = this.estadoAtual();
+if (!this._f) {
+var put = function (ch) { if (!/[0-9]/.test(ch)) return; var s0 = me.estadoAtual(); if (s0.codigo.length >= 6) return; me.setState({ codigo: s0.codigo + ch }); };
+var del = function () { var s0 = me.estadoAtual(); me.setState({ codigo: s0.codigo.slice(0, -1) }); };
+var fechar = function () { if (me._in) me._in.blur(); me.setState({ foco: false }); };
+var nk = [];
+var NX = [4, 93, 182, 271], NY = [7, 56, 105, 154];
+[['1', '2', '3', '-'], ['4', '5', '6', 'Espaço'], ['7', '8', '9', 'Apagar'], [',', '0', '.', 'Concluir']].forEach(function (r, i) { r.forEach(function (c, j) {
+nk.push({ label: c, x: NX[j], y: NY[i], w: 85, h: 44, press: c === 'Apagar' ? del : (c === 'Concluir' ? fechar : function () { put(c); }) });
+}); });
+this._numKeys = nk;
+this._f = {
+noop: function () {},
+inRef: function (el) { me._in = el; }, scRef: function (el) { me._sc = el; },
+tecla: function (e) { if (e.key === 'Tab') return; e.preventDefault(); if (e.key === 'Backspace') del(); else if (e.key === 'Enter') fechar(); else if (e.key && e.key.length === 1) put(e.key); },
+foco: function () { me.setState({ foco: true }); },
+blur: function () { setTimeout(function () { if (document.activeElement !== me._in) me.setState({ foco: false }); }, 0); },
+campo: function (e) { e.preventDefault(); if (me._in) me._in.focus({ preventScroll: true }); },
+semFoco: function (e) { e.preventDefault(); },
+reenviar: function () { var s0 = me.estadoAtual(); if (s0.seg > 0) return; me._fim = Date.now() + 120000; me._seg = 120; me.setState({ seg: 120 });
+if (!me._timerT) me._timerT = setInterval(function () { var s = Math.max(0, Math.ceil((me._fim - Date.now()) / 1000)); if (s !== me._seg) { me._seg = s; me.setState({ seg: s }); } }, 250); },
+// Código inválido ou expirado: "000000" ou código depois que a contagem chegou a zero
+confirmar: function (e) { var s0 = me.estadoAtual(); if (s0.codigo.length < 6) { e.preventDefault(); return; } if (s0.codigo === '000000' || s0.seg === 0) { e.preventDefault(); fechar(); me.setState({ erro: true }); return; } fechar(); },
+fecharErro: function (e) { if (e && e.preventDefault) e.preventDefault(); me.setState({ erro: false, codigo: '' }); }
+};
+}
+var canal = 'whatsapp';
+try { canal = window.sessionStorage.getItem('wiipo.tokenCanal') || 'whatsapp'; } catch (err) {}
+var DEST = { email: 'no*****me@gmail.com', whatsapp: '+ 55 (47) 99***4123', sms: '+ 55 (41) 98***1059' };
+var pronto = st.codigo.length === 6;
+var u = {
+destino: DEST[canal] || DEST.whatsapp, codigo: st.codigo, borda: st.foco ? '#5734d9' : '#f3f3f6',
+seg: st.seg, reCor: st.seg > 0 ? '#b6b6c1' : '#5734d9', reCursor: st.seg > 0 ? 'default' : 'pointer', reDis: st.seg > 0 ? 'true' : 'false', reDy: 0.5,
+btnBg: pronto ? '#5734d9' : '#e5e5ea', btnCor: pronto ? '#ffffff' : '#b6b6c1', btnCursor: pronto ? 'pointer' : 'default', btnDis: pronto ? 'false' : 'true',
+nav: (pronto && st.codigo !== '000000' && st.seg > 0) ? 'push:alterar' : '',
+kb: !!st.foco, footBottom: st.foco ? 238 : 0, scBottom: (st.foco ? 238 : 0) + 148,
+erro: !!st.erro, scrimAnim: 'cdFade 220ms ease-out both', modalAnim: 'cdPop 240ms cubic-bezier(0.22, 0.8, 0.26, 1) both'
+};
+var cur = st.foco ? Math.min(st.codigo.length, 6) : -1;
+for (var i = 0; i < 6; i++) { var ch = st.codigo.charAt(i); u['d' + i] = { t: ch || '0', cor: ch ? '#17171c' : '#b6b6c1', dx: (i === cur) ? 3 : (cur === 6 && i === 5 ? -3 : 0) }; }
+u.caretOn = cur >= 0; u.caretX = cur === 6 ? 272.5 : 19.5 + 48 * Math.max(cur, 0);
+return { statusTime: _d.getHours() + ':' + ('0' + _d.getMinutes()).slice(-2), f: this._f, numKeys: this._numKeys, u: u };
+}
+}
+</script>
+</body>
+</html>

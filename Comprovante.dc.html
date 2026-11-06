@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Comprovante de marcação</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+<script src="./assets/006b9949ae9e16e15b7586c26de23cca.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+html,body{scrollbar-width:none}html::-webkit-scrollbar,body::-webkit-scrollbar{display:none}
+body{margin:0;font-family:'Urbanist',system-ui,sans-serif;color:#17171c;background:transparent}
+a{color:#42424a}a:hover{color:#17171c}
+</style>
+</helmet>
+<div style="position: relative; width: 360px; height: var(--wp-h, 780px); overflow: hidden; border-radius: 16px; background: #f7f6fc; font-family: 'Urbanist', system-ui, sans-serif; color: #17171c; display: flex; flex-direction: column">
+
+<!-- Status bar + cabeçalho -->
+<div style="background: linear-gradient(180deg, #211551 0, #211551 64px, #f7f6fc 64px); display: flex; flex-direction: column; flex-shrink: 0">
+<div style="position: relative; height: 40px">
+<span style="position: absolute; left: 15.5px; top: 12px; font-size: 14px; line-height: 17px; font-weight: 600; color: #ffffff; white-space: nowrap">{{statusTime}}</span>
+<div style="position: absolute; left: 168px; top: 8px; width: 24px; height: 24px; border-radius: 50%; background: #000000"></div>
+<img src="./assets/8b2d4d6b48dc65bf320ab274856d6d61.svg" alt="" style="position: absolute; left: 288.668px; top: 12.918px; width: 51.582px; height: 14.164px; display: block">
+</div>
+<header style="position: relative; height: 72px; background: #f7f6fc; border-radius: 24px 24px 0 0">
+<a href="Home.dc.html" data-nav="back" aria-label="Voltar" style="position: absolute; left: 16px; top: 16px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; text-decoration: none">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5734d9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+</a>
+<h1 style="position: absolute; left: 0; top: 26px; transform: translateY(0.5px); width: 360px; margin: 0; font-size: 16px; line-height: 20px; font-weight: 600; color: #17171c; text-align: center; white-space: nowrap; pointer-events: none">Comprovante de marcação</h1>
+</header>
+</div>
+
+<!-- Conteúdo -->
+<div style="flex: 1 1 0; min-height: 0; overflow-y: auto; overflow-x: hidden; scrollbar-width: none">
+<div style="position: relative; height: 446px">
+<div style="position: absolute; left: 16px; top: 16px; width: 328px; height: 384px; box-sizing: border-box; background: #ffffff; border: 1px solid #e5e5ea; border-radius: 12px">
+<span style="position: absolute; left: 15px; top: 14.5px; font-size: 14px; line-height: 17px; font-weight: 400; color: #7a7a86; white-space: nowrap">Data</span>
+<span style="position: absolute; right: 15px; top: 14.5px; font-size: 14px; line-height: 17px; font-weight: 600; color: #17171c; white-space: nowrap">{{m.data}}</span>
+<span style="position: absolute; left: 15px; top: 43.5px; font-size: 14px; line-height: 17px; font-weight: 400; color: #7a7a86; white-space: nowrap">Horário</span>
+<span style="position: absolute; right: 15px; top: 43.5px; font-size: 14px; line-height: 17px; font-weight: 600; color: #17171c; white-space: nowrap">{{m.hora}}</span>
+<span style="position: absolute; left: 15px; top: 72.5px; font-size: 14px; line-height: 17px; font-weight: 400; color: #7a7a86; white-space: nowrap">Fuso</span>
+<span style="position: absolute; right: 15px; top: 72.5px; font-size: 14px; line-height: 17px; font-weight: 600; color: #17171c; white-space: nowrap">{{m.fuso}}</span>
+<div style="position: absolute; left: 15px; top: 105px; width: 296px; height: 1px; background: #e5e5ea"></div>
+<span style="position: absolute; left: 15px; top: 121.5px; font-size: 14px; line-height: 17px; font-weight: 400; color: #7a7a86; white-space: nowrap">Colaborador</span>
+<span style="position: absolute; left: 15px; top: 142.5px; font-size: 14px; line-height: 17px; font-weight: 600; color: #17171c; white-space: nowrap">Nome Sobrenome</span>
+<span style="position: absolute; left: 15px; top: 171.5px; font-size: 14px; line-height: 17px; font-weight: 400; color: #7a7a86; white-space: nowrap">CPF</span>
+<span style="position: absolute; left: 15px; top: 192.5px; font-size: 14px; line-height: 17px; font-weight: 600; color: #17171c; white-space: nowrap">***.123.459-**</span>
+<span style="position: absolute; left: 15px; top: 221.5px; font-size: 14px; line-height: 17px; font-weight: 400; color: #7a7a86; white-space: nowrap">Empresas</span>
+<span style="position: absolute; left: 15px; top: 242.5px; font-size: 14px; line-height: 17px; font-weight: 600; color: #17171c; white-space: nowrap">Senior Benefícios Corporativos Ltda</span>
+<div style="position: absolute; left: 15px; top: 272px; width: 296px; height: 87px; box-sizing: border-box; background: #fafafb; border: 1px solid #e5e5ea; border-radius: 12px">
+<span style="position: absolute; left: 11px; top: 10.5px; font-size: 14px; line-height: 17px; font-weight: 600; color: #17171c; white-space: nowrap">Identificação da marcação</span>
+<span style="position: absolute; left: 11px; top: 32px; width: 272px; font-size: 12px; line-height: 14px; font-weight: 400; color: #42424a; word-break: break-all">{{m.id}}</span>
+</div>
+</div>
+<span style="position: absolute; left: 125.55px; top: 416px; font-size: 12px; line-height: 14px; font-weight: 400; color: #7a7a86; white-space: nowrap">Powered by</span>
+<img src="./assets/2255926581a6390a97385c9b13851758.svg" alt="Senior" style="position: absolute; left: 191.5px; top: 416px; width: 43px; height: 14px; display: block">
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":360,"height":780}}'>
+class Component extends DCLogic {
+componentDidMount() {
+// Relógio real: atualiza a hora da status bar quando o minuto muda
+var self = this;
+var proxMin = function () { var d = new Date(); return 60050 - d.getSeconds() * 1000 - d.getMilliseconds(); };
+var tick = function () { var d = new Date(); self.setState({ clockK: d.getHours() * 60 + d.getMinutes() }); self._clockT = setTimeout(tick, proxMin()); };
+// Relógio da status bar: acorda só na virada de cada minuto (em vez de checar a cada segundo)
+this._clockT = setTimeout(tick, proxMin());
+}
+componentWillUnmount() { clearTimeout(this._clockT); }
+renderVals() {
+var _d = new Date();
+var statusTime = _d.getHours() + ':' + ('0' + _d.getMinutes()).slice(-2);
+// Dados da última marcação (gravados pelo Início ao registrar o ponto); sem marcação, mostra o exemplo do Figma
+var m = null;
+try { m = JSON.parse(window.sessionStorage.getItem('wiipo.comprovante') || 'null'); } catch (e1) {}
+if (!m) { try { var wn = JSON.parse(window.name || '{}'); if (wn && wn.comprovante) m = wn.comprovante; } catch (e2) {} }
+m = m || { data: '29/08/2026', hora: '18:59', fuso: 'GMT -03:00' };
+return {
+statusTime: statusTime,
+m: {
+data: m.data,
+hora: m.hora,
+fuso: m.fuso,
+id: 'MkidfjOIH4564kgIUHFDA64MkidfjOIH4564kgIUHFDA64MkidfjOIH4564kgIUHFDA64MkidfjOIH4564kgIUHFDA64MkidfjOIH4564kgIUHFDA6=='
+}
+};
+}
+}
+</script>
+</body>
+</html>

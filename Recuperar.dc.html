@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Recuperar senha</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+<script src="./assets/006b9949ae9e16e15b7586c26de23cca.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+html,body{scrollbar-width:none}html::-webkit-scrollbar,body::-webkit-scrollbar{display:none}
+body{margin:0;font-family:'Urbanist',system-ui,sans-serif;color:#17171c;background:transparent}
+a{color:#42424a}a:hover{color:#17171c}
+#app-recuperar input::placeholder{color:#b6b6c1;opacity:1}
+/* wp-btn: estados do componente Button (Figma BUTTON) */
+.wp-btn{-webkit-tap-highlight-color:transparent;transition:background-color 120ms ease,border-color 120ms ease,color 120ms ease,box-shadow 120ms ease}
+.wp-btn *{transition:color 120ms ease,fill 120ms ease,stroke 120ms ease}
+.wp-btn:focus{outline:none}
+@media (hover:hover){.wp-btn--primary:not([aria-disabled="true"]):hover{background-color:#4b2bb9!important}}
+.wp-btn--primary:not([aria-disabled="true"]):focus-visible{background-color:#3c2395!important;box-shadow:0 0 0 2px #b3a4e9}
+.wp-btn--primary:not([aria-disabled="true"]):active{background-color:#2d1d72!important}
+@media (hover:hover){.wp-btn--outline:not([aria-disabled="true"]):hover{border-color:#4b2bb9!important}.wp-btn--outline:not([aria-disabled="true"]):hover,.wp-btn--outline:not([aria-disabled="true"]):hover *,.wp-btn--ghost:not([aria-disabled="true"]):hover,.wp-btn--ghost:not([aria-disabled="true"]):hover *{color:#4b2bb9!important}.wp-btn--outline:not([aria-disabled="true"]):hover [stroke="#5734d9"],.wp-btn--ghost:not([aria-disabled="true"]):hover [stroke="#5734d9"]{stroke:#4b2bb9}.wp-btn--outline:not([aria-disabled="true"]):hover [fill="#5734d9"],.wp-btn--ghost:not([aria-disabled="true"]):hover [fill="#5734d9"]{fill:#4b2bb9}}
+.wp-btn--outline:not([aria-disabled="true"]):focus-visible{border-color:#3c2395!important}
+.wp-btn--outline:not([aria-disabled="true"]):focus-visible,.wp-btn--outline:not([aria-disabled="true"]):focus-visible *,.wp-btn--ghost:not([aria-disabled="true"]):focus-visible,.wp-btn--ghost:not([aria-disabled="true"]):focus-visible *{color:#3c2395!important}
+.wp-btn--outline:not([aria-disabled="true"]):active{border-color:#2d1d72!important}
+.wp-btn--outline:not([aria-disabled="true"]):active,.wp-btn--outline:not([aria-disabled="true"]):active *,.wp-btn--ghost:not([aria-disabled="true"]):active,.wp-btn--ghost:not([aria-disabled="true"]):active *{color:#2d1d72!important}
+.wp-btn--outline:not([aria-disabled="true"]):active [stroke="#5734d9"],.wp-btn--ghost:not([aria-disabled="true"]):active [stroke="#5734d9"]{stroke:#2d1d72}
+.wp-btn--outline:not([aria-disabled="true"]):active [fill="#5734d9"],.wp-btn--ghost:not([aria-disabled="true"]):active [fill="#5734d9"]{fill:#2d1d72}
+@media (hover:hover){.wp-btn--ghost-neg:hover,.wp-btn--ghost-neg:hover *{color:#b92b43!important}}
+.wp-btn--ghost-neg:focus-visible,.wp-btn--ghost-neg:focus-visible *{color:#952336!important}
+.wp-btn--ghost-neg:active,.wp-btn--ghost-neg:active *{color:#721d2c!important}
+/* /wp-btn */
+</style>
+</helmet>
+<div id="app-recuperar" style="position: relative; width: 360px; height: var(--wp-h, 780px); overflow: hidden; border-radius: 16px; background: #f7f6fc; font-family: 'Urbanist', system-ui, sans-serif; color: #17171c">
+<div style="position: absolute; left: 0; top: 0; width: 360px; height: 40px; background: #211551; z-index: 5">
+<span style="position: absolute; left: 15.5px; top: 12px; font-size: 14px; line-height: 17px; font-weight: 600; color: #ffffff; white-space: nowrap">{{statusTime}}</span>
+<div style="position: absolute; left: 168px; top: 8px; width: 24px; height: 24px; border-radius: 50%; background: #000000"></div>
+<img src="./assets/8b2d4d6b48dc65bf320ab274856d6d61.svg" alt="" style="position: absolute; left: 288.668px; top: 12.918px; width: 51.582px; height: 14.164px; display: block">
+</div>
+<!-- Cabeçalho fixo (fundo roxo só atrás do arredondado) -->
+<div style="position: absolute; left: 0; top: 40px; width: 360px; height: 72px; z-index: 5; background: linear-gradient(180deg, #211551 0, #211551 24px, #f7f6fc 24px)">
+<header style="position: relative; height: 72px; background: #f7f6fc; border-radius: 24px 24px 0 0">
+<a href="Entrar.dc.html" data-nav="back" aria-label="Voltar" style="position: absolute; left: 16px; top: 16px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; text-decoration: none">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5734d9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+</a>
+<h1 style="position: absolute; left: 0; top: 26px; transform: translateY(0.5px); width: 360px; margin: 0; font-size: 16px; line-height: 20px; font-weight: 600; color: #17171c; text-align: center; white-space: nowrap; pointer-events: none">Recuperar senha</h1>
+</header>
+</div>
+<!-- Área rolável (formulário) -->
+<div ref="{{f.scRef}}" style="position: absolute; left: 0; top: 112px; width: 360px; bottom: {{u.scBottom}}px; overflow-y: auto; overflow-x: hidden; scrollbar-width: none; overscroll-behavior: contain">
+<div style="position: relative; width: 360px; height: {{u.contH}}px">
+<div style="position: absolute; left: 0; top: -112px; width: 360px; height: 1px">
+<span style="position: absolute; left: 24px; top: 128.55px; transform: translateY(-1px); font-size: 20px; line-height: 24px; font-weight: 600; color: #17171c; white-space: pre">Preencha as informações abaixo
+para recuperar sua senha</span>
+<span style="position: absolute; left: 24px; top: 183.98px; font-size: 14px; line-height: 17px; font-weight: 400; color: #42424a; white-space: pre">Não se preocupe, vamos recuperar sua senha</span>
+<span style="position: absolute; left: 28px; top: 216.84px; font-size: 16px; line-height: 20px; font-weight: 600; color: #17171c; white-space: pre">Seu CPF</span>
+<span aria-hidden="true" style="position: absolute; left: 91.25px; top: 221px; font-size: 11px; line-height: 12px; font-weight: 400; color: #b6b6c1">*</span>
+<div onMouseDown="{{f.campoCpf}}" style="position: absolute; left: 24px; top: 244px; width: 312px; height: 48px; box-sizing: border-box; background: #ffffff; border: 1px solid {{u.cpfBorda}}; border-radius: 24px; cursor: text">
+<input ref="{{f.cpfRef}}" type="text" inputmode="none" autocomplete="off" spellcheck="false" value="{{u.cpfTxt}}" placeholder="123.465.798-01" onChange="{{f.noop}}" onKeyDown="{{f.cpfKey}}" onFocus="{{f.cpfFocus}}" onBlur="{{f.blur}}" style="position: absolute; left: 15px; top: 13.37px; width: 280px; height: 20px; margin: 0; padding: 0; border: 0; outline: none; background: transparent; font-family: inherit; font-size: 16px; line-height: 20px; font-weight: 400; color: #17171c; caret-color: #42424a; transform: translateY(0.5px)">
+</div>
+<span style="position: absolute; left: 28px; top: 307.84px; font-size: 16px; line-height: 20px; font-weight: 600; color: #17171c; white-space: pre">Sua data de nascimento</span>
+<span aria-hidden="true" style="position: absolute; left: 207.25px; top: 312px; font-size: 11px; line-height: 12px; font-weight: 400; color: #b6b6c1">*</span>
+<div onMouseDown="{{f.campoData}}" style="position: absolute; left: 24px; top: 335px; width: 312px; height: 48px; box-sizing: border-box; background: #ffffff; border: 1px solid {{u.dataBorda}}; border-radius: 24px; cursor: text">
+<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" style="position: absolute; left: 15px; top: 13px; display: block; pointer-events: none"><path d="M 5.83,5 L 5.83,1.66 C 5.83,1.20 6.20,0.83 6.66,0.83 C 7.12,0.83 7.5,1.20 7.5,1.66 L 7.5,5 C 7.5,5.46 7.12,5.83 6.66,5.83 C 6.20,5.83 5.83,5.46 5.83,5Z" fill="#b6b6c1"></path><path d="M 12.5,5 L 12.5,1.66 C 12.5,1.20 12.87,0.83 13.33,0.83 C 13.79,0.83 14.16,1.20 14.16,1.66 L 14.16,5 C 14.16,5.46 13.79,5.83 13.33,5.83 C 12.87,5.83 12.5,5.46 12.5,5Z" fill="#b6b6c1"></path><path d="M 16.66,5 C 16.66,4.53 16.29,4.16 15.83,4.16 L 4.16,4.16 C 3.70,4.16 3.33,4.53 3.33,5 L 3.33,16.66 C 3.33,17.12 3.70,17.5 4.16,17.5 L 15.83,17.5 C 16.29,17.5 16.66,17.12 16.66,16.66 Z M 18.33,16.66 C 18.33,18.04 17.21,19.16 15.83,19.16 L 4.16,19.16 C 2.78,19.16 1.66,18.04 1.66,16.66 L 1.66,5 C 1.66,3.62 2.78,2.5 4.16,2.5 L 15.83,2.5 C 17.21,2.5 18.33,3.62 18.33,5Z" fill="#b6b6c1"></path><path d="M 17.5,7.5 C 17.96,7.5 18.33,7.87 18.33,8.33 C 18.33,8.79 17.96,9.16 17.5,9.16 L 2.5,9.16 C 2.03,9.16 1.66,8.79 1.66,8.33 C 1.66,7.87 2.03,7.5 2.5,7.5Z" fill="#b6b6c1"></path></svg>
+<input ref="{{f.dataRef}}" type="text" inputmode="none" autocomplete="off" spellcheck="false" value="{{u.dataTxt}}" placeholder="DD/MM/AAAA" onChange="{{f.noop}}" onKeyDown="{{f.dataKey}}" onFocus="{{f.dataFocus}}" onBlur="{{f.blur}}" style="position: absolute; left: 43px; top: 13.37px; width: 220px; height: 20px; margin: 0; padding: 0; border: 0; outline: none; background: transparent; font-family: inherit; font-size: 16px; line-height: 20px; font-weight: 400; color: #17171c; caret-color: #42424a; transform: translateY(0.5px)">
+<button type="button" aria-label="{{u.calAria}}" aria-expanded="{{u.calAberto}}" onMouseDown="{{f.semFoco}}" onClick="{{f.alternarCal}}" style="position: absolute; left: 262px; top: 3px; width: 44px; height: 40px; margin: 0; padding: 0; border: 0; background: transparent; cursor: pointer"></button>
+<sc-if value="{{u.setaBaixo}}" hint-placeholder-val="{{ true }}"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" style="position: absolute; left: 275px; top: 13px; display: block; pointer-events: none"><path d="M 14.41,6.91 C 14.73,6.58 15.26,6.58 15.58,6.91 C 15.91,7.23 15.91,7.76 15.58,8.08 L 10.58,13.08 C 10.26,13.41 9.73,13.41 9.41,13.08 L 4.41,8.08 C 4.08,7.76 4.08,7.23 4.41,6.91 C 4.73,6.58 5.26,6.58 5.58,6.91 L 10,11.32Z" fill="#42424a"></path></svg></sc-if>
+<sc-if value="{{u.setaCima}}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" style="position: absolute; left: 275px; top: 13px; display: block; pointer-events: none"><path d="M 9.47,6.85 C 9.80,6.58 10.28,6.60 10.58,6.91 L 15.58,11.91 C 15.91,12.23 15.91,12.76 15.58,13.08 C 15.26,13.41 14.73,13.41 14.41,13.08 L 10,8.67 L 5.58,13.08 C 5.26,13.41 4.73,13.41 4.41,13.08 C 4.08,12.76 4.08,12.23 4.41,11.91 L 9.41,6.91Z" fill="#42424a"></path></svg></sc-if>
+</div>
+<!-- Calendário (abre com o campo de data em foco) -->
+<sc-if value="{{u.cal}}" hint-placeholder-val="{{ false }}">
+<div onMouseDown="{{f.semFoco}}" style="position: absolute; left: 18px; top: 389px; width: 324px; height: {{u.sombraH}}px; pointer-events: none"><img src="./assets/ac26c16f26c5ad24bfe4d82813801851.png" alt="" style="width: 324px; height: {{u.sombraH}}px; display: block"></div>
+<div role="dialog" aria-label="Calendário" onMouseDown="{{f.semFoco}}" style="position: absolute; left: 24px; top: 391px; width: 312px; height: {{u.calH}}px; box-sizing: border-box; background: #ffffff; border: 1px solid #e5e5ea; border-radius: 12px; user-select: none">
+<div style="position: absolute; left: 15px; top: 19px; height: 16px; display: flex; align-items: center; gap: 8px">
+<button type="button" aria-label="Mês anterior" onMouseDown="{{f.semFoco}}" onClick="{{f.mesAnt}}" style="width: 16px; height: 16px; margin: 0; padding: 0; border: 0; background: transparent; cursor: pointer; flex-shrink: 0"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" style="display: block"><path d="M 9.52,3.52 C 9.78,3.26 10.21,3.26 10.47,3.52 C 10.73,3.78 10.73,4.21 10.47,4.47 L 6.94,8 L 10.47,11.52 C 10.73,11.78 10.73,12.21 10.47,12.47 C 10.21,12.73 9.78,12.73 9.52,12.47 L 5.52,8.47 C 5.26,8.21 5.26,7.78 5.52,7.52Z" fill="#42424a"></path></svg></button>
+<span style="font-size: 12px; line-height: 14px; font-weight: 600; color: #17171c; white-space: nowrap">{{u.mesNome}}</span>
+<button type="button" aria-label="Próximo mês" onMouseDown="{{f.semFoco}}" onClick="{{f.mesProx}}" style="width: 16px; height: 16px; margin: 0; padding: 0; border: 0; background: transparent; cursor: pointer; flex-shrink: 0"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" style="display: block"><path d="M 5.52,3.52 C 5.78,3.26 6.21,3.26 6.47,3.52 L 10.47,7.52 C 10.73,7.78 10.73,8.21 10.47,8.47 L 6.47,12.47 C 6.21,12.73 5.78,12.73 5.52,12.47 C 5.26,12.21 5.26,11.78 5.52,11.52 L 9.05,8 L 5.52,4.47 C 5.26,4.21 5.26,3.78 5.52,3.52Z" fill="#42424a"></path></svg></button>
+</div>
+<div style="position: absolute; right: 15px; top: 19px; height: 16px; display: flex; align-items: center; gap: 8px">
+<button type="button" aria-label="Ano anterior" onMouseDown="{{f.semFoco}}" onClick="{{f.anoAnt}}" style="width: 16px; height: 16px; margin: 0; padding: 0; border: 0; background: transparent; cursor: pointer; flex-shrink: 0"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" style="display: block"><path d="M 9.52,3.52 C 9.78,3.26 10.21,3.26 10.47,3.52 C 10.73,3.78 10.73,4.21 10.47,4.47 L 6.94,8 L 10.47,11.52 C 10.73,11.78 10.73,12.21 10.47,12.47 C 10.21,12.73 9.78,12.73 9.52,12.47 L 5.52,8.47 C 5.26,8.21 5.26,7.78 5.52,7.52Z" fill="#42424a"></path></svg></button>
+<span style="font-size: 12px; line-height: 14px; font-weight: 600; color: #17171c; white-space: nowrap">{{u.ano}}</span>
+<button type="button" aria-label="Próximo ano" onMouseDown="{{f.semFoco}}" onClick="{{f.anoProx}}" style="width: 16px; height: 16px; margin: 0; padding: 0; border: 0; background: transparent; cursor: pointer; flex-shrink: 0"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" style="display: block"><path d="M 5.52,3.52 C 5.78,3.26 6.21,3.26 6.47,3.52 L 10.47,7.52 C 10.73,7.78 10.73,8.21 10.47,8.47 L 6.47,12.47 C 6.21,12.73 5.78,12.73 5.52,12.47 C 5.26,12.21 5.26,11.78 5.52,11.52 L 9.05,8 L 5.52,4.47 C 5.26,4.21 5.26,3.78 5.52,3.52Z" fill="#42424a"></path></svg></button>
+</div>
+<sc-for list="{{semana}}" as="w" hint-placeholder-count="7">
+<span style="position: absolute; left: {{w.x}}px; top: 59.8px; width: 32px; font-size: 12px; line-height: 14px; font-weight: 400; color: #7a7a86; text-align: center; white-space: nowrap">{{w.t}}</span>
+</sc-for>
+<sc-for list="{{dias}}" as="d" hint-placeholder-count="35">
+<button type="button" aria-label="{{d.aria}}" aria-pressed="{{d.sel}}" onClick="{{d.pick}}" style="position: absolute; left: {{d.x}}px; top: {{d.y}}px; width: 32px; height: 32px; box-sizing: border-box; margin: 0; padding: 0; border: 1px solid {{d.anel}}; border-radius: 50%; background: {{d.bg}}; font-family: inherit; cursor: pointer">
+<span style="position: absolute; left: -1px; top: 7.8px; width: 32px; font-size: 12px; line-height: 14px; font-weight: 400; color: {{d.cor}}; text-align: center; white-space: nowrap">{{d.n}}</span>
+</button>
+</sc-for>
+</div>
+</sc-if>
+</div>
+</div>
+</div>
+<!-- Rodapé fixo: colado no fundo; sobe com o teclado do CPF; com o calendário aberto fica atrás do teclado (como no Criar conta) -->
+<div onMouseDown="{{f.semFoco}}" style="position: absolute; left: 0; bottom: {{u.footBottom}}px; width: 360px; height: 88px; z-index: 10; background: #f7f6fc; box-shadow: inset 0 1px 0 #e1dcf3">
+<a class="wp-btn wp-btn--primary" href="Seguranca.dc.html" data-nav="{{u.nav}}" aria-disabled="{{u.contDis}}" onClick="{{f.continuar}}" style="position: absolute; left: 24px; top: 16px; width: 312px; height: 48px; border-radius: 24px; background: {{u.btnBg}}; display: block; text-decoration: none; cursor: {{u.btnCursor}}"><span style="position: absolute; left: 0; top: 14.34px; width: 312px; transform: translateY(0.5px); font-size: 16px; line-height: 20px; font-weight: 600; color: {{u.btnCor}}; text-align: center; white-space: nowrap">Continuar</span></a>
+</div>
+<!-- Teclado numérico (layout do Figma): CPF e data de nascimento -->
+<sc-if value="{{u.kb}}" hint-placeholder-val="{{ false }}">
+<div role="group" aria-label="Teclado numérico" onMouseDown="{{f.semFoco}}" style="position: absolute; left: 0; bottom: 0; width: 360px; height: 238px; z-index: 20; user-select: none">
+<img src="./assets/270a8b3fcb123fb3d0cdbfa50237a6e1.png" alt="" style="width: 360px; height: 238px; display: block; pointer-events: none">
+<sc-for list="{{numKeys}}" as="k" hint-placeholder-count="16">
+<button type="button" aria-label="{{k.label}}" onClick="{{k.press}}" style="position: absolute; left: {{k.x}}px; top: {{k.y}}px; width: {{k.w}}px; height: {{k.h}}px; margin: 0; padding: 0; border: 0; border-radius: 6px; background: transparent; cursor: pointer"></button>
+</sc-for>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"estado":{"editor":"enum","default":"padrao","options":["padrao","preenchido"]},"$preview":{"width":360,"height":780}}'>
+class Component extends DCLogic {
+componentDidMount() {
+var self = this;
+var proxMin = function () { var d = new Date(); return 60050 - d.getSeconds() * 1000 - d.getMilliseconds(); };
+var tick = function () { var d = new Date(); self.setState({ clockK: d.getHours() * 60 + d.getMinutes() }); self._clockT = setTimeout(tick, proxMin()); };
+// Relógio da status bar: acorda só na virada de cada minuto (em vez de checar a cada segundo)
+this._clockT = setTimeout(tick, proxMin());
+}
+componentWillUnmount() { clearTimeout(this._clockT); }
+// Estado inicial pelo Tweak "estado" (layouts do Figma); no protótipo começa vazio
+estadoAtual() {
+var est = this.props.estado || 'padrao';
+var hoje = new Date();
+var base = { cpf: '', data: '', foco: null, cal: false, vm: hoje.getMonth(), va: hoje.getFullYear(), hoje: [hoje.getFullYear(), hoje.getMonth(), hoje.getDate()] };
+if (est === 'preenchido') base = Object.assign(base, { cpf: '98765432101', data: '05061996' });
+return Object.assign(base, this.state || {});
+}
+renderVals() {
+var _d = new Date();
+var me = this;
+var st = this.estadoAtual();
+var fmtCpf = function (d) { var s = d.slice(0, 3); if (d.length > 3) s += '.' + d.slice(3, 6); if (d.length > 6) s += '.' + d.slice(6, 9); if (d.length > 9) s += '-' + d.slice(9, 11); return s; };
+var fmtData = function (d) { var s = d.slice(0, 2); if (d.length > 2) s += '/' + d.slice(2, 4); if (d.length > 4) s += '/' + d.slice(4, 8); return s; };
+// data digitada completa e válida → [ano, mês, dia]
+var lerData = function (d) { if (d.length !== 8) return null; var dd = +d.slice(0, 2), mm = +d.slice(2, 4) - 1, aa = +d.slice(4, 8); var t = new Date(aa, mm, dd); if (t.getFullYear() !== aa || t.getMonth() !== mm || t.getDate() !== dd) return null; return [aa, mm, dd]; };
+if (!this._f) {
+var mostrar = function (campo) { var sc = me._sc; if (!sc) return; var alvo = campo === 'data' ? 217 : Math.max(0, 180 + 16 - sc.clientHeight); if (campo === 'data' || alvo > sc.scrollTop) { try { sc.scrollTo({ top: alvo, behavior: 'smooth' }); } catch (e) { sc.scrollTop = alvo; } } };
+var put = function (campo, ch) {
+if (!/[0-9]/.test(ch)) return;
+var s0 = me.estadoAtual(); var o = {};
+if (campo === 'cpf') { if (s0.cpf.length >= 11) return; o.cpf = s0.cpf + ch; }
+else { if (s0.data.length >= 8) return; o.data = s0.data + ch; var p = lerData(o.data); if (p) { o.vm = p[1]; o.va = p[0]; } }
+me.setState(o);
+};
+var del = function (campo) { var s0 = me.estadoAtual(); var o = {}; o[campo] = s0[campo].slice(0, -1); me.setState(o); };
+var focar = function (campo) { var el = campo === 'cpf' ? me._cpf : me._data; if (el) { el.focus({ preventScroll: true }); try { var n = el.value.length; el.setSelectionRange(n, n); } catch (e) {} } };
+var fechar = function () { if (me._cpf) me._cpf.blur(); if (me._data) me._data.blur(); me.setState({ foco: null, cal: false }); };
+var acao = function () { var s0 = me.estadoAtual(); if (s0.foco === 'cpf') focar('data'); else fechar(); };
+var tecla = function (campo) { return function (e) {
+if (e.key === 'Tab') return;
+e.preventDefault();
+if (e.key === 'Backspace') { del(campo); return; }
+if (e.key === 'Enter') { acao(); return; }
+if (e.key && e.key.length === 1) put(campo, e.key);
+}; };
+var nk = [];
+var NX = [4, 93, 182, 271], NY = [7, 56, 105, 154];
+[['1', '2', '3', '-'], ['4', '5', '6', 'Espaço'], ['7', '8', '9', 'Apagar'], [',', '0', '.', 'Concluir']].forEach(function (r, i) { r.forEach(function (c, j) {
+var fn = c === 'Apagar' ? function () { var s0 = me.estadoAtual(); if (s0.foco) del(s0.foco); } : (c === 'Concluir' ? acao : function () { var s0 = me.estadoAtual(); if (s0.foco) put(s0.foco, c); });
+nk.push({ label: c, x: NX[j], y: NY[i], w: 85, h: 44, press: fn });
+}); });
+this._numKeys = nk;
+var mudaMes = function (dm) { return function () { var s0 = me.estadoAtual(); var m = s0.vm + dm, a = s0.va; if (m < 0) { m = 11; a--; } if (m > 11) { m = 0; a++; } me.setState({ vm: m, va: a }); }; };
+var mudaAno = function (da) { return function () { var s0 = me.estadoAtual(); me.setState({ va: s0.va + da }); }; };
+this._pick = {};
+this._f = {
+noop: function () {},
+cpfRef: function (el) { me._cpf = el; }, dataRef: function (el) { me._data = el; }, scRef: function (el) { me._sc = el; },
+cpfKey: tecla('cpf'), dataKey: tecla('data'),
+cpfFocus: function () { me.setState({ foco: 'cpf', cal: false }, function () { mostrar('cpf'); }); },
+dataFocus: function () { me.setState({ foco: 'data', cal: true }, function () { mostrar('data'); }); },
+blur: function () { setTimeout(function () { var a = document.activeElement; if (a !== me._cpf && a !== me._data) me.setState({ foco: null, cal: false }); }, 0); },
+campoCpf: function (e) { if (e.target === me._cpf) return; e.preventDefault(); focar('cpf'); },
+campoData: function (e) { if (e.target === me._data || (e.target.closest && e.target.closest('button'))) return; e.preventDefault(); focar('data'); },
+alternarCal: function () { var s0 = me.estadoAtual(); if (s0.cal) fechar(); else focar('data'); },
+semFoco: function (e) { e.preventDefault(); },
+mesAnt: mudaMes(-1), mesProx: mudaMes(1), anoAnt: mudaAno(-1), anoProx: mudaAno(1),
+continuar: function (e) { var s0 = me.estadoAtual(); if (!(s0.cpf.length > 0 && lerData(s0.data))) e.preventDefault(); },
+escolher: function (a, m, d) { var k = a + '-' + m + '-' + d; if (!me._pick[k]) me._pick[k] = function () { var s = ('0' + d).slice(-2) + ('0' + (m + 1)).slice(-2) + a; me.setState({ data: s, vm: m, va: a }); fechar(); }; return me._pick[k]; }
+};
+}
+// Calendário do mês em exibição (semana começa no domingo)
+var MESES = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+var MESES_EXT = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
+var sel = lerData(st.data);
+var ini = new Date(st.va, st.vm, 1).getDay();
+var nDias = new Date(st.va, st.vm + 1, 0).getDate();
+var linhas = Math.ceil((ini + nDias) / 7);
+var dias = [];
+for (var i = 0; i < linhas * 7; i++) {
+var dt = new Date(st.va, st.vm, 1 - ini + i);
+var a = dt.getFullYear(), m = dt.getMonth(), d = dt.getDate();
+var doMes = m === st.vm;
+var eSel = !!(sel && sel[0] === a && sel[1] === m && sel[2] === d);
+var eHoje = st.hoje[0] === a && st.hoje[1] === m && st.hoje[2] === d;
+dias.push({ n: String(d), x: 7 + 44 * (i % 7), y: 91 + 40 * Math.floor(i / 7), bg: eSel ? '#5734d9' : 'transparent', anel: eSel ? '#5734d9' : (eHoje ? '#e5e5ea' : 'transparent'),
+cor: eSel ? '#ffffff' : (doMes ? '#42424a' : '#b6b6c1'), sel: eSel ? 'true' : 'false', aria: d + ' de ' + MESES_EXT[m] + ' de ' + a, pick: this._f.escolher(a, m, d) });
+}
+var semana = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'].map(function (t, j) { return { t: t, x: 7 + 44 * j }; });
+var calH = 304 + (linhas - 5) * 40;
+var pronto = st.cpf.length > 0 && !!lerData(st.data);
+var kbCpf = st.foco === 'cpf';
+var contH = st.cal ? 647 + (linhas - 5) * 40 : 580;
+return {
+statusTime: _d.getHours() + ':' + ('0' + _d.getMinutes()).slice(-2),
+f: this._f, numKeys: this._numKeys, dias: dias, semana: semana,
+u: {
+cpfTxt: fmtCpf(st.cpf), dataTxt: fmtData(st.data),
+cpfBorda: st.foco === 'cpf' ? '#5734d9' : '#e5e5ea', dataBorda: st.foco === 'data' ? '#5734d9' : '#e5e5ea',
+cal: !!st.cal, calAberto: st.cal ? 'true' : 'false', calAria: st.cal ? 'Fechar calendário' : 'Abrir calendário',
+setaCima: !!st.cal, setaBaixo: !st.cal, mesNome: MESES[st.vm], ano: String(st.va), calH: calH, sombraH: calH + 12,
+nav: pronto ? 'push:seguranca' : '', btnBg: pronto ? '#5734d9' : '#e5e5ea', btnCor: pronto ? '#ffffff' : '#b6b6c1', btnCursor: pronto ? 'pointer' : 'default', contDis: pronto ? 'false' : 'true',
+kb: !!st.foco, footBottom: kbCpf ? 238 : 0,
+scBottom: kbCpf ? 238 + 88 : (st.foco ? 238 : 88),
+contH: contH
+}
+};
+}
+}
+</script>
+</body>
+</html>

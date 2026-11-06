@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>PDF do Holerite</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+<script src="./assets/006b9949ae9e16e15b7586c26de23cca.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&amp;family=Urbanist:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+html,body{scrollbar-width:none}html::-webkit-scrollbar,body::-webkit-scrollbar{display:none}
+body{margin:0;font-family:'Urbanist',system-ui,sans-serif;color:#17171c;background:transparent}
+a{color:#42424a}a:hover{color:#17171c}
+.dem-paginas{scrollbar-width:none}
+.dem-paginas::-webkit-scrollbar{display:none}
+@keyframes demToastIn{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes demToastOut{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-16px)}}
+@keyframes demFadeIn{from{opacity:0}to{opacity:1}}
+@keyframes demFadeOut{from{opacity:1}to{opacity:0}}
+@keyframes demSheetIn{from{transform:translateY(100%)}to{transform:translateY(0)}}
+@keyframes demSheetOut{from{transform:translateY(0)}to{transform:translateY(100%)}}
+.dem-acao:active{background:rgba(87,52,217,0.08)!important}
+.wp-sc::-webkit-scrollbar{display:none}
+</style>
+</helmet>
+<div style="position: relative; width: 360px; height: var(--wp-h, 780px); overflow: hidden; border-radius: 16px; background: #f7f6fc; font-family: 'Urbanist', system-ui, sans-serif; color: #17171c">
+
+<!-- Status bar + cabeçalho (80 px) -->
+<div style="position: absolute; left: 0; top: 0; width: 360px; height: 120px; background: linear-gradient(180deg, #211551 0, #211551 64px, #f7f6fc 64px)">
+<div style="position: relative; height: 40px">
+<span style="position: absolute; left: 15.5px; top: 12px; font-size: 14px; line-height: 17px; font-weight: 600; color: #ffffff; white-space: nowrap">{{statusTime}}</span>
+<div style="position: absolute; left: 168px; top: 8px; width: 24px; height: 24px; border-radius: 50%; background: #000000"></div>
+<img src="./assets/8b2d4d6b48dc65bf320ab274856d6d61.svg" alt="" style="position: absolute; left: 288.668px; top: 12.918px; width: 51.582px; height: 14.164px; display: block">
+</div>
+<header style="position: relative; height: 80px; background: #f7f6fc; border-radius: 24px 24px 0 0">
+<a href="Holerite.dc.html" data-nav="back" aria-label="Voltar" style="position: absolute; left: 16px; top: 20px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; text-decoration: none">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5734d9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+</a>
+<h1 style="position: absolute; left: 0; top: 30px; transform: translateY(0.5px); width: 360px; margin: 0; font-size: 16px; line-height: 20px; font-weight: 600; color: #17171c; text-align: center; white-space: nowrap; pointer-events: none">PDF do Holerite</h1>
+<button type="button" aria-label="Compartilhar" onClick="{{compartilhar}}" style="position: absolute; left: 264px; top: 20px; width: 40px; height: 40px; margin: 0; padding: 0; border: 0; border-radius: 20px; background: transparent; cursor: pointer" class="dem-acao"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" style="position: absolute; left: 10px; top: 10px; display: block"><path d="M 16.66,4.16 C 16.66,3.24 15.92,2.5 15,2.5 C 14.07,2.5 13.33,3.24 13.33,4.16 C 13.33,5.08 14.07,5.83 15,5.83 C 15.92,5.83 16.66,5.08 16.66,4.16 Z M 18.33,4.16 C 18.33,6.00 16.83,7.5 15,7.5 C 13.16,7.5 11.66,6.00 11.66,4.16 C 11.66,2.32 13.16,0.83 15,0.83 C 16.83,0.83 18.33,2.32 18.33,4.16Z" fill="#5734d9"></path><path d="M 6.66,10 C 6.66,9.07 5.92,8.33 5,8.33 C 4.07,8.33 3.33,9.07 3.33,10 C 3.33,10.92 4.07,11.66 5,11.66 C 5.92,11.66 6.66,10.92 6.66,10 Z M 8.33,10 C 8.33,11.83 6.83,13.33 5,13.33 C 3.16,13.33 1.66,11.83 1.66,10 C 1.66,8.16 3.16,6.66 5,6.66 C 6.83,6.66 8.33,8.16 8.33,10Z" fill="#5734d9"></path><path d="M 16.66,15.83 C 16.66,14.91 15.92,14.16 15,14.16 C 14.07,14.16 13.33,14.91 13.33,15.83 C 13.33,16.75 14.07,17.5 15,17.5 C 15.92,17.5 16.66,16.75 16.66,15.83 Z M 18.33,15.83 C 18.33,17.67 16.83,19.16 15,19.16 C 13.16,19.16 11.66,17.67 11.66,15.83 C 11.66,13.99 13.16,12.5 15,12.5 C 16.83,12.5 18.33,13.99 18.33,15.83Z" fill="#5734d9"></path><path d="M 6.43,10.83 C 6.66,10.44 7.17,10.30 7.57,10.53 L 13.26,13.85 C 13.66,14.08 13.80,14.59 13.57,14.99 C 13.33,15.39 12.82,15.52 12.42,15.29 L 6.73,11.98 C 6.33,11.74 6.20,11.23 6.43,10.83Z" fill="#5734d9"></path><path d="M 12.42,4.70 C 12.82,4.47 13.32,4.60 13.56,5.00 C 13.79,5.40 13.66,5.91 13.26,6.14 L 7.57,9.46 C 7.17,9.69 6.67,9.55 6.43,9.16 C 6.20,8.76 6.33,8.25 6.73,8.02Z" fill="#5734d9"></path></svg></button>
+<button type="button" aria-label="Fazer download" onClick="{{baixar}}" style="position: absolute; left: 304px; top: 20px; width: 40px; height: 40px; margin: 0; padding: 0; border: 0; border-radius: 20px; background: transparent; cursor: pointer" class="dem-acao"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" style="position: absolute; left: 10px; top: 10px; display: block"><path d="M 9.16,12.5 L 9.16,2.5 C 9.16,2.03 9.53,1.66 10,1.66 C 10.46,1.66 10.83,2.03 10.83,2.5 L 10.83,12.5 C 10.83,12.96 10.46,13.33 10,13.33 C 9.53,13.33 9.16,12.96 9.16,12.5Z" fill="#5734d9"></path><path d="M 1.66,15.83 L 1.66,12.5 C 1.66,12.03 2.03,11.66 2.5,11.66 C 2.96,11.66 3.33,12.03 3.33,12.5 L 3.33,15.83 C 3.33,16.05 3.42,16.26 3.57,16.42 C 3.73,16.57 3.94,16.66 4.16,16.66 L 15.83,16.66 C 16.05,16.66 16.26,16.57 16.42,16.42 C 16.57,16.26 16.66,16.05 16.66,15.83 L 16.66,12.5 C 16.66,12.03 17.03,11.66 17.5,11.66 C 17.96,11.66 18.33,12.03 18.33,12.5 L 18.33,15.83 C 18.33,16.49 18.07,17.13 17.60,17.60 C 17.13,18.07 16.49,18.33 15.83,18.33 L 4.16,18.33 C 3.50,18.33 2.86,18.07 2.39,17.60 C 1.92,17.13 1.66,16.49 1.66,15.83Z" fill="#5734d9"></path><path d="M 13.57,7.74 C 13.90,7.41 14.42,7.41 14.75,7.74 C 15.08,8.07 15.08,8.59 14.75,8.92 L 10.58,13.08 C 10.26,13.41 9.73,13.41 9.41,13.08 L 5.24,8.92 C 4.91,8.59 4.91,8.07 5.24,7.74 C 5.57,7.41 6.09,7.41 6.42,7.74 L 10,11.32Z" fill="#5734d9"></path></svg></button>
+</header>
+</div>
+
+<!-- PDF do holerite (mesma visualização para qualquer holerite; valores sempre com a máscara "*****") -->
+<div class="wp-sc" style="position: absolute; left: 0; top: 128px; width: 360px; bottom: 0px; overflow-x: hidden; overflow-y: auto; scrollbar-width: none; overscroll-behavior: contain"><div style="position: relative; width: 360px; height: 608px; margin-top: -128px"><div style="position: absolute; left: 16px; top: 128px; width: 328px; height: 464px; box-sizing: border-box; background: #ffffff; border: 1px solid #e5e5ea; border-radius: 12px; overflow: hidden">
+<div role="img" aria-label="{{pg.aria}}" style="position: absolute; left: 11px; top: 15.9px; width: 595px; height: 842px; transform: scale(0.510924); transform-origin: 0 0; background: #ffffff; color: #000000; font-family: 'Urbanist', system-ui, sans-serif">
+<span style="position: absolute; left: 40px; top: 40.21px; font-size: 16px; line-height: 20px; font-weight: 600; white-space: nowrap">Demonstrativo de Pagamento de Salário: {{pg.mesAno}}</span>
+<span style="position: absolute; left: 40px; top: 63.31px; font-size: 14px; line-height: 17px; font-weight: 400; white-space: nowrap">{{pg.tipo}}</span>
+<span style="position: absolute; left: 40.15px; top: 85.0px; font-size: 10px; line-height: 12px; font-weight: 400; color: #42424a; white-space: nowrap">Seg: 285</span>
+<div style="position: absolute; left: 40px; top: 112px; width: 515px; height: 32px; box-sizing: border-box; background: #f3f3f6; border: 1px solid #e5e5ea"><span style="position: absolute; left: 0; top: 7.5px; width: 513px; font-size: 12px; line-height: 15px; font-weight: 400; text-align: center; white-space: nowrap">Mensagem automática de feliz aniversário</span></div>
+<div style="position: absolute; left: 40px; top: 159px; width: 515px; height: 1px; background: #e5e5ea"></div>
+<sc-for list="{{pg.info}}" as="c" hint-placeholder-count="14">
+<span style="position: absolute; left: {{c.x}}px; top: {{c.y}}px; font-size: 10px; line-height: 12px; font-weight: 400; white-space: nowrap"><b style="font-weight: 600">{{c.k}}</b> {{c.v}}</span>
+</sc-for>
+<div style="position: absolute; left: 40px; top: 283px; width: 515px; height: 1px; background: #e5e5ea"></div>
+<span style="position: absolute; left: 40px; top: 299.91px; font-size: 12px; line-height: 15px; font-weight: 400; white-space: nowrap">Descrição</span>
+<span style="position: absolute; left: 307px; top: 299.91px; font-size: 12px; line-height: 15px; font-weight: 400; white-space: nowrap">Referência</span>
+<span style="position: absolute; left: 396px; top: 299.91px; font-size: 12px; line-height: 15px; font-weight: 400; white-space: nowrap">Descontos</span>
+<span style="position: absolute; left: 490px; top: 299.91px; font-size: 12px; line-height: 15px; font-weight: 400; white-space: nowrap">Proventos</span>
+<sc-for list="{{pg.linhas}}" as="r" hint-placeholder-count="4">
+<span aria-hidden="true" style="position: absolute; left: 42px; top: {{r.iconY}}px; width: 8px; height: 8px">
+<sc-if value="{{r.mais}}" hint-placeholder-val="{{ true }}"><span style="position: absolute; left: 0; top: 3.5px; width: 8px; height: 1px; background: #34b26f"></span><span style="position: absolute; left: 3.5px; top: 0; width: 1px; height: 8px; background: #34b26f"></span></sc-if>
+<sc-if value="{{r.menos}}" hint-placeholder-val="{{ false }}"><span style="position: absolute; left: 0; top: 3.5px; width: 8px; height: 1px; background: #d9344f"></span></sc-if>
+</span>
+<span style="position: absolute; left: 56px; top: {{r.y}}px; font-size: 10px; line-height: 12px; font-weight: 400; white-space: nowrap">{{r.label}}</span>
+<span style="position: absolute; left: 307px; top: {{r.y}}px; font-size: 10px; line-height: 12px; font-weight: 400; white-space: nowrap">{{r.ref}}</span>
+<span style="position: absolute; left: 396px; top: {{r.y}}px; font-size: 10px; line-height: 12px; font-weight: 400; color: {{r.corD}}; white-space: nowrap">{{r.desc}}</span>
+<span style="position: absolute; left: 490px; top: {{r.y}}px; font-size: 10px; line-height: 12px; font-weight: 400; color: {{r.corP}}; white-space: nowrap">{{r.prov}}</span>
+</sc-for>
+<span style="position: absolute; left: 40px; top: {{pg.totalY}}px; font-size: 12px; line-height: 15px; font-weight: 400; white-space: nowrap">Total</span>
+<span style="position: absolute; left: 307px; top: {{pg.totalY}}px; font-size: 12px; line-height: 15px; font-weight: 400; white-space: nowrap">-</span>
+<span style="position: absolute; left: 396px; top: {{pg.totalY}}px; font-size: 12px; line-height: 15px; font-weight: 400; color: #d9344f; white-space: nowrap">R$ *****</span>
+<span style="position: absolute; left: 490px; top: {{pg.totalY}}px; font-size: 12px; line-height: 15px; font-weight: 400; color: #23784b; white-space: nowrap">R$ *****</span>
+<div style="position: absolute; left: 40px; top: {{pg.barY}}px; width: 515px; height: 32px; box-sizing: border-box; background: #f3f3f6; border: 1px solid #e5e5ea">
+<span style="position: absolute; left: 8px; top: 7.5px; font-size: 12px; line-height: 15px; font-weight: 400; white-space: nowrap">Valor líquido a receber:</span>
+<span style="position: absolute; right: 8.3px; top: 7.5px; font-size: 12px; line-height: 15px; font-weight: 400; color: #23784b; white-space: nowrap">R$ *****</span>
+</div>
+<div style="position: absolute; left: 40px; top: {{pg.div3}}px; width: 515px; height: 1px; background: #e5e5ea"></div>
+<sc-for list="{{pg.rodape}}" as="c" hint-placeholder-count="7">
+<span style="position: absolute; left: {{c.x}}px; top: {{c.y}}px; width: {{c.w}}px; text-align: {{c.align}}; font-size: 10px; line-height: 12px; font-weight: 400; white-space: nowrap"><b style="font-weight: 600">{{c.k}}</b> {{c.v}}</span>
+</sc-for>
+<div style="position: absolute; left: 302px; top: {{pg.msg1}}px; width: 253px; height: 28px; box-sizing: border-box; background: #f3f3f6; border: 1px solid #e5e5ea"><span style="position: absolute; left: 8px; top: 8.5px; font-size: 8px; line-height: 10px; font-weight: 400; color: #42424a; white-space: nowrap">Mensagem automática do envelope</span></div>
+<div style="position: absolute; left: 302px; top: {{pg.msg2}}px; width: 253px; height: 28px; box-sizing: border-box; background: #f3f3f6; border: 1px solid #e5e5ea"><span style="position: absolute; left: 8px; top: 8.5px; font-size: 8px; line-height: 10px; font-weight: 400; color: #42424a; white-space: nowrap">Mensagem automática de observação do cálculo</span></div>
+<svg width="88" height="46" viewBox="0 0 88 46" aria-hidden="true" style="position: absolute; left: 470px; top: 762px; display: block"><path d="M 56.29,34.22 L 54.96,35.57 C 54.53,36.00 54.53,36.70 54.96,37.13 L 56.29,38.48 C 56.71,38.90 56.71,39.59 56.29,40.01 L 54.23,37.92 C 53.37,37.05 53.37,35.64 54.23,34.77 L 56.29,32.68 C 56.71,33.10 56.71,33.80 56.29,34.22" fill="#8ca3cf"></path><path d="M 56.30,41.46 L 57.63,40.11 C 58.06,39.68 58.06,38.98 57.63,38.55 L 56.30,37.20 C 55.89,36.78 55.89,36.09 56.30,35.66 L 58.36,37.75 C 59.22,38.62 59.22,40.03 58.36,40.91 L 56.30,43 C 55.89,42.57 55.89,41.88 56.30,41.46" fill="#8ca3cf"></path><path d="M 72.60,36.55 C 71.35,36.55 70.54,37.42 70.53,38.76 L 70.53,40.54 C 70.53,40.72 70.62,40.93 71.01,40.93 C 71.40,40.93 71.46,40.72 71.46,40.54 L 71.46,38.76 C 71.46,37.87 71.89,37.31 72.60,37.31 L 72.61,37.31 C 73.31,37.31 73.75,37.86 73.75,38.76 L 73.75,40.54 C 73.75,40.72 73.82,40.93 74.20,40.93 C 74.58,40.93 74.67,40.72 74.67,40.54 L 74.67,38.76 C 74.66,37.42 73.85,36.55 72.60,36.55" fill="#8ca3cf"></path><path d="M 84.33,36.55 L 84.32,36.55 C 83.07,36.55 82.25,37.42 82.25,38.76 L 82.25,40.54 C 82.25,40.72 82.33,40.93 82.72,40.93 C 83.11,40.93 83.17,40.72 83.17,40.54 L 83.17,38.76 C 83.17,37.87 83.61,37.31 84.31,37.31 L 84.32,37.31 C 84.42,37.31 84.52,37.27 84.60,37.20 C 84.67,37.12 84.71,37.03 84.71,36.93 C 84.71,36.72 84.54,36.55 84.33,36.55" fill="#8ca3cf"></path><path d="M 63.57,37.28 C 62.92,37 62.35,36.75 62.35,36.22 C 62.35,35.73 62.78,35.42 63.43,35.42 C 63.78,35.42 64.09,35.51 64.46,35.73 C 64.5,35.75 64.53,35.77 64.56,35.79 C 64.67,35.86 64.75,35.91 64.83,35.91 C 65.05,35.91 65.23,35.65 65.23,35.44 C 65.23,35.26 65.07,35.12 64.89,35.00 C 64.5,34.74 63.96,34.59 63.43,34.59 C 62.25,34.59 61.45,35.26 61.45,36.27 C 61.45,37.32 62.35,37.72 63.15,38.06 C 63.84,38.36 64.44,38.62 64.44,39.24 C 64.44,39.80 63.96,40.17 63.25,40.17 C 62.86,40.17 62.52,40.05 62.14,39.79 L 62.06,39.73 C 61.92,39.64 61.84,39.58 61.73,39.58 C 61.51,39.58 61.33,39.83 61.33,40.04 C 61.33,40.19 61.43,40.34 61.66,40.50 C 62.10,40.83 62.64,41.00 63.24,41.00 C 64.50,41.00 65.35,40.27 65.35,39.19 C 65.35,38.05 64.41,37.64 63.57,37.28" fill="#8ca3cf"></path><path d="M 67.00,38.25 C 67.10,37.64 67.45,37.30 67.97,37.30 C 68.49,37.30 68.85,37.66 68.90,38.25 C 68.90,38.28 68.89,38.30 68.88,38.31 C 68.87,38.33 68.85,38.34 68.82,38.34 L 67.07,38.34 C 67.05,38.34 67.03,38.33 67.01,38.31 C 67.00,38.30 67,38.27 67.00,38.25 Z M 67.07,39.05 L 69.12,39.05 C 69.45,39.05 69.78,38.98 69.78,38.44 C 69.78,37.33 69.05,36.55 67.99,36.55 C 66.83,36.55 66.08,37.42 66.08,38.77 C 66.08,40.12 66.85,40.96 68.11,40.96 C 68.62,40.96 69.05,40.84 69.41,40.60 C 69.61,40.46 69.70,40.33 69.70,40.18 C 69.70,39.98 69.55,39.77 69.31,39.77 C 69.20,39.77 69.10,39.84 68.97,39.93 L 68.95,39.94 C 68.73,40.09 68.46,40.16 68.14,40.16 C 67.49,40.16 67.10,39.82 66.99,39.14 C 66.98,39.12 66.99,39.10 67.00,39.08 C 67.02,39.07 67.04,39.05 67.06,39.05" fill="#8ca3cf"></path><path d="M 76.03,36.60 C 75.67,36.60 75.59,36.81 75.59,36.99 L 75.59,40.54 C 75.59,40.72 75.67,40.93 76.05,40.93 C 76.43,40.93 76.49,40.72 76.49,40.54 L 76.49,36.99 C 76.49,36.81 76.41,36.60 76.03,36.60Z" fill="#8ca3cf"></path><path d="M 79.38,40.21 C 78.68,40.21 78.23,39.64 78.23,38.76 C 78.23,37.87 78.67,37.31 79.37,37.31 C 80.07,37.31 80.51,37.87 80.51,38.77 C 80.51,39.68 80.08,40.21 79.38,40.21 Z M 79.38,36.55 C 78.12,36.55 77.30,37.42 77.30,38.77 C 77.30,40.12 78.11,40.98 79.36,40.98 C 80.61,40.98 81.44,40.11 81.44,38.76 C 81.44,37.41 80.63,36.55 79.38,36.55" fill="#8ca3cf"></path><path d="M 44.09,40.88 C 43.63,40.88 43.19,40.77 42.89,40.60 C 42.64,40.44 42.64,40.28 42.64,40.10 L 42.64,35.05 C 42.64,34.89 42.73,34.81 42.91,34.81 C 43.09,34.81 43.17,34.89 43.17,35.05 L 43.17,37.28 C 43.46,37.03 43.82,36.92 44.25,36.92 C 45.32,36.92 46.03,37.66 46.03,38.87 C 46.03,40.08 45.27,40.88 44.09,40.88 Z M 44.09,40.44 C 44.95,40.44 45.48,39.84 45.48,38.90 C 45.48,38.00 44.99,37.37 44.14,37.37 C 43.78,37.37 43.45,37.48 43.17,37.71 L 43.17,40.17 C 43.41,40.34 43.75,40.44 44.09,40.44Z" fill="#8ca3cf"></path><path d="M 50.45,37.13 C 50.45,37.22 50.43,37.35 50.38,37.50 C 50.00,39.04 49.02,41.23 47.96,42.35 C 47.82,42.50 47.73,42.58 47.62,42.58 C 47.49,42.58 47.34,42.47 47.34,42.33 C 47.34,42.23 47.44,42.14 47.52,42.06 C 47.92,41.67 48.29,41.13 48.48,40.80 L 46.99,37.31 C 46.96,37.24 46.93,37.17 46.93,37.10 C 46.93,37.01 46.99,36.94 47.17,36.94 C 47.37,36.94 47.44,37.01 47.52,37.20 L 48.80,40.27 C 49.17,39.56 49.68,38.30 49.91,37.27 C 49.96,37.07 49.99,36.94 50.22,36.94 C 50.40,36.94 50.45,37.01 50.45,37.13Z" fill="#8ca3cf"></path><path d="M 76.05,34.66 C 75.71,34.66 75.47,34.91 75.47,35.24 C 75.47,35.57 75.71,35.82 76.05,35.82 C 76.38,35.82 76.62,35.58 76.62,35.24 C 76.62,34.90 76.38,34.66 76.05,34.66Z" fill="#8ca3cf"></path><path d="M 32.20,3 C 31.08,2.99 30.17,3.89 30.16,5.01 C 30.15,6.13 31.05,7.04 32.17,7.05 C 33.29,7.06 34.20,6.16 34.21,5.04 L 34.21,5.02 C 34.21,3.91 33.32,3.00 32.20,3Z" fill="#5734d9"></path><path d="M 40.73,3 C 39.60,2.99 38.69,3.89 38.68,5.01 C 38.67,6.13 39.58,7.04 40.69,7.05 C 41.82,7.06 42.73,6.16 42.74,5.04 L 42.74,5.02 C 42.74,3.91 41.84,3.00 40.73,3 L 40.72,3" fill="#5734d9"></path><path d="M 31.27,8.78 L 33.91,9.93 C 34.10,10.01 34.23,10.21 34.23,10.42 L 34.23,24.14 C 34.23,24.56 33.89,24.89 33.47,24.89 L 31.00,24.89 C 30.58,24.89 30.25,24.55 30.25,24.14 L 30.25,9.45 C 30.25,9.05 30.57,8.72 30.98,8.72 C 31.08,8.72 31.17,8.74 31.27,8.78Z" fill="#211551"></path><path d="M 83.86,12.07 C 83.12,10.78 82.03,9.71 80.71,9 C 77.94,7.52 74.62,7.52 71.85,9 C 70.54,9.72 69.45,10.80 68.70,12.11 C 67.95,13.44 67.57,14.94 67.58,16.46 C 67.57,18.00 67.96,19.51 68.71,20.85 C 69.45,22.15 70.53,23.22 71.85,23.93 C 73.21,24.68 74.73,25.06 76.28,25.04 C 77.84,25.06 79.37,24.67 80.72,23.92 C 82.03,23.19 83.12,22.11 83.86,20.80 C 84.62,19.48 85.01,17.99 85,16.47 C 85.01,14.93 84.62,13.41 83.86,12.07 M 80.35,18.95 C 79.96,19.67 79.38,20.26 78.67,20.67 C 77.94,21.08 77.12,21.29 76.28,21.28 C 75.44,21.29 74.62,21.08 73.90,20.67 C 73.19,20.25 72.61,19.64 72.22,18.92 C 71.82,18.17 71.61,17.32 71.62,16.46 C 71.61,15.60 71.81,14.75 72.22,13.98 C 72.61,13.26 73.19,12.67 73.90,12.26 C 75.39,11.45 77.19,11.45 78.67,12.26 C 79.38,12.68 79.96,13.28 80.35,14.01 C 80.75,14.76 80.96,15.61 80.94,16.46 C 80.96,17.33 80.75,18.18 80.35,18.95" fill="#211551"></path><path d="M 60.78,9 C 58.01,7.52 54.69,7.52 51.92,9 C 51.84,9.04 51.76,9.08 51.69,9.13 C 51.47,9.26 51.18,9.10 51.18,8.83 C 51.19,8.43 50.86,8.10 50.46,8.10 C 50.36,8.10 50.26,8.12 50.17,8.16 L 47.45,9.35 C 47.30,9.41 47.21,9.56 47.21,9.72 L 47.21,31.05 C 47.21,31.47 47.54,31.81 47.96,31.81 L 50.42,31.81 C 50.84,31.81 51.17,31.47 51.17,31.05 L 51.17,24.21 C 51.17,23.90 51.51,23.71 51.78,23.87 C 51.82,23.89 51.86,23.91 51.90,23.93 C 53.26,24.67 54.79,25.06 56.34,25.04 C 57.89,25.06 59.42,24.67 60.78,23.92 C 62.09,23.18 63.17,22.10 63.92,20.80 C 64.67,19.48 65.06,17.99 65.05,16.46 C 65.07,14.93 64.67,13.41 63.92,12.07 C 63.17,10.78 62.08,9.71 60.78,9 M 60.41,18.95 C 60.02,19.67 59.44,20.26 58.73,20.67 C 58.01,21.08 57.18,21.29 56.34,21.28 C 55.51,21.29 54.69,21.08 53.98,20.67 C 53.27,20.25 52.69,19.65 52.30,18.92 C 51.89,18.17 51.69,17.32 51.70,16.46 C 51.69,15.60 51.90,14.75 52.31,13.98 C 52.70,13.26 53.28,12.67 53.99,12.26 C 55.48,11.45 57.28,11.45 58.76,12.26 C 59.47,12.68 60.05,13.28 60.44,14.01 C 60.84,14.76 61.05,15.61 61.03,16.46 C 61.04,17.33 60.82,18.19 60.41,18.95Z" fill="#211551"></path><path d="M 41.73,8.78 L 39.09,9.93 C 38.89,10.01 38.76,10.21 38.76,10.42 L 38.76,24.14 C 38.76,24.56 39.10,24.89 39.52,24.89 L 42,24.89 C 42.41,24.89 42.75,24.55 42.75,24.14 L 42.75,9.45 C 42.75,9.05 42.43,8.72 42.02,8.71 C 41.92,8.71 41.82,8.74 41.72,8.78" fill="#211551"></path><path d="M 26.57,9.16 L 23.07,9.16 C 22.85,9.16 22.64,9.30 22.57,9.52 L 19.86,17.23 C 19.73,17.59 19.22,17.59 19.10,17.23 L 16.46,9.52 C 16.38,9.30 16.18,9.16 15.95,9.16 L 13.09,9.16 C 12.86,9.16 12.66,9.31 12.58,9.53 L 10.11,17.14 C 9.99,17.51 9.47,17.52 9.34,17.16 L 6.62,9.51 C 6.54,9.30 6.33,9.16 6.11,9.16 L 2.53,9.16 C 2.16,9.16 1.90,9.53 2.03,9.89 L 7.51,24.39 C 7.60,24.62 7.83,24.78 8.08,24.77 L 11.16,24.77 C 11.42,24.78 11.66,24.61 11.73,24.36 L 14.53,15.91 L 17.44,24.37 C 17.52,24.61 17.75,24.78 18.01,24.78 L 21.09,24.78 C 21.34,24.77 21.57,24.62 21.66,24.38 L 27.03,9.98 C 27.03,9.98 27.03,9.97 27.04,9.97 L 27.07,9.89 C 27.20,9.53 26.94,9.16 26.57,9.16Z" fill="#211551"></path></svg>
+</div>
+</div></div></div>
+
+<!-- Alerta: download realizado -->
+<sc-if value="{{ui.toast}}" hint-placeholder-val="{{ false }}">
+<div onClick="{{fecharToast}}" style="position: absolute; left: 0; top: 0; width: 360px; height: var(--wp-h, 780px); z-index: 20; background: rgba(0, 0, 0, 0.12); animation: {{ui.veuAnim}}"></div>
+<div role="status" aria-live="polite" style="position: absolute; left: 10px; top: 58px; width: 340px; height: 81px; z-index: 21; animation: {{ui.toastAnim}}">
+<img src="./assets/284e2b9e14ee073fc35470369ba8ddfd.png" alt="" style="position: absolute; left: 0; top: 0; width: 340px; height: 81px; display: block; pointer-events: none">
+<div style="position: absolute; left: 6px; top: 2px; width: 328px; height: 69px; box-sizing: border-box; background: #ffffff; border: 1px solid #e5e5ea; border-radius: 10px">
+<span style="position: absolute; left: 11px; top: 11.22px; font-size: 14px; line-height: 17px; font-weight: 600; color: #17171c; white-space: nowrap">Download realizado com sucesso!</span>
+<span style="position: absolute; left: 11px; top: 28.33px; font-size: 12px; line-height: 14px; font-weight: 400; color: #42424a; white-space: pre">Seu holerite foi salvo na pasta de downloads do
+dispositivo</span>
+<button type="button" aria-label="Fechar" onClick="{{fecharToast}}" style="position: absolute; left: 283px; top: 17.5px; width: 32px; height: 32px; margin: 0; padding: 0; border: 0; background: transparent; cursor: pointer">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#42424a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="position: absolute; left: 8px; top: 8px; display: block"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+</button>
+</div>
+</div>
+</sc-if>
+
+<!-- Compartilhar (folha nativa do dispositivo) -->
+<sc-if value="{{ui.share}}" hint-placeholder-val="{{ false }}">
+<div onClick="{{fecharShare}}" style="position: absolute; left: 0; top: 0; width: 360px; height: var(--wp-h, 780px); z-index: 20; background: rgba(0, 0, 0, 0.5); animation: {{ui.veuAnim2}}"></div>
+<div role="dialog" aria-label="Compartilhar" onClick="{{fecharShare}}" style="position: absolute; left: 16px; top: calc(498px + var(--wp-h, 780px) - 780px); width: 328px; height: 266px; z-index: 21; cursor: pointer; animation: {{ui.sheetAnim}}">
+<img src="./assets/ebfb98bc3956b78a0b3ffa4ea1a20d46.png" alt="" style="position: absolute; left: 0; top: 0; width: 328px; height: 266px; display: block">
+<span style="position: absolute; left: 62px; top: 37px; width: 250px; height: 19px; background: #fdfdff"></span>
+<span style="position: absolute; left: 66.5px; top: 37.56px; font-family: 'Roboto', system-ui, sans-serif; font-size: 13px; line-height: 15px; font-weight: 400; color: #1b1b1f; white-space: nowrap">{{doc.arquivo}}</span>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"estado":{"editor":"enum","default":"padrao","options":["padrao","download","compartilhar"]},"$preview":{"width":360,"height":780}}'>
+class Component extends DCLogic {
+componentDidMount() {
+var self = this;
+var proxMin = function () { var d = new Date(); return 60050 - d.getSeconds() * 1000 - d.getMilliseconds(); };
+var tick = function () { var d = new Date(); self.setState({ clockK: d.getHours() * 60 + d.getMinutes() }); self._clockT = setTimeout(tick, proxMin()); };
+// Relógio da status bar: acorda só na virada de cada minuto (em vez de checar a cada segundo)
+this._clockT = setTimeout(tick, proxMin());
+}
+componentWillUnmount() { clearTimeout(this._clockT); clearTimeout(this._toastT); clearTimeout(this._fimT); }
+estadoAtual() {
+var est = this.props.estado || 'padrao';
+return Object.assign({ toast: est === 'download' ? 'on' : null, share: est === 'compartilhar' ? 'on' : null, rolagem: 0 }, this.state || {});
+}
+holerites() {
+// Holerites do protótipo (compartilhado por Início e Meu Holerite).
+// Base: salário de R$ 5.000,00. Regras de 2026: INSS progressivo (Portaria MPS/MF 13/2026, teto R$ 8.475,55)
+// e IRRF (Lei 15.191/2025) com a redução da Lei 15.270/2025 (isenção até R$ 5.000,00, inclusive no 13º).
+// A lista vai do mês atual (o mais recente) até janeiro do ano anterior e muda sozinha quando o mês vira.
+var hoje = new Date();
+var chave = hoje.getFullYear() + '-' + hoje.getMonth() + '-' + hoje.getDate();
+if (window.__wiipoHol && window.__wiipoHol.chave === chave) return window.__wiipoHol.lista;
+var SAL = 5000;
+var MESES = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+var r2 = function (v) { return Math.round((v + 1e-9) * 100) / 100; };
+var inss = function (b) {
+var F = [[1621.00, 0.075], [2902.84, 0.09], [4354.27, 0.12], [8475.55, 0.14]];
+var prev = 0, t = 0;
+for (var i = 0; i < F.length; i++) { var topo = Math.min(b, F[i][0]); if (topo > prev) t += (topo - prev) * F[i][1]; prev = F[i][0]; }
+return r2(t);
+};
+var irrf = function (rend, inssV) {
+var base = rend - Math.max(inssV, 607.20);
+var T = [[2428.80, 0, 0], [2826.65, 0.075, 182.16], [3751.05, 0.15, 394.16], [4664.68, 0.225, 675.49], [Infinity, 0.275, 908.73]];
+var imp = 0;
+for (var i = 0; i < T.length; i++) { if (base <= T[i][0]) { imp = base * T[i][1] - T[i][2]; break; } }
+imp = Math.max(0, imp);
+var red = rend <= 5000 ? 312.89 : (rend <= 7350 ? Math.max(0, 978.62 - 0.133145 * rend) : 0);
+return r2(Math.max(0, imp - red));
+};
+// Feriados nacionais (fixos + Sexta-feira Santa)
+var feriados = {};
+var pascoa = function (y) {
+var a = y % 19, b = Math.floor(y / 100), c = y % 100, d = Math.floor(b / 4), e = b % 4, f = Math.floor((b + 8) / 25), g = Math.floor((b - f + 1) / 3);
+var h = (19 * a + b - d - g + 15) % 30, i = Math.floor(c / 4), k = c % 4, l = (32 + 2 * e + 2 * i - h - k) % 7, m = Math.floor((a + 11 * h + 22 * l) / 451);
+var mes = Math.floor((h + l - 7 * m + 114) / 31), dia = ((h + l - 7 * m + 114) % 31) + 1;
+return new Date(y, mes - 1, dia);
+};
+var ehFeriado = function (dt) {
+var y = dt.getFullYear();
+if (!feriados[y]) {
+var fx = ['1-1', '4-21', '5-1', '9-7', '10-12', '11-2', '11-15', '11-20', '12-25'];
+var o = {}; fx.forEach(function (s) { o[s] = true; });
+var p = pascoa(y); var sexta = new Date(y, p.getMonth(), p.getDate() - 2); o[(sexta.getMonth() + 1) + '-' + sexta.getDate()] = true;
+feriados[y] = o;
+}
+return !!feriados[y][(dt.getMonth() + 1) + '-' + dt.getDate()];
+};
+var diaUtil = function (dt) { return dt.getDay() !== 0 && !ehFeriado(dt); }; // segunda a sábado, exceto feriados
+var quintoDiaUtil = function (y, m) { var n = 0, d = 1, dt; while (true) { dt = new Date(y, m, d); if (diaUtil(dt)) { n++; if (n === 5) return dt; } d++; } };
+var ateDiaUtil = function (dt) { while (!diaUtil(dt)) dt = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate() - 1); return dt; };
+var descansos = function (y, m) { var dias = new Date(y, m + 1, 0).getDate(), n = 0; for (var d = 1; d <= dias; d++) { var dt = new Date(y, m, d); if (dt.getDay() === 0 || ehFeriado(dt)) n++; } return { dias: dias, n: n }; };
+var soma = function (l) { var t = 0; l.forEach(function (x) { t += x.v; }); return r2(t); };
+var fecha = function (h) { h.bruto = soma(h.proventos); h.desc = soma(h.descontos); h.liquido = r2(h.bruto - h.desc); return h; };
+var mensal = function (y, m) {
+var ds = descansos(y, m);
+var normais = r2(SAL * (ds.dias - ds.n) / ds.dias);
+var vInss = inss(SAL);
+return fecha({ tipo: 'mensal', titulo: 'Cálculo mensal - ' + MESES[m] + ' ' + y, mesAno: MESES[m] + ' ' + y, ano: y, mes: m, pagamento: quintoDiaUtil(m === 11 ? y + 1 : y, (m + 1) % 12),
+proventos: [{ label: 'Horas normais', v: normais }, { label: 'Horas rep. rem. diurno', v: r2(SAL - normais) }],
+descontos: [{ label: 'Imposto de renda da fonte', v: irrf(SAL, vInss) }, { label: 'I.N.S.S.', v: vInss }] });
+};
+var adiant = function (y) {
+return fecha({ tipo: 'adiantamento', titulo: 'Adiantamento 13º Salário - Novembro ' + y, mesAno: 'Novembro ' + y, ano: y, mes: 10, pagamento: ateDiaUtil(new Date(y, 10, 30)),
+proventos: [{ label: 'Adiantamento 13º salário', v: r2(SAL / 2) }], descontos: [] });
+};
+var integral = function (y) {
+var vInss = inss(SAL);
+return fecha({ tipo: 'integral', titulo: '13º Salário Integral - Dezembro ' + y, mesAno: 'Dezembro ' + y, ano: y, mes: 11, pagamento: ateDiaUtil(new Date(y, 11, 20)),
+proventos: [{ label: '13º salário integral', v: SAL }],
+descontos: [{ label: 'Adiantamento 13º salário', v: r2(SAL / 2) }, { label: 'Imposto de renda 13º salário', v: irrf(SAL, vInss) }, { label: 'I.N.S.S. 13º salário', v: vInss }] });
+};
+var lista = [];
+var y0 = hoje.getFullYear(), m0 = hoje.getMonth();
+for (var y = y0; y >= y0 - 1; y--) {
+for (var m = (y === y0 ? m0 : 11); m >= 0; m--) {
+lista.push(mensal(y, m));
+if (m === 11) lista.push(integral(y));
+if (m === 10) lista.push(adiant(y));
+}
+}
+var p2 = function (n) { return ('0' + n).slice(-2); };
+var hoje0 = new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate());
+lista.forEach(function (h, i) {
+var pg = h.pagamento;
+h.id = h.tipo + '-' + h.ano + '-' + h.mes;
+h.empresa = 'Wiipo Labs';
+h.pagoTxt = p2(pg.getDate()) + '/' + p2(pg.getMonth() + 1) + '/' + pg.getFullYear();
+h.recebido = pg < hoje0;
+h.indice = i;
+});
+window.__wiipoHol = { chave: chave, lista: lista };
+return lista;
+}
+brl(v) {
+var p = Math.abs(v).toFixed(2).split('.');
+return (v < 0 ? '- ' : '') + 'R$ ' + p[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ',' + p[1];
+}
+
+renderVals() {
+var _d = new Date();
+var statusTime = _d.getHours() + ':' + ('0' + _d.getMinutes()).slice(-2);
+var me = this;
+var st = this.estadoAtual();
+// Holerite aberto no "Visualizar PDF" do Meu Holerite (sem seleção: o mais recente)
+var lista = this.holerites();
+var idx = 0;
+try { var o = JSON.parse(window.sessionStorage.getItem('wiipo.holeritePdf') || 'null'); if (o && typeof o.indice === 'number') idx = o.indice; } catch (e) {}
+var h = lista[Math.min(idx, lista.length - 1)] || lista[0];
+var MESES = ['janeiro', 'fevereiro', 'marco', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
+var p2 = function (n) { return ('0' + n).slice(-2); };
+var M = 'R$ *****';
+var T = function (yMin) { return Math.round((yMin + 48 + 2.49) * 100) / 100; };
+var info = [
+[40, 'Empresa:', h.empresa], [272, 'Colaborador:', 'Fulano Ciclano'], [482, 'Banco:', '341 - Itaú'],
+[40, 'CNPJ:', '28.359.802/0001-01'], [272, 'CPF:', '123.456.789-01'], [482, 'Agência:', '1234'],
+[40, 'Data de admissão:', '01/01/2025'], [272, 'Cargo:', 'Product Designer'], [482, 'Conta:', '12345-6'],
+[40, 'Data de pagamento:', h.pagoTxt], [272, 'CBO:', '123456'], [40, 'Matrícula:', '66']
+];
+var linhaY = [126.51, 126.51, 126.51, 146.51, 146.51, 146.51, 166.51, 166.51, 166.51, 186.51, 186.51, 206.51];
+info = info.map(function (c, i) { return { x: c[0], y: T(linhaY[i]), k: c[1], v: c[2] }; });
+// Linhas: proventos (+), descontos (−); referência = horas, alíquota ou avos
+var refs = function (l) {
+if (l.label === 'Horas normais') return (220 * l.v / 5000).toFixed(2);
+if (l.label === 'Horas rep. rem. diurno') return (220 * l.v / 5000).toFixed(2);
+if (/I\.N\.S\.S/.test(l.label)) return '14';
+if (/Imposto de renda/i.test(l.label)) return l.v > 0 ? '27.5' : '0';
+if (/13º salário integral/.test(l.label)) return '12/12';
+if (/Adiantamento 13º/.test(l.label)) return '12/12';
+return '-';
+};
+var linhas = [];
+h.proventos.forEach(function (l) { linhas.push({ label: l.label, ref: refs(l), desc: '-', prov: M, mais: true, menos: false }); });
+h.descontos.forEach(function (l) { linhas.push({ label: l.label, ref: refs(l), desc: M, prov: '-', mais: false, menos: true }); });
+linhas = linhas.map(function (l, i) {
+var yMin = 276.51 + i * 24;
+l.y = T(yMin); l.iconY = yMin + 48 + 3.49; l.corD = l.menos ? '#d9344f' : '#000000'; l.corP = l.mais ? '#23784b' : '#000000';
+return l;
+});
+var totalYMin = 276.51 + linhas.length * 24 - 1.29;
+var tot = Math.round((totalYMin + 48 + 0.763 * 18.86 - (15 - 14.4) / 2 - 11.4) * 100) / 100;
+var baseY = totalYMin + 95.29;
+var rodape = [
+{ x: 40, w: 300, align: 'left', yMin: baseY, k: 'Nº de dependentes para imposto de renda:', v: '0' },
+{ x: 40, w: 300, align: 'left', yMin: baseY + 20, k: 'Nº de dependentes para Salário Família:', v: '0' },
+{ x: 40, w: 300, align: 'left', yMin: baseY + 40, k: 'Base de cálculo INSS:', v: M },
+{ x: 40, w: 300, align: 'left', yMin: baseY + 60, k: 'Base de cálculo IR:', v: M },
+{ x: 40, w: 300, align: 'left', yMin: baseY + 80, k: 'Base de cálculo FGTS:', v: M },
+{ x: 355, w: 200, align: 'right', yMin: baseY, k: 'FGTS do mês:', v: M },
+{ x: 355, w: 200, align: 'right', yMin: baseY + 20, k: 'Salário base:', v: M }
+].map(function (c) { c.y = T(c.yMin); return c; });
+var sub = h.tipo === 'mensal' ? 'Cálculo mensal' : (h.tipo === 'integral' ? '13º Salário Integral' : 'Adiantamento 13º Salário');
+var pg = {
+aria: 'Holerite ' + h.titulo + ', valores ocultos',
+mesAno: p2(h.mes + 1) + '/' + String(h.ano).slice(-2), tipo: sub,
+info: info, linhas: linhas, totalY: tot, barY: totalYMin + 48 + 32.78, div3: totalYMin + 48 + 32.78 + 47,
+rodape: rodape, msg1: totalYMin + 48 + 136.78, msg2: totalYMin + 48 + 168.78, obs: totalYMin + 48 + 212.78
+};
+var doc = { arquivo: 'holerite-' + (h.tipo === 'mensal' ? '' : (h.tipo === 'integral' ? '13-integral-' : 'adiantamento-13-')) + MESES[h.mes] + '-' + h.ano + '.pdf' };
+if (!this._h) {
+var fechar = function (campo) {
+var o = {}; o[campo] = 'saindo'; me.setState(o);
+clearTimeout(me._fimT);
+me._fimT = setTimeout(function () { var o2 = {}; o2[campo] = null; me.setState(o2); }, 260);
+};
+this._h = {
+baixar: function () {
+clearTimeout(me._toastT); clearTimeout(me._fimT);
+me.setState({ toast: 'on', share: null });
+// Alerta breve: some sozinho depois de alguns segundos
+me._toastT = setTimeout(function () { fechar('toast'); }, 3200);
+},
+fecharToast: function () { clearTimeout(me._toastT); fechar('toast'); },
+compartilhar: function () { clearTimeout(me._fimT); me.setState({ share: 'on', toast: null }); },
+fecharShare: function () { fechar('share'); },
+onScroll: function (e) { var el = e.currentTarget; me.setState({ rolagem: el.scrollTop / Math.max(1, el.scrollHeight - el.clientHeight) }); }
+};
+}
+var H = this._h;
+var saindoT = st.toast === 'saindo', saindoS = st.share === 'saindo';
+return {
+statusTime: statusTime,
+baixar: H.baixar, fecharToast: H.fecharToast, compartilhar: H.compartilhar, fecharShare: H.fecharShare, onScroll: H.onScroll,
+doc: doc,
+pg: pg,
+ui: {
+thumbTop: Math.round(Math.min(1, Math.max(0, st.rolagem || 0)) * (552 - 200) * 100) / 100,
+toast: !!st.toast, share: !!st.share,
+toastAnim: saindoT ? 'demToastOut 240ms ease both' : 'demToastIn 280ms cubic-bezier(0.22, 0.8, 0.26, 1) both',
+veuAnim: saindoT ? 'demFadeOut 240ms ease both' : 'demFadeIn 200ms ease both',
+veuAnim2: saindoS ? 'demFadeOut 240ms ease both' : 'demFadeIn 200ms ease both',
+sheetAnim: saindoS ? 'demSheetOut 240ms cubic-bezier(0.32, 0, 0.24, 1) both' : 'demSheetIn 300ms cubic-bezier(0.22, 0.8, 0.26, 1) both'
+}
+};
+}
+}
+</script>
+</body>
+</html>

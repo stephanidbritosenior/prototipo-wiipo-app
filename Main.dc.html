@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Menu</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+<script src="./assets/006b9949ae9e16e15b7586c26de23cca.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+html,body{scrollbar-width:none}html::-webkit-scrollbar,body::-webkit-scrollbar{display:none}
+body{margin:0;font-family:'Urbanist',system-ui,sans-serif;color:#17171c;background:transparent}
+a{color:#42424a}a:hover{color:#17171c}
+@keyframes mnSheetIn{from{transform:translateY(100%)}to{transform:translateY(0)}}
+@keyframes mnSheetOut{from{transform:translateY(0)}to{transform:translateY(100%)}}
+@keyframes mnScrimIn{from{opacity:0}to{opacity:1}}
+@keyframes mnScrimOut{from{opacity:1}to{opacity:0}}
+/* wp-btn: estados do componente Button (Figma BUTTON) */
+.wp-btn{-webkit-tap-highlight-color:transparent;transition:background-color 120ms ease,border-color 120ms ease,color 120ms ease,box-shadow 120ms ease}
+.wp-btn *{transition:color 120ms ease,fill 120ms ease,stroke 120ms ease}
+.wp-btn:focus{outline:none}
+@media (hover:hover){.wp-btn--primary:not([aria-disabled="true"]):hover{background-color:#4b2bb9!important}}
+.wp-btn--primary:not([aria-disabled="true"]):focus-visible{background-color:#3c2395!important;box-shadow:0 0 0 2px #b3a4e9}
+.wp-btn--primary:not([aria-disabled="true"]):active{background-color:#2d1d72!important}
+@media (hover:hover){.wp-btn--outline:not([aria-disabled="true"]):hover{border-color:#4b2bb9!important}.wp-btn--outline:not([aria-disabled="true"]):hover,.wp-btn--outline:not([aria-disabled="true"]):hover *,.wp-btn--ghost:not([aria-disabled="true"]):hover,.wp-btn--ghost:not([aria-disabled="true"]):hover *{color:#4b2bb9!important}.wp-btn--outline:not([aria-disabled="true"]):hover [stroke="#5734d9"],.wp-btn--ghost:not([aria-disabled="true"]):hover [stroke="#5734d9"]{stroke:#4b2bb9}.wp-btn--outline:not([aria-disabled="true"]):hover [fill="#5734d9"],.wp-btn--ghost:not([aria-disabled="true"]):hover [fill="#5734d9"]{fill:#4b2bb9}}
+.wp-btn--outline:not([aria-disabled="true"]):focus-visible{border-color:#3c2395!important}
+.wp-btn--outline:not([aria-disabled="true"]):focus-visible,.wp-btn--outline:not([aria-disabled="true"]):focus-visible *,.wp-btn--ghost:not([aria-disabled="true"]):focus-visible,.wp-btn--ghost:not([aria-disabled="true"]):focus-visible *{color:#3c2395!important}
+.wp-btn--outline:not([aria-disabled="true"]):active{border-color:#2d1d72!important}
+.wp-btn--outline:not([aria-disabled="true"]):active,.wp-btn--outline:not([aria-disabled="true"]):active *,.wp-btn--ghost:not([aria-disabled="true"]):active,.wp-btn--ghost:not([aria-disabled="true"]):active *{color:#2d1d72!important}
+.wp-btn--outline:not([aria-disabled="true"]):active [stroke="#5734d9"],.wp-btn--ghost:not([aria-disabled="true"]):active [stroke="#5734d9"]{stroke:#2d1d72}
+.wp-btn--outline:not([aria-disabled="true"]):active [fill="#5734d9"],.wp-btn--ghost:not([aria-disabled="true"]):active [fill="#5734d9"]{fill:#2d1d72}
+@media (hover:hover){.wp-btn--ghost-neg:hover,.wp-btn--ghost-neg:hover *{color:#b92b43!important}}
+.wp-btn--ghost-neg:focus-visible,.wp-btn--ghost-neg:focus-visible *{color:#952336!important}
+.wp-btn--ghost-neg:active,.wp-btn--ghost-neg:active *{color:#721d2c!important}
+/* /wp-btn */
+</style>
+</helmet>
+<div style="position: relative; width: 360px; height: var(--wp-h, 780px); overflow: hidden; border-radius: 16px; background: #f7f6fc; font-family: 'Urbanist', system-ui, sans-serif; color: #17171c; display: flex; flex-direction: column">
+
+<!-- Status bar (fixa) -->
+<div style="position: relative; height: 40px; flex-shrink: 0; background: #211551">
+<span style="position: absolute; left: 15.5px; top: 12px; font-size: 14px; line-height: 17px; font-weight: 600; color: #ffffff; white-space: nowrap">{{statusTime}}</span>
+<div style="position: absolute; left: 168px; top: 8px; width: 24px; height: 24px; border-radius: 50%; background: #000000"></div>
+<img src="./assets/8b2d4d6b48dc65bf320ab274856d6d61.svg" alt="" style="position: absolute; left: 288.668px; top: 12.918px; width: 51.582px; height: 14.164px; display: block">
+</div><div onScroll="{{onScroll}}" style="flex: 1 1 0; min-height: 0; overflow-y: auto; overflow-x: hidden; scrollbar-width: none">
+<div style="position: sticky; top: 0; z-index: 2; transform: {{barTransform}}; background: linear-gradient(180deg, #211551 0, #211551 24px, #f7f6fc 24px)">
+<header style="height: 72px; background: #f7f6fc; border-radius: 24px 24px 0 0; display: flex; align-items: center; justify-content: center">
+<h1 style="margin: 0; font-size: 16px; line-height: 21px; font-weight: 600; color: #17171c; transform: translateY(-0.5px)">Menu</h1>
+</header>
+</div>
+<main style="display: flex; flex-direction: column; gap: 16px; padding-top: 16px; padding-bottom: 115px">
+
+<!-- Benefícios corporativos (card do Clubii) OCULTO no protótipo (pedido de out/2026): para voltar, tirar o display: none -->
+<section data-oculto="clubii" style="display: none; flex-direction: column; gap: 7px">
+<h2 style="margin: 0; padding: 0 16px; font-size: 14px; line-height: 20px; font-weight: 600; color: #17171c">Benefícios corporativos</h2>
+<a href="Clubii.dc.html" data-nav="push:clubii" onClick="{{toClubii}}" aria-label="Clubii: Benefícios exclusivos para você" style="position: relative; display: block; margin: 0 16px; height: 121px; box-sizing: border-box; background: #ffffff; border: 1px solid #e5e5ea; border-radius: 12px; overflow: hidden; text-decoration: none; cursor: pointer">
+<img src="./assets/0b90c83b85a0fa53cbee0476acfa5c7a.png" alt="" style="position: absolute; left: 12px; top: 15.37px; width: 48px; height: 48.26px; display: block">
+<img src="./assets/5680764e40fbbf34455cdd908f5a1a24.svg" alt="clubii" style="position: absolute; left: 72px; top: 12px; transform: translateY(0.5px); width: 50px; height: 16px; display: block">
+<p style="position: absolute; left: 72px; top: 32.5px; width: 150px; margin: 0; font-size: 14px; line-height: 17px; font-weight: 400; color: #42424a; transform: translateY(-0.5px)">Benefícios exclusivos para você</p>
+<span style="position: absolute; left: 12px; top: 74.5px; width: 202px; height: 32px; box-sizing: border-box; border: 1px solid #5734d9; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 14px; line-height: 21px; font-weight: 600; color: #5734d9; text-decoration: none">Explorar benefícios</span>
+<img src="./assets/ee5c1cf3d3e678b59ee21de374948e1a.png" alt="" style="position: absolute; left: 246px; top: 6px; transform: translateY(0.5px); width: 32px; height: 32px; border-radius: 8px; display: block">
+<img src="./assets/bf0f34edf68643380801f16023c805e5.png" alt="" style="position: absolute; left: 282px; top: 6px; transform: translateY(0.5px); width: 32px; height: 32px; border-radius: 8px; display: block">
+<img src="./assets/3167b927faace0e50030222741b173c5.png" alt="" style="position: absolute; left: 318px; top: 6px; transform: translateY(0.5px); width: 32px; height: 32px; border-radius: 8px; display: block">
+<img src="./assets/7e53eb9652b66eaae41468c5031d3f98.png" alt="" style="position: absolute; left: 226px; top: 43px; transform: translateY(0.5px); width: 32px; height: 32px; border-radius: 8px; display: block">
+<img src="./assets/c8b9dc95cfea852a3c83d94654c14fe8.png" alt="" style="position: absolute; left: 262px; top: 43px; transform: translateY(0.5px); width: 32px; height: 32px; border-radius: 8px; display: block">
+<div style="position: absolute; left: 298px; top: 43px; transform: translateY(0.5px); width: 32px; height: 32px; border-radius: 8px; overflow: hidden">
+<img src="./assets/7fd591374a2bb79adfba5f1b61918a73.png" alt="" style="width: 32px; height: 32px; display: block">
+<div style="position: absolute; left: 0; top: 0; width: 32px; height: 32px; box-sizing: border-box; border: 1px solid #e5e5ea; border-radius: 8px"></div>
+</div>
+<img src="./assets/cb027b50ab768f0364369fa7164b50ee.png" alt="" style="position: absolute; left: 246px; top: 80px; transform: translateY(0.5px); width: 32px; height: 32px; border-radius: 8px; display: block">
+<img src="./assets/77fa2b2b864038eb2d2afab489130715.png" alt="" style="position: absolute; left: 282px; top: 80px; transform: translateY(0.5px); width: 32px; height: 32px; border-radius: 8px; display: block">
+<img src="./assets/55e1b650098f7fe0c5d0e1532fd45914.png" alt="" style="position: absolute; left: 318px; top: 80px; transform: translateY(0.5px); width: 32px; height: 32px; border-radius: 8px; display: block">
+<div style="position: absolute; left: 226px; top: -1px; width: 100px; height: 121px; background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.71) 47%, rgba(255, 255, 255, 0) 100%)"></div>
+</a>
+</section>
+
+<!-- Cartão Flex -->
+<section style="display: flex; flex-direction: column; gap: 7px">
+<h2 style="margin: 0; padding: 0 16px; font-size: 14px; line-height: 20px; font-weight: 600; color: #17171c">Cartão Flex</h2>
+<div style="margin: 0 16px; background: #ffffff; border-radius: 12px; box-shadow: inset 0 0 0 1px #e5e5ea; display: flex; flex-direction: column">
+<a href="#" style="position: relative; height: 60px; box-sizing: border-box; padding: 0 16px; display: flex; align-items: center; gap: 8px; text-decoration: none; color: #42424a">
+<div style="width: 28px; height: 28px; flex-shrink: 0; border-radius: 50%; background: #f7f6fc; box-shadow: inset 0 0 0 1px #f0eef8; display: flex; align-items: center; justify-content: center">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5734d9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" x2="12" y1="2" y2="22"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+</div>
+<span style="flex-grow: 1; font-size: 14px; line-height: 21px; font-weight: 600; color: #42424a; transform: translateY(-0.5px)">Saldo e extrato</span>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5734d9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+<div style="position: absolute; left: 16px; right: 16px; bottom: 0; height: 1px; background: #e5e5ea"></div>
+</a>
+<a href="#" style="position: relative; height: 60px; box-sizing: border-box; padding: 0 16px; display: flex; align-items: center; gap: 8px; text-decoration: none; color: #42424a">
+<div style="width: 28px; height: 28px; flex-shrink: 0; border-radius: 50%; background: #f7f6fc; box-shadow: inset 0 0 0 1px #f0eef8; display: flex; align-items: center; justify-content: center">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5734d9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 18H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5"></path><path d="M18 12h.01"></path><path d="M19 22v-6"></path><path d="m22 19-3-3-3 3"></path><path d="M6 12h.01"></path><circle cx="12" cy="12" r="2"></circle></svg>
+</div>
+<span style="flex-grow: 1; font-size: 14px; line-height: 21px; font-weight: 600; color: #42424a; transform: translateY(-0.5px)">Transferência entre bolsos</span>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5734d9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+<div style="position: absolute; left: 16px; right: 16px; bottom: 0; height: 1px; background: #e5e5ea"></div>
+</a>
+<a href="#" style="position: relative; height: 60px; box-sizing: border-box; padding: 0 16px; display: flex; align-items: center; gap: 8px; text-decoration: none; color: #42424a">
+<div style="width: 28px; height: 28px; flex-shrink: 0; border-radius: 50%; background: #f7f6fc; box-shadow: inset 0 0 0 1px #f0eef8; display: flex; align-items: center; justify-content: center">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5734d9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path></svg>
+</div>
+<span style="flex-grow: 1; font-size: 14px; line-height: 21px; font-weight: 600; color: #42424a; transform: translateY(-0.5px)">Segurança</span>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5734d9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+</a>
+</div>
+</section>
+
+<!-- Painel profissional -->
+<section style="display: flex; flex-direction: column; gap: 7px">
+<h2 style="margin: 0; padding: 0 16px; font-size: 14px; line-height: 20px; font-weight: 600; color: #17171c">Painel profissional</h2>
+<div ref="{{hs}}" style="display: flex; gap: 8px; padding: 0 16px; overflow-x: auto; scrollbar-width: none; overscroll-behavior-x: contain">
+<a href="#" style="flex: 0 0 120px; height: 94px; box-sizing: border-box; padding: 12px; background: #ffffff; border-radius: 12px; box-shadow: inset 0 0 0 1px #e5e5ea; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; text-decoration: none">
+<div style="width: 28px; height: 28px; flex-shrink: 0; border-radius: 50%; background: #fff5fd; box-shadow: inset 0 0 0 1px #ffe6fa; overflow: hidden">
+<svg width="28" height="28" viewBox="52 79 28 28" aria-hidden="true" style="display: block"><path d="M 72,93 C 72,89.69 69.31,87 66,87 C 62.69,87 60,89.69 60,93 C 60,96.31 62.69,99 66,99 C 69.31,99 72,96.31 72,93 Z M 73.33,93 C 73.33,97.05 70.05,100.33 66,100.33 C 61.95,100.33 58.67,97.05 58.67,93 C 58.67,88.95 61.95,85.67 66,85.67 C 70.05,85.67 73.33,88.95 73.33,93Z" fill="#ff00d8"></path><path d="M 65.33,89 C 65.33,88.63 65.63,88.33 66,88.33 C 66.37,88.33 66.67,88.63 66.67,89 L 66.67,92.33 L 68.67,92.33 C 69.03,92.33 69.33,92.63 69.33,93 C 69.33,93.37 69.03,93.67 68.67,93.67 L 66,93.67 C 65.63,93.67 65.33,93.37 65.33,93Z" fill="#ff00d8"></path></svg>
+</div>
+<span style="font-size: 14px; line-height: 17px; font-weight: 600; color: #42424a; max-width: 95.5px">Gestão do ponto</span>
+</a>
+<a href="#" style="flex: 0 0 120px; height: 94px; box-sizing: border-box; padding: 12px; background: #ffffff; border-radius: 12px; box-shadow: inset 0 0 0 1px #e5e5ea; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; text-decoration: none">
+<div style="width: 28px; height: 28px; flex-shrink: 0; border-radius: 50%; background: #fff5fd; box-shadow: inset 0 0 0 1px #ffe6fa; overflow: hidden">
+<svg width="28" height="28" viewBox="180 79 28 28" aria-hidden="true" style="display: block"><path d="M 200,93 C 200,89.69 197.31,87 194,87 C 190.69,87 188,89.69 188,93 C 188,96.31 190.69,99 194,99 C 197.31,99 200,96.31 200,93 Z M 201.33,93 C 201.33,97.05 198.05,100.33 194,100.33 C 189.95,100.33 186.67,97.05 186.67,93 C 186.67,88.95 189.95,85.67 194,85.67 C 198.05,85.67 201.33,88.95 201.33,93Z" fill="#ff00d8"></path><path d="M 195.33,91.67 C 195.33,90.93 194.74,90.33 194,90.33 C 193.26,90.33 192.67,90.93 192.67,91.67 C 192.67,92.4 193.26,93 194,93 C 194.74,93 195.33,92.4 195.33,91.67 Z M 196.67,91.67 C 196.67,93.14 195.47,94.33 194,94.33 C 192.53,94.33 191.33,93.14 191.33,91.67 C 191.33,90.19 192.53,89 194,89 C 195.47,89 196.67,90.19 196.67,91.67Z" fill="#ff00d8"></path><path d="M 196.67,98.77 L 196.67,97.67 C 196.67,97.49 196.6,97.32 196.47,97.19 C 196.35,97.07 196.18,97 196,97 L 192,97 C 191.82,97 191.65,97.07 191.53,97.19 C 191.4,97.32 191.33,97.49 191.33,97.67 L 191.33,98.77 C 191.33,99.14 191.03,99.44 190.67,99.44 C 190.3,99.44 190,99.14 190,98.77 L 190,97.67 C 190,97.14 190.21,96.63 190.59,96.25 C 190.96,95.88 191.47,95.67 192,95.67 L 196,95.67 C 196.53,95.67 197.04,95.88 197.41,96.25 C 197.79,96.63 198,97.14 198,97.67 L 198,98.77 C 198,99.14 197.7,99.44 197.33,99.44 C 196.96,99.44 196.67,99.14 196.67,98.77Z" fill="#ff00d8"></path></svg>
+</div>
+<span style="font-size: 14px; line-height: 17px; font-weight: 600; color: #42424a; max-width: 95.5px">Meu perfil</span>
+</a>
+<a href="#" style="flex: 0 0 120px; height: 94px; box-sizing: border-box; padding: 12px; background: #ffffff; border-radius: 12px; box-shadow: inset 0 0 0 1px #e5e5ea; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; text-decoration: none">
+<div style="width: 28px; height: 28px; flex-shrink: 0; border-radius: 50%; background: #fff5fd; box-shadow: inset 0 0 0 1px #ffe6fa; overflow: hidden">
+<svg width="28" height="28" viewBox="308 79 28 28" aria-hidden="true" style="display: block"><path d="M 317.74,87.03 C 319.14,86.03 320.86,85.55 322.58,85.69 C 324.3,85.83 325.93,86.57 327.15,87.78 C 328.38,89 329.14,90.61 329.3,92.33 C 329.46,94.05 329.01,95.77 328.02,97.19 C 327.03,98.61 325.57,99.63 323.91,100.08 C 322.25,100.53 320.49,100.38 318.93,99.66 C 318.82,99.62 318.71,99.61 318.59,99.63 L 316.36,100.28 C 316.35,100.28 316.35,100.29 316.34,100.29 C 316.12,100.35 315.89,100.35 315.67,100.29 C 315.45,100.24 315.25,100.12 315.08,99.97 C 314.92,99.81 314.8,99.62 314.73,99.4 C 314.66,99.18 314.65,98.95 314.69,98.73 L 314.71,98.66 L 315.41,96.51 C 315.43,96.39 315.42,96.26 315.38,96.15 C 314.64,94.6 314.47,92.84 314.89,91.18 C 315.32,89.51 316.33,88.04 317.74,87.03 Z M 322.48,87.02 C 321.07,86.91 319.66,87.3 318.51,88.12 C 317.36,88.94 316.54,90.14 316.19,91.51 C 315.86,92.8 315.96,94.15 316.48,95.36 L 316.59,95.61 L 316.61,95.65 C 316.76,96.02 316.79,96.42 316.71,96.82 C 316.7,96.83 316.7,96.86 316.69,96.88 L 316,99 L 318.26,98.34 C 318.28,98.33 318.3,98.33 318.32,98.32 C 318.64,98.26 318.97,98.28 319.29,98.37 L 319.42,98.42 L 319.46,98.44 C 320.74,99.03 322.19,99.16 323.56,98.79 C 324.93,98.42 326.12,97.59 326.93,96.43 C 327.73,95.27 328.11,93.86 327.98,92.45 C 327.84,91.04 327.22,89.73 326.22,88.73 C 325.21,87.74 323.89,87.13 322.48,87.02Z" fill="#ff00d8"></path><path d="M 322.92,89.69 C 323.43,89.62 323.95,89.68 324.42,89.89 C 324.89,90.1 325.29,90.44 325.57,90.88 C 325.85,91.3 326,91.81 326,92.32 C 326,93.01 325.74,93.67 325.26,94.17 L 322.96,96.58 C 322.84,96.72 322.69,96.82 322.53,96.89 C 322.36,96.96 322.18,97 322,97 C 321.82,97 321.64,96.96 321.47,96.89 C 321.31,96.82 321.16,96.72 321.03,96.58 L 318.74,94.17 C 318.26,93.67 318,93.01 318,92.32 C 318,91.63 318.27,90.97 318.75,90.48 C 319.23,89.98 319.88,89.69 320.57,89.67 C 321.07,89.65 321.57,89.78 322,90.02 C 322.28,89.86 322.59,89.75 322.92,89.69 Z M 323.88,91.11 C 323.64,91.01 323.38,90.97 323.13,91.02 C 322.88,91.05 322.64,91.17 322.44,91.34 C 322.19,91.57 321.81,91.57 321.55,91.34 C 321.3,91.11 320.96,90.99 320.62,91 C 320.27,91.01 319.94,91.16 319.71,91.4 C 319.46,91.65 319.33,91.98 319.33,92.33 C 319.33,92.63 319.43,92.92 319.62,93.16 L 319.7,93.25 L 319.7,93.25 L 322,95.67 L 324.3,93.25 L 324.3,93.25 C 324.54,93 324.67,92.67 324.67,92.33 C 324.67,92.07 324.59,91.82 324.45,91.6 C 324.31,91.39 324.11,91.22 323.88,91.11Z" fill="#ff00d8"></path></svg>
+</div>
+<span style="font-size: 14px; line-height: 17px; font-weight: 600; color: #42424a; max-width: 95.5px">Feedbacks</span>
+</a>
+<a href="#" style="flex: 0 0 120px; height: 94px; box-sizing: border-box; padding: 12px; background: #ffffff; border-radius: 12px; box-shadow: inset 0 0 0 1px #e5e5ea; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; text-decoration: none">
+<div style="width: 28px; height: 28px; flex-shrink: 0; border-radius: 50%; background: #fff5fd; box-shadow: inset 0 0 0 1px #ffe6fa; overflow: hidden">
+<svg width="28" height="28" viewBox="436 79 28 28" aria-hidden="true" style="display: block"><path d="M 454.43,86.36 C 455.01,86.18 455.66,86.14 456.19,86.36 L 456.3,86.4 L 456.39,86.46 C 456.48,86.52 456.55,86.61 456.6,86.7 C 456.87,87.25 456.83,87.95 456.64,88.57 C 456.44,89.22 456.05,89.89 455.47,90.47 L 453.39,92.55 L 454.51,97.66 C 454.52,97.66 454.52,97.66 454.52,97.67 C 454.65,98.3 454.36,98.81 453.93,99.13 C 453.89,99.17 453.83,99.19 453.78,99.22 L 453.45,99.35 C 452.89,99.57 452.21,99.49 451.8,98.93 C 451.79,98.92 451.79,98.91 451.78,98.9 L 449.81,95.92 L 448.67,96.69 L 448.67,98.33 C 448.67,98.51 448.6,98.68 448.47,98.8 L 447.8,99.47 C 447.66,99.61 447.46,99.68 447.26,99.66 C 447.07,99.64 446.89,99.53 446.78,99.37 L 445.52,97.48 L 443.63,96.22 C 443.46,96.11 443.36,95.93 443.33,95.73 C 443.32,95.53 443.39,95.33 443.53,95.19 L 444.19,94.53 L 444.24,94.48 C 444.36,94.39 444.51,94.33 444.67,94.33 L 446.31,94.33 L 447.07,93.19 L 444.1,91.22 C 444.09,91.21 444.08,91.21 444.07,91.2 C 443.51,90.78 443.43,90.11 443.65,89.55 C 443.66,89.52 443.68,89.49 443.69,89.46 L 443.89,89.12 C 444.16,88.64 444.67,88.39 445.22,88.46 L 445.33,88.48 L 445.34,88.48 L 450.45,89.61 L 452.53,87.53 C 453.11,86.95 453.78,86.56 454.43,86.36 Z M 455.45,87.54 C 455.3,87.53 455.08,87.55 454.82,87.64 C 454.38,87.77 453.89,88.05 453.47,88.47 L 451.14,90.8 C 450.98,90.96 450.75,91.03 450.52,90.98 L 445.07,89.79 L 445.05,89.78 C 445.05,89.79 445.04,89.8 445.04,89.81 L 444.88,90.08 C 444.87,90.11 444.87,90.12 444.87,90.13 L 448.37,92.44 C 448.51,92.54 448.62,92.69 448.65,92.87 C 448.69,93.04 448.65,93.22 448.55,93.37 L 447.22,95.37 C 447.1,95.55 446.89,95.67 446.67,95.67 L 445.2,95.67 L 446.37,96.44 L 446.42,96.48 C 446.47,96.53 446.52,96.57 446.55,96.63 L 447.33,97.8 L 447.33,96.33 C 447.33,96.11 447.44,95.9 447.63,95.78 L 449.63,94.44 L 449.69,94.41 C 449.82,94.34 449.98,94.32 450.13,94.35 C 450.3,94.38 450.46,94.48 450.55,94.63 L 452.87,98.13 C 452.88,98.13 452.91,98.13 452.95,98.11 L 453.18,98.02 C 453.2,98 453.21,97.99 453.21,97.98 C 453.21,97.98 453.21,97.98 453.21,97.97 C 453.22,97.97 453.22,97.95 453.21,97.93 L 452.01,92.48 C 451.97,92.25 452.04,92.02 452.19,91.86 L 454.53,89.53 C 454.95,89.11 455.23,88.62 455.36,88.18 C 455.44,87.91 455.46,87.7 455.45,87.54Z" fill="#ff00d8"></path></svg>
+</div>
+<span style="font-size: 14px; line-height: 17px; font-weight: 600; color: #42424a; max-width: 95.5px">Férias</span>
+</a>
+<a href="#" style="flex: 0 0 120px; height: 94px; box-sizing: border-box; padding: 12px; background: #ffffff; border-radius: 12px; box-shadow: inset 0 0 0 1px #e5e5ea; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; text-decoration: none">
+<div style="width: 28px; height: 28px; flex-shrink: 0; border-radius: 50%; background: #fff5fd; box-shadow: inset 0 0 0 1px #ffe6fa; overflow: hidden">
+<svg width="28" height="28" viewBox="564 79 28 28" aria-hidden="true" style="display: block"><path d="M 578,91.84 C 578.32,91.66 578.73,91.77 578.91,92.09 L 582.71,98.67 C 582.89,98.98 582.78,99.39 582.46,99.58 C 582.14,99.76 581.74,99.65 581.55,99.33 L 577.76,92.76 C 577.57,92.44 577.68,92.03 578,91.84Z" fill="#ff00d8"></path><path d="M 575,86.64 C 576.45,85.8 578.15,85.49 579.81,85.75 C 581.47,86.02 582.99,86.84 584.11,88.08 C 584.12,88.09 584.12,88.1 584.13,88.11 C 584.14,88.12 584.15,88.13 584.16,88.14 C 584.67,88.79 584.42,89.68 583.77,90.05 L 573.56,95.95 C 572.9,96.33 571.96,96.08 571.69,95.26 C 571.17,93.66 571.21,91.93 571.82,90.37 C 572.42,88.8 573.54,87.48 575,86.64 Z M 579.6,87.07 C 578.25,86.86 576.86,87.11 575.66,87.8 C 574.47,88.49 573.55,89.56 573.06,90.84 C 572.58,92.1 572.53,93.48 572.93,94.77 L 583.07,88.92 C 582.15,87.93 580.93,87.28 579.6,87.07Z" fill="#ff00d8"></path><path d="M 584,98.33 C 584.37,98.33 584.67,98.63 584.67,99 C 584.67,99.37 584.37,99.67 584,99.67 L 572,99.67 C 571.63,99.67 571.33,99.37 571.33,99 C 571.33,98.63 571.63,98.33 572,98.33Z" fill="#ff00d8"></path></svg>
+</div>
+<span style="font-size: 14px; line-height: 17px; font-weight: 600; color: #42424a; max-width: 95.5px">Solicitar férias</span>
+</a>
+<a href="#" style="flex: 0 0 120px; height: 94px; box-sizing: border-box; padding: 12px; background: #ffffff; border-radius: 12px; box-shadow: inset 0 0 0 1px #e5e5ea; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; text-decoration: none">
+<div style="width: 28px; height: 28px; flex-shrink: 0; border-radius: 50%; background: #fff5fd; box-shadow: inset 0 0 0 1px #ffe6fa; overflow: hidden">
+<svg width="28" height="28" viewBox="692 79 28 28" aria-hidden="true" style="display: block"><path d="M 707.33,90.33 C 707.33,88.86 706.14,87.67 704.67,87.67 C 703.2,87.67 702,88.86 702,90.33 C 702,91.8 703.2,93 704.67,93 C 706.14,93 707.33,91.8 707.33,90.33 Z M 708.67,90.33 C 708.67,92.54 706.88,94.33 704.67,94.33 C 702.46,94.33 700.67,92.54 700.67,90.33 C 700.67,88.12 702.46,86.33 704.67,86.33 C 706.88,86.33 708.67,88.12 708.67,90.33Z" fill="#ff00d8"></path><path d="M 698.67,99 C 698.67,98.05 698.89,97.12 699.32,96.28 C 699.75,95.44 700.37,94.71 701.13,94.16 C 701.89,93.6 702.77,93.23 703.71,93.08 C 704.64,92.92 705.59,93 706.49,93.28 C 706.84,93.4 707.03,93.77 706.92,94.12 C 706.81,94.47 706.44,94.67 706.09,94.55 C 705.39,94.33 704.64,94.28 703.92,94.39 C 703.2,94.51 702.51,94.8 701.91,95.23 C 701.32,95.66 700.84,96.23 700.51,96.89 C 700.17,97.54 700,98.27 700,99 C 700,99.37 699.7,99.67 699.33,99.67 C 698.96,99.67 698.67,99.37 698.67,99Z" fill="#ff00d8"></path><path d="M 711.33,97 C 711.33,96.27 710.74,95.67 710,95.67 C 709.26,95.67 708.67,96.27 708.67,97 C 708.67,97.74 709.26,98.33 710,98.33 C 710.74,98.33 711.33,97.74 711.33,97 Z M 712.67,97 C 712.67,98.47 711.47,99.67 710,99.67 C 708.53,99.67 707.33,98.47 707.33,97 C 707.33,95.53 708.53,94.33 710,94.33 C 711.47,94.33 712.67,95.53 712.67,97Z" fill="#ff00d8"></path><path d="M 710.93,97.93 C 711.19,97.67 711.61,97.67 711.87,97.93 L 713.14,99.19 C 713.4,99.46 713.4,99.88 713.14,100.14 C 712.88,100.4 712.46,100.4 712.2,100.14 L 710.93,98.87 C 710.67,98.61 710.67,98.19 710.93,97.93Z" fill="#ff00d8"></path></svg>
+</div>
+<span style="font-size: 14px; line-height: 17px; font-weight: 600; color: #42424a; max-width: 95.5px">Buscar pessoas</span>
+</a>
+<a href="Social.dc.html" data-nav="tab:social" style="flex: 0 0 120px; height: 94px; box-sizing: border-box; padding: 12px; background: #ffffff; border-radius: 12px; box-shadow: inset 0 0 0 1px #e5e5ea; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; text-decoration: none">
+<div style="width: 28px; height: 28px; flex-shrink: 0; border-radius: 50%; background: #fff5fd; box-shadow: inset 0 0 0 1px #ffe6fa; overflow: hidden">
+<svg width="28" height="28" viewBox="820 79 28 28" aria-hidden="true" style="display: block"><path d="M 829.74,87.03 C 831.14,86.03 832.86,85.55 834.58,85.69 C 836.3,85.83 837.92,86.57 839.15,87.78 C 840.38,89 841.14,90.61 841.3,92.33 C 841.46,94.05 841.01,95.77 840.02,97.19 C 839.03,98.61 837.57,99.63 835.91,100.08 C 834.25,100.53 832.49,100.38 830.93,99.66 C 830.82,99.62 830.71,99.61 830.59,99.63 L 828.36,100.28 C 828.35,100.28 828.35,100.29 828.34,100.29 C 828.12,100.35 827.89,100.35 827.67,100.29 C 827.45,100.24 827.25,100.12 827.09,99.97 C 826.92,99.81 826.8,99.62 826.73,99.4 C 826.66,99.18 826.65,98.95 826.7,98.73 L 826.71,98.66 L 827.41,96.51 C 827.43,96.39 827.42,96.26 827.38,96.15 C 826.64,94.6 826.47,92.84 826.89,91.18 C 827.32,89.51 828.33,88.04 829.74,87.03 Z M 834.48,87.02 C 833.07,86.91 831.66,87.3 830.51,88.12 C 829.36,88.94 828.54,90.14 828.19,91.51 C 827.86,92.8 827.96,94.15 828.48,95.36 L 828.59,95.61 L 828.61,95.65 C 828.76,96.02 828.79,96.42 828.71,96.82 C 828.7,96.83 828.7,96.86 828.69,96.88 L 828,99 L 830.26,98.34 C 830.28,98.33 830.3,98.33 830.32,98.32 C 830.64,98.26 830.97,98.28 831.28,98.37 L 831.42,98.42 L 831.46,98.44 C 832.74,99.03 834.2,99.16 835.56,98.79 C 836.92,98.42 838.12,97.59 838.92,96.43 C 839.73,95.27 840.11,93.86 839.98,92.45 C 839.84,91.04 839.22,89.73 838.22,88.73 C 837.21,87.74 835.89,87.13 834.48,87.02Z" fill="#ff00d8"></path><path d="M 831.34,92.33 C 831.71,92.33 832.01,92.63 832.01,93 C 832.01,93.37 831.71,93.67 831.34,93.67 L 831.33,93.67 C 830.96,93.67 830.67,93.37 830.67,93 C 830.67,92.63 830.96,92.33 831.33,92.33Z" fill="#ff00d8"></path><path d="M 834.01,92.33 C 834.38,92.33 834.67,92.63 834.67,93 C 834.67,93.37 834.38,93.67 834.01,93.67 L 834,93.67 C 833.63,93.67 833.33,93.37 833.33,93 C 833.33,92.63 833.63,92.33 834,92.33Z" fill="#ff00d8"></path><path d="M 836.67,92.33 C 837.04,92.33 837.34,92.63 837.34,93 C 837.34,93.37 837.04,93.67 836.67,93.67 L 836.67,93.67 C 836.3,93.67 836,93.37 836,93 C 836,92.63 836.3,92.33 836.67,92.33Z" fill="#ff00d8"></path></svg>
+</div>
+<span style="font-size: 14px; line-height: 17px; font-weight: 600; color: #42424a; max-width: 95.5px">Social (Posts)</span>
+</a>
+<a href="#" style="flex: 0 0 120px; height: 94px; box-sizing: border-box; padding: 12px; background: #ffffff; border-radius: 12px; box-shadow: inset 0 0 0 1px #e5e5ea; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; text-decoration: none">
+<div style="width: 28px; height: 28px; flex-shrink: 0; border-radius: 50%; background: #fff5fd; box-shadow: inset 0 0 0 1px #ffe6fa; overflow: hidden">
+<svg width="28" height="28" viewBox="948 79 28 28" aria-hidden="true" style="display: block"><path d="M 960,87 L 960,88.33 L 964,88.33 L 964,87 Z M 965.33,88.33 C 965.33,89.07 964.74,89.67 964,89.67 L 960,89.67 C 959.26,89.67 958.67,89.07 958.67,88.33 L 958.67,87 C 958.67,86.27 959.26,85.67 960,85.67 L 964,85.67 C 964.74,85.67 965.33,86.27 965.33,87Z" fill="#ff00d8"></path><path d="M 956,98.33 L 956,89 C 956,88.47 956.21,87.96 956.59,87.58 C 956.96,87.21 957.47,87 958,87 L 959.33,87 C 959.7,87 960,87.3 960,87.67 C 960,88.03 959.7,88.33 959.33,88.33 L 958,88.33 C 957.82,88.33 957.65,88.4 957.53,88.53 C 957.4,88.65 957.33,88.82 957.33,89 L 957.33,98.33 C 957.33,98.51 957.4,98.68 957.53,98.8 C 957.65,98.93 957.82,99 958,99 L 966,99 C 966.17,99 966.35,98.93 966.47,98.8 C 966.6,98.68 966.67,98.51 966.67,98.33 L 966.67,89 C 966.67,88.82 966.6,88.65 966.47,88.53 C 966.35,88.4 966.17,88.33 966,88.33 L 964.67,88.33 C 964.3,88.33 964,88.03 964,87.67 C 964,87.3 964.3,87 964.67,87 L 966,87 C 966.53,87 967.04,87.21 967.41,87.58 C 967.79,87.96 968,88.47 968,89 L 968,98.33 C 968,98.86 967.79,99.37 967.41,99.75 C 967.04,100.12 966.53,100.33 966,100.33 L 958,100.33 C 957.47,100.33 956.96,100.12 956.59,99.75 C 956.21,99.37 956,98.86 956,98.33Z" fill="#ff00d8"></path></svg>
+</div>
+<span style="font-size: 14px; line-height: 17px; font-weight: 600; color: #42424a; max-width: 95.5px">Pesquisa de clima (Moods)</span>
+</a>
+<a href="#" style="flex: 0 0 120px; height: 94px; box-sizing: border-box; padding: 12px; background: #ffffff; border-radius: 12px; box-shadow: inset 0 0 0 1px #e5e5ea; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; text-decoration: none">
+<div style="width: 28px; height: 28px; flex-shrink: 0; border-radius: 50%; background: #fff5fd; box-shadow: inset 0 0 0 1px #ffe6fa; overflow: hidden">
+<svg width="28" height="28" viewBox="1076 79 28 28" aria-hidden="true" style="display: block"><path d="M 1089.33,99 L 1089.33,89.67 C 1089.33,89.3 1089.63,89 1090,89 C 1090.37,89 1090.67,89.3 1090.67,89.67 L 1090.67,99 C 1090.67,99.37 1090.37,99.67 1090,99.67 C 1089.63,99.67 1089.33,99.37 1089.33,99Z" fill="#ff00d8"></path><path d="M 1084,97.67 L 1084,92.33 C 1084,91.96 1084.3,91.67 1084.67,91.67 C 1085.04,91.67 1085.33,91.96 1085.33,92.33 L 1085.33,97.67 C 1085.33,97.84 1085.4,98.01 1085.53,98.14 C 1085.65,98.26 1085.82,98.33 1086,98.33 L 1094,98.33 C 1094.17,98.33 1094.35,98.26 1094.47,98.14 C 1094.6,98.01 1094.67,97.84 1094.67,97.67 L 1094.67,92.33 C 1094.67,91.96 1094.96,91.67 1095.33,91.67 C 1095.7,91.67 1096,91.96 1096,92.33 L 1096,97.67 C 1096,98.19 1095.79,98.71 1095.41,99.08 C 1095.04,99.46 1094.53,99.67 1094,99.67 L 1086,99.67 C 1085.47,99.67 1084.96,99.46 1084.59,99.08 C 1084.21,98.71 1084,98.19 1084,97.67Z" fill="#ff00d8"></path><path d="M 1094,88 C 1094,87.73 1093.89,87.48 1093.71,87.29 C 1093.52,87.11 1093.27,87 1093,87 C 1093,87 1092.99,87 1092.99,87 C 1092.58,86.99 1092.12,87.19 1091.69,87.67 C 1091.24,88.17 1090.87,88.91 1090.65,89.82 C 1090.57,90.12 1090.31,90.33 1090,90.33 C 1089.69,90.33 1089.42,90.12 1089.35,89.82 C 1089.13,88.91 1088.76,88.17 1088.31,87.67 C 1087.88,87.19 1087.42,86.99 1087.01,87 C 1087.01,87 1087,87 1087,87 C 1086.73,87 1086.48,87.11 1086.29,87.29 C 1086.11,87.48 1086,87.73 1086,88 C 1086,88.27 1086.11,88.52 1086.29,88.71 C 1086.48,88.89 1086.73,89 1087,89 C 1087.37,89 1087.67,89.3 1087.67,89.67 C 1087.67,90.03 1087.37,90.33 1087,90.33 C 1086.38,90.33 1085.79,90.08 1085.35,89.65 C 1084.91,89.21 1084.67,88.62 1084.67,88 C 1084.67,87.38 1084.91,86.79 1085.35,86.35 C 1085.79,85.91 1086.38,85.67 1087,85.67 C 1087.88,85.66 1088.67,86.08 1089.3,86.78 C 1089.57,87.07 1089.8,87.41 1090,87.78 C 1090.2,87.41 1090.43,87.07 1090.69,86.78 C 1091.32,86.08 1092.12,85.66 1093,85.67 C 1093.62,85.67 1094.21,85.91 1094.65,86.35 C 1095.09,86.79 1095.33,87.38 1095.33,88 C 1095.33,88.62 1095.09,89.21 1094.65,89.65 C 1094.21,90.08 1093.62,90.33 1093,90.33 C 1092.63,90.33 1092.33,90.03 1092.33,89.67 C 1092.33,89.3 1092.63,89 1093,89 C 1093.27,89 1093.52,88.89 1093.71,88.71 C 1093.89,88.52 1094,88.27 1094,88Z" fill="#ff00d8"></path><path d="M 1084.67,90.33 L 1084.67,91.67 L 1095.33,91.67 L 1095.33,90.33 Z M 1096.67,91.67 C 1096.67,92.4 1096.07,93 1095.33,93 L 1084.67,93 C 1083.93,93 1083.33,92.4 1083.33,91.67 L 1083.33,90.33 C 1083.33,89.6 1083.93,89 1084.67,89 L 1095.33,89 C 1096.07,89 1096.67,89.6 1096.67,90.33Z" fill="#ff00d8"></path></svg>
+</div>
+<span style="font-size: 14px; line-height: 17px; font-weight: 600; color: #42424a; max-width: 95.5px">Benefícios</span>
+</a>
+<div aria-hidden="true" style="flex: 0 0 8px"></div>
+</div>
+</section>
+
+<!-- Soluções financeiras -->
+<section style="display: flex; flex-direction: column; gap: 7px">
+<h2 style="margin: 0; padding: 0 16px; font-size: 14px; line-height: 20px; font-weight: 600; color: #17171c">Soluções financeiras</h2>
+<div style="margin: 1px 16px 0; background: #ffffff; border-radius: 12px; box-shadow: inset 0 0 0 1px #e5e5ea; display: flex; flex-direction: column">
+<a href="Holerite.dc.html" data-nav="tab:holerite" style="position: relative; height: 60px; box-sizing: border-box; padding: 0 16px; display: flex; align-items: center; gap: 8px; text-decoration: none; color: #42424a">
+<div style="width: 28px; height: 28px; flex-shrink: 0; border-radius: 50%; background: #f5fcf8; box-shadow: inset 0 0 0 1px #e9f6ef; display: flex; align-items: center; justify-content: center">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34b26f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"></path><path d="M12 18V6"></path></svg>
+</div>
+<span style="flex-grow: 1; font-size: 14px; line-height: 21px; font-weight: 600; color: #42424a; transform: translateY(-0.5px)">Meu holerite</span>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5734d9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+<div style="position: absolute; left: 16px; right: 16px; bottom: 0; height: 1px; background: #e5e5ea"></div>
+</a>
+<a href="InformeRendimentos.dc.html" data-nav="push:informe" style="position: relative; height: 60px; box-sizing: border-box; padding: 0 16px; display: flex; align-items: center; gap: 8px; text-decoration: none; color: #42424a">
+<div style="width: 28px; height: 28px; flex-shrink: 0; border-radius: 50%; background: #f5fcf8; box-shadow: inset 0 0 0 1px #e9f6ef; display: flex; align-items: center; justify-content: center">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34b26f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 17V7"></path><path d="M16 8h-6a2 2 0 0 0 0 4h4a2 2 0 0 1 0 4H8"></path><path d="M4 3a1 1 0 0 1 1-1 1.3 1.3 0 0 1 .7.2l.933.6a1.3 1.3 0 0 0 1.4 0l.934-.6a1.3 1.3 0 0 1 1.4 0l.933.6a1.3 1.3 0 0 0 1.4 0l.933-.6a1.3 1.3 0 0 1 1.4 0l.934.6a1.3 1.3 0 0 0 1.4 0l.933-.6A1.3 1.3 0 0 1 19 2a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1 1.3 1.3 0 0 1-.7-.2l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.934.6a1.3 1.3 0 0 1-1.4 0l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-1.4 0l-.934-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-.7.2 1 1 0 0 1-1-1z"></path></svg>
+</div>
+<span style="flex-grow: 1; font-size: 14px; line-height: 21px; font-weight: 600; color: #42424a; transform: translateY(-0.5px)">Informe de rendimentos</span>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5734d9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+<div style="position: absolute; left: 16px; right: 16px; bottom: 0; height: 1px; background: #e5e5ea"></div>
+</a>
+<a href="EducacaoFinanceira.dc.html" data-nav="present:educacao" style="position: relative; height: 60px; box-sizing: border-box; padding: 0 16px; display: flex; align-items: center; gap: 8px; text-decoration: none; color: #42424a">
+<div style="width: 28px; height: 28px; flex-shrink: 0; border-radius: 50%; background: #f5fcf8; box-shadow: inset 0 0 0 1px #e9f6ef; display: flex; align-items: center; justify-content: center">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34b26f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.42 10.92a1 1 0 0 0-.019-1.84L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.83l8.57 3.91a2 2 0 0 0 1.66 0z"></path><path d="M22 10v6"></path><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path></svg>
+</div>
+<span style="flex-grow: 1; font-size: 14px; line-height: 21px; font-weight: 600; color: #42424a; transform: translateY(-0.5px)">Educação financeira</span>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5734d9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+</a>
+</div>
+</section>
+
+<!-- Senior Flow -->
+<section style="display: flex; flex-direction: column; gap: 7px">
+<h2 style="margin: 0; padding: 0 16px; font-size: 14px; line-height: 20px; font-weight: 600; color: #17171c">Senior Flow</h2>
+<div style="margin: 0 16px; background: #ffffff; border-radius: 12px; box-shadow: inset 0 0 0 1px #e5e5ea; display: flex; flex-direction: column">
+<a href="#" style="position: relative; height: 60px; box-sizing: border-box; padding: 0 16px; display: flex; align-items: center; gap: 8px; text-decoration: none; color: #42424a">
+<div style="width: 28px; height: 28px; flex-shrink: 0; border-radius: 50%; background: #f7f6fc; box-shadow: inset 0 0 0 1px #f0eef8; display: flex; align-items: center; justify-content: center">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5734d9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 21h8"></path><path d="M21.17 6.81a1 1 0 0 0-3.99-3.99L3.84 16.17a2 2 0 0 0-.5.83l-1.32 4.35a.5.5 0 0 0 .623.62l4.35-1.32a2 2 0 0 0 .83-.497z"></path></svg>
+</div>
+<span style="flex-grow: 1; font-size: 14px; line-height: 21px; font-weight: 600; color: #42424a; transform: translateY(-0.5px)">Assinaturas</span>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5734d9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+<div style="position: absolute; left: 16px; right: 16px; bottom: 0; height: 1px; background: #e5e5ea"></div>
+</a>
+<a href="#" style="position: relative; height: 60px; box-sizing: border-box; padding: 0 16px; display: flex; align-items: center; gap: 8px; text-decoration: none; color: #42424a">
+<div style="width: 28px; height: 28px; flex-shrink: 0; border-radius: 50%; background: #f7f6fc; box-shadow: inset 0 0 0 1px #f0eef8; display: flex; align-items: center; justify-content: center">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5734d9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="8" height="8" x="3" y="3" rx="2"></rect><path d="M7 11v4a2 2 0 0 0 2 2h4"></path><rect width="8" height="8" x="13" y="13" rx="2"></rect></svg>
+</div>
+<span style="flex-grow: 1; font-size: 14px; line-height: 21px; font-weight: 600; color: #42424a; transform: translateY(-0.5px)">BPM</span>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5734d9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+</a>
+</div>
+</section>
+
+<!-- Configurações e políticas -->
+<section style="display: flex; flex-direction: column; gap: 7px">
+<h2 style="margin: 0; padding: 0 16px; font-size: 14px; line-height: 20px; font-weight: 600; color: #17171c">Configurações e políticas</h2>
+<div ref="{{hs}}" style="display: flex; gap: 8px; padding: 0 16px; overflow-x: auto; scrollbar-width: none; overscroll-behavior-x: contain">
+<a href="Configuracoes.dc.html" data-nav="push:config" style="flex: 0 0 120px; height: 94px; box-sizing: border-box; padding: 12px; background: #ffffff; border-radius: 12px; box-shadow: inset 0 0 0 1px #e5e5ea; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; text-decoration: none">
+<div style="width: 28px; height: 28px; flex-shrink: 0; border-radius: 50%; background: #f7f6fc; box-shadow: inset 0 0 0 1px #f0eef8; overflow: hidden">
+<svg width="28" height="28" viewBox="52 280 28 28" aria-hidden="true" style="display: block"><path d="M 69.99,294 C 69.99,293.64 70.07,293.29 70.24,292.97 C 70.41,292.66 70.64,292.38 70.94,292.18 C 71.11,292.05 71.24,291.86 71.28,291.64 C 71.33,291.43 71.3,291.2 71.18,291.01 C 71.07,290.82 70.89,290.67 70.68,290.61 C 70.47,290.54 70.24,290.55 70.04,290.64 C 69.72,290.79 69.37,290.86 69.01,290.84 C 68.65,290.83 68.3,290.73 68,290.55 C 67.68,290.37 67.42,290.12 67.23,289.82 C 67.04,289.51 66.92,289.17 66.89,288.82 C 66.87,288.6 66.77,288.39 66.6,288.24 C 66.44,288.09 66.22,288.01 66,288.01 C 65.78,288.01 65.56,288.09 65.4,288.24 C 65.23,288.39 65.13,288.6 65.11,288.82 C 65.11,288.84 65.11,288.86 65.1,288.89 C 65.06,289.22 64.95,289.54 64.77,289.82 C 64.58,290.12 64.32,290.37 64,290.55 C 63.7,290.73 63.35,290.83 62.99,290.84 C 62.63,290.86 62.28,290.79 61.95,290.64 C 61.75,290.55 61.53,290.54 61.32,290.61 C 61.1,290.67 60.92,290.82 60.82,291.01 C 60.71,291.2 60.67,291.43 60.72,291.64 C 60.77,291.86 60.89,292.05 61.07,292.18 C 61.36,292.39 61.6,292.66 61.76,292.97 C 61.92,293.29 62.01,293.64 62.01,294 C 62.01,294.36 61.92,294.71 61.76,295.03 C 61.6,295.34 61.36,295.61 61.07,295.82 L 61.07,295.82 C 60.89,295.95 60.76,296.14 60.71,296.36 C 60.67,296.57 60.7,296.8 60.82,296.99 C 60.92,297.18 61.1,297.33 61.32,297.39 C 61.53,297.46 61.76,297.45 61.96,297.36 C 62.28,297.21 62.63,297.14 62.99,297.16 C 63.35,297.17 63.7,297.27 64,297.45 C 64.32,297.63 64.58,297.88 64.77,298.18 C 64.96,298.48 65.08,298.82 65.11,299.18 C 65.13,299.4 65.23,299.61 65.4,299.75 C 65.56,299.91 65.78,299.99 66,299.99 C 66.22,299.99 66.44,299.91 66.6,299.75 C 66.77,299.61 66.87,299.4 66.89,299.18 C 66.92,298.82 67.04,298.48 67.23,298.18 C 67.42,297.88 67.68,297.63 68,297.45 C 68.3,297.27 68.65,297.17 69.01,297.16 C 69.37,297.14 69.72,297.21 70.04,297.36 L 70.12,297.39 C 70.3,297.45 70.5,297.45 70.68,297.39 C 70.89,297.33 71.07,297.18 71.18,296.99 C 71.3,296.8 71.33,296.57 71.28,296.36 C 71.24,296.14 71.11,295.95 70.93,295.82 C 70.64,295.61 70.4,295.34 70.24,295.03 C 70.07,294.71 69.99,294.36 69.99,294 Z M 71.32,294 C 71.32,294.14 71.36,294.29 71.42,294.41 C 71.47,294.51 71.54,294.59 71.62,294.66 L 71.7,294.73 L 71.71,294.73 C 72.16,295.06 72.47,295.54 72.58,296.07 C 72.7,296.61 72.62,297.18 72.34,297.66 C 72.06,298.14 71.62,298.5 71.09,298.66 C 70.57,298.83 69.99,298.8 69.49,298.57 L 69.48,298.57 C 69.36,298.51 69.21,298.48 69.07,298.49 C 68.92,298.49 68.78,298.54 68.66,298.61 C 68.53,298.68 68.43,298.78 68.36,298.9 C 68.28,299.02 68.23,299.16 68.22,299.3 L 68.22,299.3 C 68.16,299.86 67.91,300.37 67.5,300.74 C 67.09,301.11 66.55,301.32 66,301.32 C 65.44,301.32 64.91,301.11 64.5,300.74 C 64.09,300.37 63.84,299.86 63.78,299.3 L 63.78,299.3 C 63.77,299.16 63.72,299.02 63.64,298.9 C 63.57,298.78 63.46,298.68 63.34,298.61 C 63.21,298.54 63.07,298.49 62.93,298.49 C 62.79,298.48 62.64,298.51 62.52,298.57 L 62.51,298.57 C 62.01,298.8 61.44,298.83 60.91,298.66 C 60.38,298.5 59.94,298.14 59.66,297.66 C 59.38,297.18 59.3,296.61 59.41,296.07 C 59.53,295.54 59.84,295.06 60.29,294.73 L 60.3,294.73 C 60.41,294.65 60.51,294.54 60.58,294.41 C 60.64,294.29 60.68,294.14 60.68,294 C 60.68,293.86 60.64,293.71 60.58,293.58 C 60.51,293.46 60.41,293.35 60.3,293.27 L 60.29,293.26 C 59.84,292.94 59.53,292.46 59.41,291.93 C 59.3,291.38 59.39,290.82 59.66,290.34 C 59.94,289.86 60.38,289.5 60.91,289.33 C 61.37,289.19 61.86,289.19 62.32,289.35 L 62.51,289.43 L 62.52,289.43 C 62.64,289.49 62.79,289.52 62.93,289.51 C 63.07,289.51 63.21,289.46 63.34,289.39 C 63.46,289.32 63.57,289.22 63.64,289.1 C 63.72,288.98 63.77,288.84 63.78,288.7 C 63.78,288.67 63.79,288.64 63.79,288.62 C 63.86,288.09 64.11,287.61 64.5,287.26 C 64.91,286.89 65.44,286.68 66,286.68 C 66.55,286.68 67.09,286.89 67.5,287.26 C 67.86,287.58 68.1,288.01 68.19,288.49 L 68.22,288.69 L 68.22,288.7 C 68.23,288.84 68.28,288.98 68.36,289.1 C 68.43,289.22 68.53,289.32 68.66,289.39 C 68.78,289.46 68.92,289.51 69.07,289.51 C 69.21,289.52 69.36,289.49 69.48,289.43 L 69.49,289.43 C 69.99,289.2 70.57,289.16 71.09,289.33 C 71.62,289.5 72.06,289.86 72.34,290.34 C 72.62,290.82 72.7,291.38 72.58,291.93 C 72.47,292.46 72.16,292.94 71.71,293.26 L 71.7,293.27 C 71.58,293.35 71.49,293.46 71.42,293.58 C 71.36,293.71 71.32,293.86 71.32,294Z" fill="#5734d9"></path><path d="M 67.33,294 C 67.33,293.26 66.74,292.67 66,292.67 C 65.26,292.67 64.67,293.26 64.67,294 C 64.67,294.73 65.26,295.33 66,295.33 C 66.74,295.33 67.33,294.73 67.33,294 Z M 68.67,294 C 68.67,295.47 67.47,296.67 66,296.67 C 64.53,296.67 63.33,295.47 63.33,294 C 63.33,292.53 64.53,291.33 66,291.33 C 67.47,291.33 68.67,292.53 68.67,294Z" fill="#5734d9"></path></svg>
+</div>
+<span style="font-size: 14px; line-height: 17px; font-weight: 600; color: #42424a; max-width: 95.5px">Configurações</span>
+</a>
+<a href="#" style="flex: 0 0 120px; height: 94px; box-sizing: border-box; padding: 12px; background: #ffffff; border-radius: 12px; box-shadow: inset 0 0 0 1px #e5e5ea; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; text-decoration: none">
+<div style="width: 28px; height: 28px; flex-shrink: 0; border-radius: 50%; background: #f7f6fc; box-shadow: inset 0 0 0 1px #f0eef8; overflow: hidden">
+<svg width="28" height="28" viewBox="180 280 28 28" aria-hidden="true" style="display: block"><path d="M 198,300 L 198,298.67 C 198,298.14 197.79,297.63 197.41,297.25 C 197.04,296.88 196.53,296.67 196,296.67 L 192,296.67 C 191.47,296.67 190.96,296.88 190.59,297.25 C 190.21,297.63 190,298.14 190,298.67 L 190,300 C 190,300.37 189.7,300.67 189.33,300.67 C 188.96,300.67 188.67,300.37 188.67,300 L 188.67,298.67 C 188.67,297.78 189.02,296.93 189.64,296.31 C 190.27,295.68 191.12,295.33 192,295.33 L 196,295.33 C 196.88,295.33 197.73,295.68 198.35,296.31 C 198.98,296.93 199.33,297.78 199.33,298.67 L 199.33,300 C 199.33,300.37 199.03,300.67 198.67,300.67 C 198.3,300.67 198,300.37 198,300Z" fill="#5734d9"></path><path d="M 196,290.67 C 196,289.56 195.1,288.67 194,288.67 C 192.89,288.67 192,289.56 192,290.67 C 192,291.77 192.89,292.67 194,292.67 C 195.1,292.67 196,291.77 196,290.67 Z M 197.33,290.67 C 197.33,292.51 195.84,294 194,294 C 192.16,294 190.67,292.51 190.67,290.67 C 190.67,288.82 192.16,287.33 194,287.33 C 195.84,287.33 197.33,288.82 197.33,290.67Z" fill="#5734d9"></path></svg>
+</div>
+<span style="font-size: 14px; line-height: 17px; font-weight: 600; color: #42424a; max-width: 95.5px">Vincular contas</span>
+</a>
+<a href="#" style="flex: 0 0 120px; height: 94px; box-sizing: border-box; padding: 12px; background: #ffffff; border-radius: 12px; box-shadow: inset 0 0 0 1px #e5e5ea; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; text-decoration: none">
+<div style="width: 28px; height: 28px; flex-shrink: 0; border-radius: 50%; background: #f7f6fc; box-shadow: inset 0 0 0 1px #f0eef8; overflow: hidden">
+<svg width="28" height="28" viewBox="308 280 28 28" aria-hidden="true" style="display: block"><path d="M 328,294 C 328,290.69 325.31,288 322,288 C 318.69,288 316,290.69 316,294 C 316,297.31 318.69,300 322,300 C 325.31,300 328,297.31 328,294 Z M 329.33,294 C 329.33,298.05 326.05,301.33 322,301.33 C 317.95,301.33 314.67,298.05 314.67,294 C 314.67,289.95 317.95,286.67 322,286.67 C 326.05,286.67 329.33,289.95 329.33,294Z" fill="#5734d9"></path><path d="M 323.53,292.19 C 323.79,291.93 324.21,291.93 324.47,292.19 C 324.73,292.46 324.73,292.88 324.47,293.14 L 321.8,295.8 C 321.54,296.07 321.12,296.07 320.86,295.8 L 319.53,294.47 C 319.27,294.21 319.27,293.79 319.53,293.53 C 319.79,293.27 320.21,293.27 320.47,293.53 L 321.33,294.39Z" fill="#5734d9"></path></svg>
+</div>
+<span style="font-size: 14px; line-height: 17px; font-weight: 600; color: #42424a; max-width: 95.5px">Permissões</span>
+</a>
+<a href="#" style="flex: 0 0 120px; height: 94px; box-sizing: border-box; padding: 12px; background: #ffffff; border-radius: 12px; box-shadow: inset 0 0 0 1px #e5e5ea; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; text-decoration: none">
+<div style="width: 28px; height: 28px; flex-shrink: 0; border-radius: 50%; background: #f7f6fc; box-shadow: inset 0 0 0 1px #f0eef8; overflow: hidden">
+<svg width="28" height="28" viewBox="436 280 28 28" aria-hidden="true" style="display: block"><path d="M 452,293.33 C 452.37,293.33 452.67,293.63 452.67,294 C 452.67,294.37 452.37,294.67 452,294.67 L 448.67,294.67 C 448.3,294.67 448,294.37 448,294 C 448,293.63 448.3,293.33 448.67,293.33Z" fill="#5734d9"></path><path d="M 452,290.67 C 452.37,290.67 452.67,290.96 452.67,291.33 C 452.67,291.7 452.37,292 452,292 L 448.67,292 C 448.3,292 448,291.7 448,291.33 C 448,290.96 448.3,290.67 448.67,290.67Z" fill="#5734d9"></path><path d="M 454,297.33 L 454,289.33 C 454,289.16 453.93,288.99 453.8,288.86 C 453.68,288.74 453.51,288.67 453.33,288.67 L 444.67,288.67 C 444.3,288.67 444,288.37 444,288 C 444,287.63 444.3,287.33 444.67,287.33 L 453.33,287.33 C 453.86,287.33 454.37,287.54 454.75,287.92 C 455.12,288.29 455.33,288.8 455.33,289.33 L 455.33,297.33 C 455.33,297.7 455.04,298 454.67,298 C 454.3,298 454,297.7 454,297.33Z" fill="#5734d9"></path><path d="M 449.33,298 L 449.33,298.67 C 449.33,298.89 449.29,299.12 449.21,299.33 L 455.33,299.33 C 455.51,299.33 455.68,299.26 455.8,299.14 C 455.93,299.01 456,298.84 456,298.67 L 456,298 Z M 445.33,289.33 C 445.33,289.16 445.26,288.99 445.14,288.86 C 445.01,288.74 444.84,288.67 444.67,288.67 C 444.49,288.67 444.32,288.74 444.19,288.86 C 444.07,288.99 444,289.16 444,289.33 L 444,290.67 L 445.33,290.67 Z M 446.67,298.67 C 446.67,298.84 446.74,299.01 446.86,299.14 C 446.99,299.26 447.16,299.33 447.33,299.33 C 447.51,299.33 447.68,299.26 447.8,299.14 C 447.93,299.01 448,298.84 448,298.67 L 448,298 C 448,297.65 448.14,297.31 448.39,297.06 C 448.64,296.81 448.98,296.67 449.33,296.67 L 456,296.67 C 456.36,296.67 456.69,296.81 456.94,297.06 C 457.19,297.31 457.33,297.65 457.33,298 L 457.33,298.67 C 457.33,299.19 457.12,299.71 456.75,300.08 C 456.37,300.46 455.86,300.67 455.33,300.67 L 447.33,300.67 C 446.8,300.67 446.29,300.46 445.92,300.08 C 445.54,299.71 445.33,299.19 445.33,298.67 L 445.33,292 L 444,292 C 443.64,292 443.31,291.86 443.06,291.61 C 442.81,291.36 442.67,291.02 442.67,290.67 L 442.67,289.33 C 442.67,288.8 442.88,288.29 443.25,287.92 C 443.63,287.54 444.14,287.33 444.67,287.33 C 445.19,287.33 445.71,287.54 446.08,287.92 C 446.46,288.29 446.67,288.8 446.67,289.33Z" fill="#5734d9"></path></svg>
+</div>
+<span style="font-size: 14px; line-height: 17px; font-weight: 600; color: #42424a; max-width: 95.5px">Políticas e Termos</span>
+</a>
+<a href="#" style="flex: 0 0 120px; height: 94px; box-sizing: border-box; padding: 12px; background: #ffffff; border-radius: 12px; box-shadow: inset 0 0 0 1px #e5e5ea; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; text-decoration: none">
+<div style="width: 28px; height: 28px; flex-shrink: 0; border-radius: 50%; background: #f7f6fc; box-shadow: inset 0 0 0 1px #f0eef8; overflow: hidden">
+<svg width="28" height="28" viewBox="564 280 28 28" aria-hidden="true" style="display: block"><path d="M 582.67,290 C 581.12,290 579.31,289.11 578.07,288.03 C 578.05,288.01 578.03,288 578,288 C 577.97,288 577.95,288.01 577.92,288.03 C 576.69,289.1 574.88,290 573.33,290 L 573.33,294.67 C 573.33,296.16 573.85,297.24 574.66,298.07 C 575.48,298.92 576.66,299.53 578,300 C 578,300 578.01,300 578.01,300 C 579.35,299.54 580.51,298.92 581.34,298.07 C 582.15,297.24 582.67,296.16 582.67,294.67 Z M 584,294.67 C 584,296.51 583.35,297.93 582.3,299 C 581.26,300.06 579.88,300.76 578.45,301.26 L 578.44,301.26 C 578.16,301.36 577.85,301.36 577.56,301.26 C 577.56,301.25 577.55,301.25 577.55,301.25 C 577.55,301.25 577.55,301.25 577.55,301.25 C 576.11,300.75 574.73,300.05 573.7,299 C 572.65,297.93 572,296.51 572,294.67 L 572,290 C 572,289.64 572.14,289.31 572.39,289.06 C 572.64,288.81 572.98,288.67 573.33,288.67 C 574.45,288.67 575.97,287.97 577.05,287.02 L 577.06,287.01 C 577.32,286.79 577.66,286.67 578,286.67 C 578.34,286.67 578.67,286.79 578.94,287.01 L 578.95,287.02 C 580.04,287.97 581.55,288.67 582.67,288.67 C 583.02,288.67 583.36,288.81 583.61,289.06 C 583.86,289.31 584,289.64 584,290Z" fill="#5734d9"></path><path d="M 578,295.33 C 578.95,295.33 579.88,295.62 580.66,296.17 C 581.45,296.71 582.04,297.48 582.38,298.38 C 582.5,298.72 582.33,299.11 581.98,299.23 C 581.64,299.36 581.25,299.18 581.12,298.84 C 580.89,298.2 580.46,297.65 579.9,297.26 C 579.34,296.88 578.68,296.67 578,296.67 C 577.32,296.67 576.66,296.88 576.1,297.26 C 575.54,297.65 575.11,298.2 574.88,298.84 C 574.75,299.18 574.36,299.36 574.02,299.23 C 573.67,299.1 573.5,298.72 573.62,298.38 C 573.96,297.48 574.55,296.71 575.34,296.17 C 576.12,295.62 577.05,295.33 578,295.33Z" fill="#5734d9"></path><path d="M 580,293.33 C 580,292.23 579.11,291.33 578,291.33 C 576.89,291.33 576,292.23 576,293.33 C 576,294.44 576.89,295.33 578,295.33 C 579.11,295.33 580,294.44 580,293.33 Z M 581.33,293.33 C 581.33,295.18 579.84,296.67 578,296.67 C 576.16,296.67 574.67,295.18 574.67,293.33 C 574.67,291.49 576.16,290 578,290 C 579.84,290 581.33,291.49 581.33,293.33Z" fill="#5734d9"></path></svg>
+</div>
+<span style="font-size: 14px; line-height: 17px; font-weight: 600; color: #42424a; max-width: 95.5px">Termos de Consentimento</span>
+</a>
+<a href="#" onClick="{{suporte.abrir}}" aria-haspopup="dialog" style="flex: 0 0 120px; height: 94px; box-sizing: border-box; padding: 12px; background: #ffffff; border-radius: 12px; box-shadow: inset 0 0 0 1px #e5e5ea; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; text-decoration: none">
+<div style="width: 28px; height: 28px; flex-shrink: 0; border-radius: 50%; background: #f7f6fc; box-shadow: inset 0 0 0 1px #f0eef8; overflow: hidden">
+<svg width="28" height="28" viewBox="692 280 28 28" aria-hidden="true" style="display: block"><path d="M 702.67,294.67 C 702.67,294.49 702.6,294.32 702.47,294.19 C 702.35,294.07 702.17,294 702,294 L 700.67,294 L 700.67,296.67 C 700.67,296.84 700.74,297.01 700.86,297.14 C 700.99,297.26 701.16,297.33 701.33,297.33 L 702,297.33 C 702.17,297.33 702.35,297.26 702.47,297.14 C 702.6,297.01 702.67,296.84 702.67,296.67 Z M 704,296.67 C 704,297.19 703.79,297.71 703.41,298.08 C 703.04,298.46 702.53,298.67 702,298.67 L 701.33,298.67 C 700.8,298.67 700.29,298.46 699.92,298.08 C 699.54,297.71 699.33,297.19 699.33,296.67 L 699.33,293.33 C 699.33,292.46 699.5,291.59 699.84,290.78 C 700.17,289.97 700.67,289.24 701.28,288.62 C 701.91,288 702.64,287.51 703.45,287.18 C 704.26,286.84 705.12,286.67 706,286.67 C 706.88,286.67 707.74,286.84 708.55,287.18 C 709.36,287.51 710.09,288 710.71,288.62 C 711.33,289.24 711.82,289.97 712.16,290.78 C 712.5,291.59 712.67,292.46 712.67,293.33 L 712.67,296.67 C 712.67,297.19 712.46,297.71 712.08,298.08 C 711.71,298.46 711.2,298.67 710.67,298.67 L 710,298.67 C 709.47,298.67 708.96,298.46 708.59,298.08 C 708.21,297.71 708,297.19 708,296.67 L 708,294.67 C 708,294.14 708.21,293.63 708.59,293.25 C 708.96,292.88 709.47,292.67 710,292.67 L 711.29,292.67 C 711.23,292.19 711.11,291.73 710.92,291.29 C 710.66,290.64 710.26,290.06 709.77,289.56 C 709.28,289.07 708.69,288.68 708.04,288.41 C 707.39,288.14 706.7,288 706,288 C 705.3,288 704.61,288.14 703.96,288.41 C 703.31,288.68 702.72,289.07 702.23,289.56 C 701.73,290.06 701.34,290.64 701.07,291.29 C 700.89,291.73 700.77,292.19 700.71,292.67 L 702,292.67 C 702.53,292.67 703.04,292.88 703.41,293.25 C 703.79,293.63 704,294.14 704,294.67 Z M 709.33,296.67 C 709.33,296.84 709.4,297.01 709.53,297.14 C 709.65,297.26 709.82,297.33 710,297.33 L 710.67,297.33 C 710.84,297.33 711.01,297.26 711.14,297.14 C 711.26,297.01 711.33,296.84 711.33,296.67 L 711.33,294 L 710,294 C 709.82,294 709.65,294.07 709.53,294.19 C 709.4,294.32 709.33,294.49 709.33,294.67Z" fill="#5734d9"></path><path d="M 711.33,298 L 711.33,296.67 C 711.33,296.3 711.63,296 712,296 C 712.37,296 712.67,296.3 712.67,296.67 L 712.67,298 C 712.67,298.88 712.32,299.73 711.69,300.36 C 711.07,300.98 710.22,301.33 709.33,301.33 L 706,301.33 C 705.63,301.33 705.33,301.04 705.33,300.67 C 705.33,300.3 705.63,300 706,300 L 709.33,300 C 709.86,300 710.37,299.79 710.75,299.41 C 711.12,299.04 711.33,298.53 711.33,298Z" fill="#5734d9"></path></svg>
+</div>
+<span style="font-size: 14px; line-height: 17px; font-weight: 600; color: #42424a; max-width: 95.5px">Suporte</span>
+</a>
+<div aria-hidden="true" style="flex: 0 0 8px"></div>
+</div>
+</section>
+
+<!-- Rodapé -->
+<footer style="display: flex; flex-direction: column; align-items: center; padding-top: 21.5px">
+<a href="#" onClick="{{sair.abrir}}" style="height: 21px; display: flex; align-items: center; gap: 4px; text-decoration: none; color: #42424a">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#42424a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 12h11"></path><path d="m17 16 4-4-4-4"></path><path d="M21 6.34V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-1.34"></path></svg>
+<span style="font-size: 14px; line-height: 21px; font-weight: 600; color: #42424a; transform: translateY(-0.5px)">Sair do app</span>
+</a>
+<p style="margin: 20.5px 0 0; font-size: 10px; line-height: 16px; font-weight: 400; color: #b6b6c1; text-align: center">App versão 1.2.3<br>Coletor de ponto 1.2.3</p>
+<div style="margin-top: 12px; display: flex; align-items: center; gap: 4px">
+<span style="font-size: 12px; line-height: 16px; font-weight: 400; color: #7a7a86">Powered by</span>
+<img src="./assets/2255926581a6390a97385c9b13851758.svg" alt="Senior" style="width: 43px; height: 14px; display: block; transform: translateX(0.5px)">
+</div>
+</footer>
+</main>
+</div>
+<!-- Conteúdo rolável (AppBar rola junto) -->
+
+
+<!-- Conteúdo -->
+
+
+<!-- Navegação inferior -->
+<div style="position: absolute; left: 0; bottom: 0; width: 360px; height: 92px; background: linear-gradient(180deg, rgba(0, 0, 0, 0) 7.5px, rgba(0, 0, 0, 0.254) 92px); pointer-events: none"></div>
+<img src="./assets/d49f7e773e0839a865a2cdb3b9713516.png" alt="" style="position: absolute; left: 1px; bottom: -1px; width: 358px; height: 82px; display: block; pointer-events: none">
+<img src="./assets/82c5e69442e02732dbc6f0cf936ed74a.png" alt="" style="position: absolute; left: 10px; bottom: 14px; width: 340px; height: 64px; display: block; pointer-events: none">
+<nav style="position: absolute; left: 16px; bottom: 24px; width: 328px; height: 52px; box-sizing: border-box; padding: 8px 16px 0; background: #ffffff; border-radius: 26px; box-shadow: inset 0 0 0 1px #f3f3f6; display: flex">
+<a href="Home.dc.html" data-nav="tab:home" aria-label="Início" style="flex: 1 1 0; display: flex; flex-direction: column; align-items: center; gap: 5px; text-decoration: none">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7a7a86" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="transform: translate(-0.5px, 0.5px)"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.53l7-6a2 2 0 0 1 2.58 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+<span style="font-size: 10px; line-height: 12px; font-weight: 600; color: #7a7a86">Início</span>
+</a>
+<a href="Flex.dc.html" data-nav="tab:flex" aria-label="Flex" style="flex: 1 1 0; display: flex; flex-direction: column; align-items: center; gap: 5px; text-decoration: none">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7a7a86" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="5" rx="2"></rect><line x1="2" x2="22" y1="10" y2="10"></line></svg>
+<span style="font-size: 10px; line-height: 12px; font-weight: 600; color: #7a7a86">Flex</span>
+</a>
+<a href="Holerite.dc.html" data-nav="tab:holerite" aria-label="Holerite" style="flex: 1 1 0; display: flex; flex-direction: column; align-items: center; gap: 5px; text-decoration: none">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7a7a86" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"></path><path d="M12 18V6"></path></svg>
+<span style="font-size: 10px; line-height: 12px; font-weight: 600; color: #7a7a86">Holerite</span>
+</a>
+<a href="Social.dc.html" data-nav="tab:social" aria-label="Social" style="flex: 1 1 0; display: flex; flex-direction: column; align-items: center; gap: 5px; text-decoration: none">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7a7a86" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.99 16.34a2 2 0 0 1 .094 1.17l-1.06 3.29a1 1 0 0 0 1.24 1.17l3.41-.998a2 2 0 0 1 1.1.092 10 10 0 1 0-4.78-4.72"></path><path d="M8 12h.01"></path><path d="M12 12h.01"></path><path d="M16 12h.01"></path></svg>
+<span style="font-size: 10px; line-height: 12px; font-weight: 600; color: #7a7a86">Social</span>
+</a>
+<a href="#" aria-current="page" style="flex: 1 1 0; display: flex; flex-direction: column; align-items: center; gap: 5px; text-decoration: none">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5734d9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="transform: translateX(0.5px)"><path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path></svg>
+<span style="font-size: 10px; line-height: 12px; font-weight: 600; color: #5734d9">Menu</span>
+</a>
+</nav>
+
+<!-- Folha "Suporte" (layout Menu - Suporte; Tweak "suporte"): véu preto de 50% sobre a tela toda; "X" e véu fecham; WhatsApp e Central de ajuda ainda sem destino -->
+<sc-if value="{{suporte.on}}" hint-placeholder-val="{{ false }}">
+<div style="position: absolute; left: 0; top: 0; width: 360px; height: var(--wp-h, 780px); z-index: 30">
+<div onClick="{{suporte.fechar}}" style="position: absolute; left: 0; top: 0; width: 360px; height: var(--wp-h, 780px); background: rgba(0, 0, 0, 0.5); animation: {{suporte.scrimAnim}}"></div>
+<div role="dialog" aria-modal="true" aria-label="Suporte" style="position: absolute; left: 0; top: calc(439px + var(--wp-h, 780px) - 780px); width: 360px; height: 341px; background: #ffffff; border-radius: 16px 16px 0 0; animation: {{suporte.sheetAnim}}">
+<a href="#" aria-label="Fechar" onClick="{{suporte.fechar}}" style="position: absolute; left: 16px; top: 20px; width: 40px; height: 40px; display: block; text-decoration: none"><svg width="40" height="40" viewBox="16 20 40 40" aria-hidden="true" style="position: absolute; left: 0; top: 0; display: block"><path d="M 40.41 34.41 C 40.73 34.09 41.27 34.09 41.59 34.41 C 41.91 34.73 41.91 35.27 41.59 35.59 L 31.59 45.59 C 31.27 45.91 30.73 45.91 30.41 45.59 C 30.09 45.27 30.09 44.73 30.41 44.41 Z M 40.41 34.41" fill="#5734d9"></path><path d="M 30.41 34.41 C 30.73 34.09 31.27 34.09 31.59 34.41 L 41.59 44.41 C 41.91 44.73 41.91 45.27 41.59 45.59 C 41.27 45.91 40.73 45.91 40.41 45.59 L 30.41 35.59 C 30.09 35.27 30.09 34.73 30.41 34.41 Z M 30.41 34.41" fill="#5734d9"></path></svg></a>
+<div style="position: absolute; left: 156px; top: 72px; width: 48px; height: 48px; box-sizing: border-box; background: #f5fcf8; border: 1px solid #dcf3e7; border-radius: 50%"><svg width="48" height="48" viewBox="156 72 48 48" aria-hidden="true" style="position: absolute; left: -1px; top: -1px; display: block"><path d="M 187.93 88.02 C 185.91 86 183.13 84.76 180.05 84.76 C 173.89 84.76 168.9 89.75 168.9 95.91 C 168.9 97.95 169.45 99.88 170.42 101.52 L 170.39 101.47 L 168.8 107.25 L 174.71 105.7 C 176.25 106.55 178.09 107.05 180.04 107.05 L 180.05 107.05 C 186.2 107.05 191.19 102.06 191.19 95.9 C 191.19 92.82 189.95 90.04 187.93 88.02 Z M 180.05 105.17 L 180.04 105.17 C 178.3 105.17 176.68 104.69 175.29 103.86 L 175.33 103.88 L 174.99 103.68 L 171.48 104.6 L 172.42 101.18 L 172.2 100.83 C 171.31 99.43 170.78 97.73 170.78 95.91 C 170.78 90.79 174.93 86.64 180.05 86.64 C 185.16 86.64 189.31 90.79 189.31 95.91 C 189.31 101.02 185.16 105.17 180.05 105.17 Z M 185.13 98.23 C 184.85 98.09 183.48 97.42 183.23 97.33 C 182.97 97.23 182.79 97.19 182.6 97.47 C 182.41 97.75 181.88 98.37 181.71 98.56 C 181.55 98.75 181.39 98.77 181.11 98.63 C 180.25 98.28 179.51 97.81 178.87 97.24 L 178.87 97.25 C 178.27 96.69 177.76 96.05 177.34 95.36 L 177.32 95.32 C 177.16 95.04 177.31 94.89 177.45 94.75 C 177.57 94.62 177.72 94.42 177.86 94.26 C 177.97 94.13 178.07 93.97 178.14 93.81 L 178.14 93.8 C 178.18 93.73 178.19 93.66 178.19 93.57 C 178.19 93.48 178.16 93.38 178.12 93.3 L 178.12 93.31 C 178.05 93.17 177.49 91.8 177.26 91.24 C 177.04 90.7 176.8 90.77 176.63 90.76 C 176.47 90.75 176.29 90.75 176.1 90.75 C 175.8 90.76 175.54 90.89 175.36 91.1 C 174.76 91.67 174.38 92.48 174.38 93.37 C 174.38 93.39 174.38 93.41 174.38 93.43 L 174.38 93.43 C 174.48 94.53 174.89 95.51 175.53 96.32 L 175.52 96.31 C 176.72 98.09 178.32 99.52 180.21 100.48 L 180.28 100.51 C 180.69 100.7 181.21 100.9 181.75 101.07 L 181.87 101.1 C 182.2 101.2 182.58 101.26 182.98 101.26 C 183.2 101.26 183.43 101.24 183.64 101.2 L 183.62 101.21 C 184.42 101.04 185.09 100.56 185.49 99.89 L 185.5 99.88 C 185.62 99.61 185.7 99.29 185.7 98.95 C 185.7 98.81 185.68 98.68 185.66 98.55 L 185.66 98.56 C 185.59 98.45 185.41 98.38 185.13 98.23 Z M 185.13 98.23" fill="#34b26f"></path></svg></div>
+<p style="position: absolute; left: 0; top: 136px; width: 360px; margin: 0; font-size: 16px; line-height: 20px; font-weight: 600; color: #17171c; text-align: center; white-space: nowrap">Como quer falar com a gente?</p>
+<p style="position: absolute; left: 0; top: 163px; width: 360px; margin: 0; font-size: 12px; line-height: 14px; font-weight: 400; color: #7a7a86; text-align: center; white-space: nowrap">Escolha o canal de atendimento.</p>
+<a href="#" aria-label="WhatsApp" onClick="{{suporte.noop}}" style="position: absolute; left: 24px; top: 209px; width: 312px; height: 48px; border-radius: 24px; background: #34b26f; display: block; text-decoration: none; -webkit-tap-highlight-color: transparent"><span style="position: absolute; left: 0; top: 14.33px; width: 312px; transform: translateY(0.5px); font-size: 16px; line-height: 20px; font-weight: 600; color: #ffffff; text-align: center; white-space: nowrap">WhatsApp</span></a>
+<a class="wp-btn wp-btn--ghost" href="#" onClick="{{suporte.noop}}" style="position: absolute; left: 110px; top: 272px; width: 140px; height: 32px; display: block; text-decoration: none"><span style="position: absolute; left: 0; top: 11.33px; width: 140px; transform: translateY(0.5px); font-size: 16px; line-height: 20px; font-weight: 600; color: #5734d9; text-align: center; white-space: nowrap">Central de ajuda</span></a>
+</div>
+</div>
+</sc-if>
+<!-- Folha "Sair do app" (Tweak "sair"): véu preto de 50% sobre a tela toda, inclusive a status bar -->
+<sc-if value="{{sair.on}}" hint-placeholder-val="{{ false }}">
+<div style="position: absolute; left: 0; top: 0; width: 360px; height: var(--wp-h, 780px); z-index: 30">
+<div onClick="{{sair.fechar}}" style="position: absolute; left: 0; top: 0; width: 360px; height: var(--wp-h, 780px); background: rgba(0, 0, 0, 0.5); animation: {{sair.scrimAnim}}"></div>
+<div role="dialog" aria-modal="true" aria-label="Sair do aplicativo" style="position: absolute; left: 0; top: calc(375px + var(--wp-h, 780px) - 780px); width: 360px; height: 405px; background: #ffffff; border-radius: 16px 16px 0 0; animation: {{sair.sheetAnim}}">
+<a href="#" aria-label="Fechar" onClick="{{sair.fechar}}" style="position: absolute; left: 16px; top: 20px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; text-decoration: none">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5734d9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+</a>
+<div style="position: absolute; left: 144px; top: 72px; width: 72px; height: 72px; box-sizing: border-box; background: #f7f6fc; border: 1px solid #e1dcf3; border-radius: 50%"><svg width="72" height="72" viewBox="0 0 72 72" aria-hidden="true" style="position: absolute; left: -1px; top: -1px; display: block"><path d="M 48,34.66 C 48.73,34.66 49.33,35.26 49.33,36 C 49.33,36.73 48.73,37.33 48,37.33 L 33.33,37.33 C 32.59,37.33 32,36.73 32,36 C 32,35.26 32.59,34.66 33.33,34.66Z" fill="#5734d9"></path><path d="M 41.72,29.72 C 42.24,29.20 43.08,29.20 43.60,29.72 L 48.94,35.05 C 49.46,35.57 49.46,36.42 48.94,36.94 L 43.60,42.27 C 43.08,42.79 42.24,42.79 41.72,42.27 C 41.20,41.75 41.20,40.91 41.72,40.39 L 46.11,36 L 41.72,31.60 C 41.20,31.08 41.20,30.24 41.72,29.72Z" fill="#5734d9"></path><path d="M 46.66,28.45 L 46.66,26.66 C 46.66,26.31 46.52,25.97 46.27,25.72 C 46.02,25.47 45.68,25.33 45.33,25.33 L 26.66,25.33 C 26.31,25.33 25.97,25.47 25.72,25.72 C 25.47,25.97 25.33,26.31 25.33,26.66 L 25.33,45.33 C 25.33,45.68 25.47,46.02 25.72,46.27 C 25.97,46.52 26.31,46.66 26.66,46.66 L 45.33,46.66 C 45.68,46.66 46.02,46.52 46.27,46.27 C 46.52,46.02 46.66,45.68 46.66,45.33 L 46.66,43.54 C 46.66,42.80 47.26,42.20 48,42.20 C 48.73,42.20 49.33,42.80 49.33,43.54 L 49.33,45.33 C 49.33,46.39 48.91,47.41 48.16,48.16 C 47.41,48.91 46.39,49.33 45.33,49.33 L 26.66,49.33 C 25.60,49.33 24.58,48.91 23.83,48.16 C 23.08,47.41 22.66,46.39 22.66,45.33 L 22.66,26.66 C 22.66,25.60 23.08,24.58 23.83,23.83 C 24.58,23.08 25.60,22.66 26.66,22.66 L 45.33,22.66 C 46.39,22.66 47.41,23.08 48.16,23.83 C 48.91,24.58 49.33,25.60 49.33,26.66 L 49.33,28.45 C 49.33,29.19 48.73,29.79 48,29.79 C 47.26,29.79 46.66,29.19 46.66,28.45Z" fill="#5734d9"></path></svg></div>
+<p style="position: absolute; left: 0; top: 151.83px; width: 360px; margin: 0; font-size: 16px; line-height: 20px; font-weight: 600; color: #17171c; text-align: center; white-space: nowrap">Tem certeza que deseja sair do aplicativo?</p>
+<p style="position: absolute; left: 0; top: 174.98px; width: 360px; margin: 0; font-size: 14px; line-height: 17px; font-weight: 400; color: #42424a; text-align: center; white-space: pre">Você será desconectado e precisará entrar
+novamente para acessar o aplicativo.</p>
+<div style="position: absolute; left: 0; top: 257px; width: 360px; height: 1px; background: #e1dcf3"></div>
+<a class="wp-btn wp-btn--primary" href="#" onClick="{{sair.fechar}}" style="position: absolute; left: 24px; top: 273px; width: 312px; height: 48px; border-radius: 24px; background: #5734d9; display: block; text-decoration: none"><span style="position: absolute; left: 0; top: 14.33px; width: 312px; transform: translateY(0.5px); font-size: 16px; line-height: 20px; font-weight: 600; color: #ffffff; text-align: center; white-space: nowrap">Não, continuar conectado</span></a>
+<a class="wp-btn wp-btn--ghost-neg" href="Login.dc.html" data-nav="auth:login" onClick="{{sair.sim}}" style="position: absolute; left: 110px; top: 336px; width: 140px; height: 32px; display: block; text-decoration: none"><span style="position: absolute; left: 0; top: 11.33px; width: 140px; transform: translateY(0.5px); font-size: 16px; line-height: 20px; font-weight: 600; color: #d9344f; text-align: center; white-space: nowrap">Sim, sair</span></a>
+</div>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"sair":{"editor":"enum","default":"fechado","options":["fechado","aberto"]},"suporte":{"editor":"enum","default":"fechado","options":["fechado","aberto"]},"$preview":{"width":360,"height":780}}'>
+class Component extends DCLogic {
+componentDidMount() {
+// Relógio real: atualiza a hora da status bar quando o minuto muda
+var self = this;
+var proxMin = function () { var d = new Date(); return 60050 - d.getSeconds() * 1000 - d.getMilliseconds(); };
+var tick = function () { var d = new Date(); self.setState({ clockK: d.getHours() * 60 + d.getMinutes() }); self._clockT = setTimeout(tick, proxMin()); };
+// Relógio da status bar: acorda só na virada de cada minuto (em vez de checar a cada segundo)
+this._clockT = setTimeout(tick, proxMin());
+}
+componentWillUnmount() { clearTimeout(this._clockT); }
+handleScroll(e) {
+// AppBar "quick return": acompanha a rolagem para baixo e reaparece assim que o usuário rola um pouco para cima.
+var y = Math.max(0, e.currentTarget.scrollTop);
+var last = this._lastY || 0;
+this._lastY = y;
+var BAR = 72;
+var prev = (this.state && typeof this.state.barOffset === 'number') ? this.state.barOffset : 0;
+var next = Math.min(BAR, Math.max(0, prev + (y - last)));
+if (next > y) next = y;
+if (next !== prev) this.setState({ barOffset: next });
+}
+renderVals() {
+var _d = new Date();
+var statusTime = _d.getHours() + ':' + ('0' + _d.getMinutes()).slice(-2);
+var off = (this.state && typeof this.state.barOffset === 'number') ? this.state.barOffset : 0;
+var setFrom = function (name) {
+try { window.sessionStorage.setItem('wiipo.clubiiFrom', name); } catch (e1) {}
+try { window.localStorage.setItem('wiipo.clubiiFrom', name); } catch (e2) {}
+try { var o = {}; try { o = JSON.parse(window.name || '{}') || {}; } catch (e3) { o = {}; } o.clubiiFrom = name; window.name = JSON.stringify(o); } catch (e4) {}
+};
+if (!this._toClubii) { this._toClubii = function () { setFrom('Main.dc.html'); }; }
+if (!this._hs) {
+// Rolagem por arraste (mouse = dedo) fica a cargo do script de toque compartilhado (toque-mobile.js).
+this._hs = function () {};
+}
+// Folha "Sair do app": abre de baixo para cima; "Sim, sair" leva ao Login (auth:login no App)
+var me = this;
+// Folha "Suporte": abre de baixo para cima pelo card Suporte; "X" e véu fecham
+var supSt = (this.state && this.state.suporte) || (this.props.suporte === 'aberto' ? 'aberto' : 'fechado');
+if (!this._sup) {
+this._sup = {
+abrir: function (e) { if (e && e.preventDefault) e.preventDefault(); clearTimeout(me._supT); me.setState({ suporte: 'abrindo' }); },
+fechar: function (e) { if (e && e.preventDefault) e.preventDefault(); me.setState({ suporte: 'fechando' }); clearTimeout(me._supT); me._supT = setTimeout(function () { me.setState({ suporte: 'fechado' }); }, 280); },
+noop: function (e) { if (e && e.preventDefault) e.preventDefault(); }
+};
+}
+var suporte = {
+on: supSt !== 'fechado', abrir: this._sup.abrir, fechar: this._sup.fechar, noop: this._sup.noop,
+sheetAnim: supSt === 'abrindo' ? 'mnSheetIn 320ms cubic-bezier(0.22, 0.8, 0.26, 1) both' : (supSt === 'fechando' ? 'mnSheetOut 260ms cubic-bezier(0.32, 0, 0.24, 1) both' : 'none'),
+scrimAnim: supSt === 'abrindo' ? 'mnScrimIn 320ms ease-out both' : (supSt === 'fechando' ? 'mnScrimOut 260ms ease-in both' : 'none')
+};
+var sairSt = (this.state && this.state.sair) || (this.props.sair === 'aberto' ? 'aberto' : 'fechado');
+if (!this._sair) {
+this._sair = {
+abrir: function (e) { if (e && e.preventDefault) e.preventDefault(); clearTimeout(me._sairT); me.setState({ sair: 'abrindo' }); },
+fechar: function (e) { if (e && e.preventDefault) e.preventDefault(); me.setState({ sair: 'fechando' }); clearTimeout(me._sairT); me._sairT = setTimeout(function () { me.setState({ sair: 'fechado' }); }, 280); },
+sim: function () { clearTimeout(me._sairT); me._sairT = setTimeout(function () { me.setState({ sair: 'fechado' }); }, 240); }
+};
+}
+var sair = {
+on: sairSt !== 'fechado',
+abrir: this._sair.abrir, fechar: this._sair.fechar, sim: this._sair.sim,
+sheetAnim: sairSt === 'abrindo' ? 'mnSheetIn 320ms cubic-bezier(0.22, 0.8, 0.26, 1) both' : (sairSt === 'fechando' ? 'mnSheetOut 260ms cubic-bezier(0.32, 0, 0.24, 1) both' : 'none'),
+scrimAnim: sairSt === 'abrindo' ? 'mnScrimIn 320ms ease-out both' : (sairSt === 'fechando' ? 'mnScrimOut 260ms ease-in both' : 'none')
+};
+return {
+statusTime: statusTime,
+sair: sair,
+suporte: suporte,
+hs: this._hs,
+toClubii: this._toClubii,
+barTransform: 'translateY(' + (-off) + 'px)',
+onScroll: this._onScroll || (this._onScroll = (e) => this.handleScroll(e))
+};
+}
+}
+</script>
+</body>
+</html>

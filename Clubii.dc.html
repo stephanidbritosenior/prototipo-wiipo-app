@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Clubii</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+<script src="./assets/006b9949ae9e16e15b7586c26de23cca.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+html,body{scrollbar-width:none}html::-webkit-scrollbar,body::-webkit-scrollbar{display:none}
+body{margin:0;font-family:'Urbanist',system-ui,sans-serif;color:#17171c;background:transparent}
+a{color:#42424a}a:hover{color:#17171c}
+@keyframes wpPushIn{from{transform:translate3d(100%,0,0)}to{transform:translate3d(0,0,0)}}
+@keyframes wpPopOut{from{transform:translate3d(0,0,0)}to{transform:translate3d(100%,0,0)}}
+@keyframes wpScrimIn{from{opacity:0}to{opacity:1}}
+@keyframes wpScrimOut{from{opacity:1}to{opacity:0}}
+.kb-key:active{background:rgba(23,23,28,0.08)!important}
+.clubii-caret{animation:clubii-blink 1s steps(1) infinite}
+@keyframes clubii-blink{0%{opacity:1}50%{opacity:0}}
+</style>
+</helmet>
+<div style="position: relative; width: 360px; height: var(--wp-h, 780px); overflow: hidden; border-radius: 16px; background: #f7f6fc; font-family: 'Urbanist', system-ui, sans-serif; color: #17171c; display: flex; flex-direction: column">
+
+<!-- Status bar + cabeçalho -->
+<div style="background: linear-gradient(180deg, #211551 0, #211551 64px, #f7f6fc 64px); display: flex; flex-direction: column; flex-shrink: 0">
+<div style="position: relative; height: 40px">
+<span style="position: absolute; left: 15.5px; top: 12px; font-size: 14px; line-height: 17px; font-weight: 600; color: #ffffff; white-space: nowrap">{{statusTime}}</span>
+<div style="position: absolute; left: 168px; top: 8px; width: 24px; height: 24px; border-radius: 50%; background: #000000"></div>
+<img src="./assets/8b2d4d6b48dc65bf320ab274856d6d61.svg" alt="" style="position: absolute; left: 288.668px; top: 12.918px; width: 51.582px; height: 14.164px; display: block">
+</div>
+<sc-if value="{{ui.normal}}" hint-placeholder-val="{{ true }}">
+<header style="position: relative; height: 72px; background: #f7f6fc; border-radius: 24px 24px 0 0">
+<a href="{{backHref}}" data-nav="back" aria-label="Voltar" style="position: absolute; left: 16px; top: 16px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; text-decoration: none">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5734d9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+</a>
+<img src="./assets/a2736305cc941085c02598fe6fda0e8c.svg" alt="clubii" style="position: absolute; left: 148px; top: 26px; width: 63.004px; height: 20px; display: block; transform: translateX(0.5px)">
+<a href="#" aria-label="Buscar" onClick="{{openSearch}}" style="position: absolute; right: 16px; top: 16px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; text-decoration: none">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5734d9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></svg>
+</a>
+</header>
+</sc-if>
+<!-- Cabeçalho de busca -->
+<sc-if value="{{ui.searching}}" hint-placeholder-val="{{ false }}">
+<header style="position: relative; height: 80px; background: #f7f6fc; border-radius: 24px 24px 0 0">
+<a href="{{backHref}}" data-nav="back" aria-label="Voltar" onClick="{{backToMenu}}" style="position: absolute; left: 16px; top: 20px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; text-decoration: none">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5734d9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+</a>
+<div role="search" onMouseDown="{{fieldMouseDown}}" style="position: absolute; left: 64px; top: 16px; width: 280px; height: 48px; box-sizing: border-box; background: #ffffff; border: 1px solid {{ui.fieldBorder}}; border-radius: 24px">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#b6b6c1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="position: absolute; left: 15px; top: 13px; display: block"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></svg>
+<sc-if value="{{ui.showPlaceholder}}" hint-placeholder-val="{{ true }}">
+<span aria-hidden="true" style="position: absolute; left: {{ui.placeholderLeft}}px; top: 12px; font-size: 16px; line-height: 21px; font-weight: 400; color: #b6b6c1; white-space: nowrap; pointer-events: none; transform: translateY(0.5px)">Buscar no Clubii</span>
+</sc-if>
+<label for="clubii-busca" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Buscar no Clubii</label>
+<input id="clubii-busca" ref="{{inputRef}}" type="text" inputmode="search" enterkeyhint="search" autocomplete="off" value="{{ui.query}}" onChange="{{onQuery}}" onFocus="{{onFocus}}" onBlur="{{onBlur}}" onKeyDown="{{onKey}}" style="position: absolute; left: 43px; top: 12px; width: 190px; height: 21px; margin: 0; padding: 0; border: 0; outline: none; background: transparent; font-family: inherit; font-size: 16px; line-height: 21px; font-weight: 400; color: #17171c; caret-color: transparent; transform: translateY(0.5px)">
+<sc-if value="{{ui.kbOpen}}" hint-placeholder-val="{{ true }}">
+<span aria-hidden="true" class="clubii-caret" style="position: absolute; left: {{ui.caretLeft}}px; top: 13px; width: 2px; height: 20px; background: #5734d9; pointer-events: none"></span>
+</sc-if>
+<button type="button" aria-label="Limpar e fechar busca" onClick="{{closeSearch}}" style="position: absolute; left: 233px; top: 3px; width: 40px; height: 40px; margin: 0; padding: 0; border: 0; background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#17171c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+</button>
+</div>
+</header>
+</sc-if>
+</div>
+
+<div style="flex: 1 1 0; min-height: 0; overflow-y: auto; overflow-x: hidden; scrollbar-width: none; display: flex; flex-direction: column; padding-bottom: {{ui.kbPad}}px">
+<!-- Categorias -->
+<sc-if value="{{ui.normal}}" hint-placeholder-val="{{ true }}">
+<div style="margin-top: 8px; display: flex; gap: 8px; padding: 0 16px; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none; flex-shrink: 0; cursor: grab; user-select: none; touch-action: pan-x">
+<button type="button" aria-pressed="{{chip.todos.pressed}}" onClick="{{chip.todos.pick}}" style="flex: 0 0 auto; height: 22px; box-sizing: border-box; margin: 0; padding: 0 7px; border: 1px solid #5734d9; border-radius: 11px; background: {{chip.todos.bg}}; display: flex; align-items: center; font-family: inherit; font-size: 12px; line-height: 16px; font-weight: 600; color: {{chip.todos.fg}}; cursor: pointer"><span style="width: 33px; white-space: nowrap">Todos</span></button>
+<button type="button" aria-pressed="{{chip.compras.pressed}}" onClick="{{chip.compras.pick}}" style="flex: 0 0 auto; height: 22px; box-sizing: border-box; margin: 0; padding: 0 7px; border: 1px solid #5734d9; border-radius: 11px; background: {{chip.compras.bg}}; display: flex; align-items: center; gap: 4px; font-family: inherit; font-size: 12px; line-height: 16px; font-weight: 600; color: {{chip.compras.fg}}; cursor: pointer">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 10a4 4 0 0 1-8 0"></path><path d="M3.1 6.03h17.79"></path><path d="M3.4 5.47a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.67a2 2 0 0 0-.4-1.2l-2-2.67A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"></path></svg>
+<span style="width: 49px; white-space: nowrap">Compras</span>
+</button>
+<button type="button" aria-pressed="{{chip.educacao.pressed}}" onClick="{{chip.educacao.pick}}" style="flex: 0 0 auto; height: 22px; box-sizing: border-box; margin: 0; padding: 0 7px; border: 1px solid #5734d9; border-radius: 11px; background: {{chip.educacao.bg}}; display: flex; align-items: center; gap: 4px; font-family: inherit; font-size: 12px; line-height: 16px; font-weight: 600; color: {{chip.educacao.fg}}; cursor: pointer">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.42 10.92a1 1 0 0 0-.019-1.84L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.83l8.57 3.91a2 2 0 0 0 1.66 0z"></path><path d="M22 10v6"></path><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path></svg>
+<span style="width: 53px; white-space: nowrap">Educação</span>
+</button>
+<button type="button" aria-pressed="{{chip.fitness.pressed}}" onClick="{{chip.fitness.pick}}" style="flex: 0 0 auto; height: 22px; box-sizing: border-box; margin: 0; padding: 0 7px; border: 1px solid #5734d9; border-radius: 11px; background: {{chip.fitness.bg}}; display: flex; align-items: center; gap: 4px; font-family: inherit; font-size: 12px; line-height: 16px; font-weight: 600; color: {{chip.fitness.fg}}; cursor: pointer">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.6 12.77a2 2 0 1 0 2.83-2.83l-1.77-1.77a2 2 0 0 0 2.83-2.83l-2.83-2.83a2 2 0 0 0-2.83 2.83l-1.77-1.77a2 2 0 1 0-2.83 2.83z"></path><path d="m2.5 21.5 1.4-1.4"></path><path d="m20.1 3.9 1.4-1.4"></path><path d="M5.34 21.48a2 2 0 1 0 2.83-2.83l1.77 1.77a2 2 0 1 0 2.83-2.83l-6.36-6.36a2 2 0 1 0-2.83 2.83l1.77 1.77a2 2 0 0 0-2.83 2.83z"></path><path d="m9.6 14.4 4.8-4.8"></path></svg>
+<span style="width: 36px; white-space: nowrap">Fitness</span>
+</button>
+<button type="button" aria-pressed="{{chip.saude.pressed}}" onClick="{{chip.saude.pick}}" style="flex: 0 0 auto; height: 22px; box-sizing: border-box; margin: 0; padding: 0 7px; border: 1px solid #5734d9; border-radius: 11px; background: {{chip.saude.bg}}; display: flex; align-items: center; gap: 4px; font-family: inherit; font-size: 12px; line-height: 16px; font-weight: 600; color: {{chip.saude.fg}}; cursor: pointer">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9.5a5.5 5.5 0 0 1 9.59-3.68.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.49 5.31a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"></path><path d="M3.22 13H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"></path></svg>
+<span style="width: 35px; white-space: nowrap">Saúde</span>
+</button>
+<button type="button" aria-pressed="{{chip.viagem.pressed}}" onClick="{{chip.viagem.pick}}" style="flex: 0 0 auto; height: 22px; box-sizing: border-box; margin: 0; padding: 0 7px; border: 1px solid #5734d9; border-radius: 11px; background: {{chip.viagem.bg}}; display: flex; align-items: center; gap: 4px; font-family: inherit; font-size: 12px; line-height: 16px; font-weight: 600; color: {{chip.viagem.fg}}; cursor: pointer">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"></path></svg>
+<span style="width: 43px; white-space: nowrap">Viagem</span>
+</button>
+<div aria-hidden="true" style="flex: 0 0 8px"></div>
+</div>
+</sc-if>
+
+<!-- Resultados da busca -->
+<sc-if value="{{ui.showResultsLabel}}" hint-placeholder-val="{{ false }}">
+<h2 style="margin: 16px 0 0; padding: 0 16px; font-size: 14px; line-height: 20px; font-weight: 600; color: #17171c; flex-shrink: 0">Resultados</h2>
+</sc-if>
+<sc-if value="{{ui.empty}}" hint-placeholder-val="{{ false }}">
+<div style="margin-top: 76px; padding: 0 16px; display: flex; flex-direction: column; align-items: center; flex-shrink: 0">
+<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#b6b6c1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display: block"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></svg>
+<span style="margin-top: 15px; font-size: 16px; line-height: 20px; font-weight: 600; color: #42424a; text-align: center">Nenhum resultado encontrado</span>
+<span style="margin-top: 3px; font-size: 14px; line-height: 17px; font-weight: 400; color: #7a7a86; text-align: center">Experimente pesquisar com outras palavra</span>
+</div>
+</sc-if>
+
+<!-- Parceiros -->
+<main style="margin-top: {{ui.mainTop}}px; padding: 0 16px 16px; display: flex; flex-direction: column; gap: 12px; flex-shrink: 0">
+
+<sc-if value="{{show.bettanin}}" hint-placeholder-val="{{ true }}">
+<a href="#" onClick="{{open.bettanin}}" style="display: block; box-sizing: border-box; background: #ffffff; border: 1px solid #e5e5ea; border-radius: 12px; overflow: hidden; text-decoration: none">
+<div style="position: relative; height: 58px; overflow: hidden">
+<img src="./assets/69255b1f96fd6cde8747da03021da632.jpg" alt="" style="width: 326px; height: 58px; object-fit: cover; display: block">
+<div style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%)"></div>
+</div>
+<div style="position: relative; padding: 16px 12px 12px; display: flex; align-items: center; gap: 8px">
+<div style="position: absolute; left: 12px; top: -36px; width: 48px; height: 48px; border-radius: 12px; overflow: hidden">
+<img src="./assets/8a37233aefc7b3be3ce3bc0a12e1901b.jpg" alt="Bettanin" style="width: 48px; height: 48px; display: block">
+<div style="position: absolute; left: 0; top: 0; width: 48px; height: 48px; box-sizing: border-box; border: 1px solid #e5e5ea; border-radius: 12px"></div>
+</div>
+<div style="flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: flex-start">
+<span style="font-size: 14px; line-height: 17px; font-weight: 600; color: #17171c">Bettanin</span>
+<span style="margin-top: 4px; font-size: 12px; line-height: 14px; font-weight: 400; color: #42424a">Vantagens especiais em utensílios de limpeza para deixar sua casa sempre em ordem</span>
+<span style="margin-top: 4px; height: 22px; box-sizing: border-box; padding: 0 8px; border-radius: 4px; background: #e9f6ef; display: flex; align-items: center; font-size: 12px; line-height: 16px; font-weight: 600; color: #2b955d">Novidade</span>
+</div>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5734d9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; transform: translateY(-0.5px)"><path d="m9 18 6-6-6-6"></path></svg>
+</div>
+</a>
+</sc-if>
+
+<sc-if value="{{show.edutivo}}" hint-placeholder-val="{{ true }}">
+<a href="#" onClick="{{open.edutivo}}" style="display: block; box-sizing: border-box; background: #ffffff; border: 1px solid #e5e5ea; border-radius: 12px; overflow: hidden; text-decoration: none">
+<div style="position: relative; height: 58px; overflow: hidden">
+<img src="./assets/c6497f87dfd3fdfc86d93833ae3b3b1d.jpg" alt="" style="width: 326px; height: 58px; object-fit: cover; display: block">
+<div style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%)"></div>
+</div>
+<div style="position: relative; padding: 16px 12px 12px; display: flex; align-items: center; gap: 8px">
+<div style="position: absolute; left: 12px; top: -36px; width: 48px; height: 48px; border-radius: 12px; overflow: hidden">
+<img src="./assets/fbf15ae47d39d86eefdc37b24700d928.png" alt="Edutivo" style="width: 48px; height: 48px; display: block">
+<div style="position: absolute; left: 0; top: 0; width: 48px; height: 48px; box-sizing: border-box; border: 1px solid #e5e5ea; border-radius: 12px"></div>
+</div>
+<div style="flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: flex-start">
+<span style="font-size: 14px; line-height: 17px; font-weight: 600; color: #17171c">Edutivo</span>
+<span style="margin-top: 4px; font-size: 12px; line-height: 14px; font-weight: 400; color: #42424a">Cursos e trilhas de aprendizado para o seu desenvolvimento profissional</span>
+</div>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5734d9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; transform: translateY(-0.5px)"><path d="m9 18 6-6-6-6"></path></svg>
+</div>
+</a>
+</sc-if>
+
+<sc-if value="{{show.namu}}" hint-placeholder-val="{{ true }}">
+<a href="#" onClick="{{open.namu}}" style="display: block; box-sizing: border-box; background: #ffffff; border: 1px solid #e5e5ea; border-radius: 12px; overflow: hidden; text-decoration: none">
+<div style="position: relative; height: 58px; overflow: hidden">
+<img src="./assets/f33001c3716dd39ae67525610b533e2e.jpg" alt="" style="width: 326px; height: 58px; object-fit: cover; display: block">
+<div style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%)"></div>
+</div>
+<div style="position: relative; padding: 16px 12px 12px; display: flex; align-items: center; gap: 8px">
+<div style="position: absolute; left: 12px; top: -36px; width: 48px; height: 48px; border-radius: 12px; overflow: hidden">
+<img src="./assets/06ab5f70d616161eb9f9774ef7b74525.jpg" alt="Namu" style="width: 48px; height: 48px; display: block">
+<div style="position: absolute; left: 0; top: 0; width: 48px; height: 48px; box-sizing: border-box; border: 1px solid #e5e5ea; border-radius: 12px"></div>
+</div>
+<div style="flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: flex-start">
+<span style="font-size: 14px; line-height: 17px; font-weight: 600; color: #17171c">Namu</span>
+<span style="margin-top: 4px; font-size: 12px; line-height: 14px; font-weight: 400; color: #42424a">Meditação, yoga e bem-estar para cuidar da sua saúde mental e física</span>
+</div>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5734d9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; transform: translateY(-0.5px)"><path d="m9 18 6-6-6-6"></path></svg>
+</div>
+</a>
+</sc-if>
+
+<sc-if value="{{show.onfly}}" hint-placeholder-val="{{ true }}">
+<a href="#" onClick="{{open.onfly}}" style="display: block; box-sizing: border-box; background: #ffffff; border: 1px solid #e5e5ea; border-radius: 12px; overflow: hidden; text-decoration: none">
+<div style="position: relative; height: 58px; overflow: hidden">
+<img src="./assets/03da4792fcdf1dbc9e1640fd82117236.jpg" alt="" style="width: 326px; height: 58px; object-fit: cover; display: block">
+<div style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%)"></div>
+</div>
+<div style="position: relative; padding: 16px 12px 12px; display: flex; align-items: center; gap: 8px">
+<div style="position: absolute; left: 12px; top: -36px; width: 48px; height: 48px; border-radius: 12px; overflow: hidden">
+<img src="./assets/cbf7b5608b37e69a10bac0fc36d24efc.jpg" alt="Onfly" style="width: 48px; height: 48px; display: block">
+<div style="position: absolute; left: 0; top: 0; width: 48px; height: 48px; box-sizing: border-box; border: 1px solid #e5e5ea; border-radius: 12px"></div>
+</div>
+<div style="flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: flex-start">
+<span style="font-size: 14px; line-height: 17px; font-weight: 600; color: #17171c">Onfly</span>
+<span style="margin-top: 4px; font-size: 12px; line-height: 14px; font-weight: 400; color: #42424a">Viagens corporativas descomplicadas e ainda com vantagens para as suas férias</span>
+</div>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5734d9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; transform: translateY(-0.5px)"><path d="m9 18 6-6-6-6"></path></svg>
+</div>
+</a>
+</sc-if>
+
+<sc-if value="{{show.rdSaude}}" hint-placeholder-val="{{ true }}">
+<a href="#" onClick="{{open.rdSaude}}" style="display: block; box-sizing: border-box; background: #ffffff; border: 1px solid #e5e5ea; border-radius: 12px; overflow: hidden; text-decoration: none">
+<div style="position: relative; height: 58px; overflow: hidden">
+<img src="./assets/60e7590f78019b166fbecff322510199.jpg" alt="" style="width: 326px; height: 58px; object-fit: cover; display: block">
+<div style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%)"></div>
+</div>
+<div style="position: relative; padding: 16px 12px 12px; display: flex; align-items: center; gap: 8px">
+<div style="position: absolute; left: 12px; top: -36px; width: 48px; height: 48px; border-radius: 12px; overflow: hidden">
+<img src="./assets/ecbb64ea363d754582fffc6577788dd4.jpg" alt="RD Saúde" style="width: 48px; height: 48px; display: block">
+<div style="position: absolute; left: 0; top: 0; width: 48px; height: 48px; box-sizing: border-box; border: 1px solid #e5e5ea; border-radius: 12px"></div>
+</div>
+<div style="flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: flex-start">
+<span style="font-size: 14px; line-height: 17px; font-weight: 600; color: #17171c">RD Saúde</span>
+<span style="margin-top: 4px; font-size: 12px; line-height: 14px; font-weight: 400; color: #42424a">Descontos exclusivos nas farmácias Droga Raia e Drogasil</span>
+</div>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5734d9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; transform: translateY(-0.5px)"><path d="m9 18 6-6-6-6"></path></svg>
+</div>
+</a>
+</sc-if>
+
+<sc-if value="{{show.totalpass}}" hint-placeholder-val="{{ true }}">
+<a href="#" onClick="{{open.totalpass}}" style="display: block; box-sizing: border-box; background: #ffffff; border: 1px solid #e5e5ea; border-radius: 12px; overflow: hidden; text-decoration: none">
+<div style="position: relative; height: 58px; overflow: hidden">
+<img src="./assets/14531833cfbf6f9e6a3a062b104b48b4.jpg" alt="" style="width: 369.24px; height: 61px; display: block">
+<div style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%)"></div>
+</div>
+<div style="position: relative; padding: 16px 12px 12px; display: flex; align-items: center; gap: 8px">
+<div style="position: absolute; left: 12px; top: -36px; width: 48px; height: 48px; border-radius: 12px; overflow: hidden">
+<img src="./assets/22ff6ab0fefb8bb04b4c230cfb68ee2c.jpg" alt="TotalPass" style="width: 48px; height: 48px; display: block">
+<div style="position: absolute; left: 0; top: 0; width: 48px; height: 48px; box-sizing: border-box; border: 1px solid #e5e5ea; border-radius: 12px"></div>
+</div>
+<div style="flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: flex-start">
+<span style="font-size: 14px; line-height: 17px; font-weight: 600; color: #17171c">TotalPass</span>
+<span style="margin-top: 4px; font-size: 12px; line-height: 14px; font-weight: 400; color: #42424a">Acesso a milhares de academias e estúdios, além de cuidados com a sua saúde mental</span>
+</div>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5734d9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; transform: translateY(-0.5px)"><path d="m9 18 6-6-6-6"></path></svg>
+</div>
+</a>
+</sc-if>
+
+<sc-if value="{{show.wellhub}}" hint-placeholder-val="{{ true }}">
+<a href="#" onClick="{{open.wellhub}}" style="display: block; box-sizing: border-box; background: #ffffff; border: 1px solid #e5e5ea; border-radius: 12px; overflow: hidden; text-decoration: none">
+<div style="position: relative; height: 58px; overflow: hidden">
+<img src="./assets/cd5806b15342d9b2a462e6e1627e6162.jpg" alt="" style="width: 326px; height: 58px; object-fit: cover; display: block">
+<div style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%)"></div>
+</div>
+<div style="position: relative; padding: 16px 12px 12px; display: flex; align-items: center; gap: 8px">
+<div style="position: absolute; left: 12px; top: -36px; width: 48px; height: 48px; border-radius: 12px; overflow: hidden">
+<img src="./assets/33d0e24b0a84ad17bb5f8697f6fdf3ae.jpg" alt="Wellhub" style="width: 48px; height: 48px; display: block">
+<div style="position: absolute; left: 0; top: 0; width: 48px; height: 48px; box-sizing: border-box; border: 1px solid #e5e5ea; border-radius: 12px"></div>
+</div>
+<div style="flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: flex-start">
+<span style="font-size: 14px; line-height: 17px; font-weight: 600; color: #17171c">Wellhub</span>
+<span style="margin-top: 4px; font-size: 12px; line-height: 14px; font-weight: 400; color: #42424a">Academias, estúdios e apps de bem-estar em uma só assinatura para cuidar do corpo e da mente</span>
+</div>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5734d9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; transform: translateY(-0.5px)"><path d="m9 18 6-6-6-6"></path></svg>
+</div>
+</a>
+</sc-if>
+
+<sc-if value="{{show.zenklub}}" hint-placeholder-val="{{ true }}">
+<a href="#" onClick="{{open.zenklub}}" style="display: block; box-sizing: border-box; background: #ffffff; border: 1px solid #e5e5ea; border-radius: 12px; overflow: hidden; text-decoration: none">
+<div style="position: relative; height: 58px; overflow: hidden">
+<img src="./assets/ffa40bbd4d13a7ca3b50ab950841dc88.jpg" alt="" style="width: 326px; height: 58px; object-fit: cover; display: block">
+<div style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%)"></div>
+</div>
+<div style="position: relative; padding: 16px 12px 12px; display: flex; align-items: center; gap: 8px">
+<div style="position: absolute; left: 12px; top: -36px; width: 48px; height: 48px; border-radius: 12px; overflow: hidden">
+<img src="./assets/4603154adc4122f5cfe1b765f3e48540.png" alt="Zenklub" style="width: 48px; height: 48px; display: block">
+<div style="position: absolute; left: 0; top: 0; width: 48px; height: 48px; box-sizing: border-box; border: 1px solid #e5e5ea; border-radius: 12px"></div>
+</div>
+<div style="flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: flex-start">
+<span style="font-size: 14px; line-height: 17px; font-weight: 600; color: #17171c">Zenklub</span>
+<span style="margin-top: 4px; font-size: 12px; line-height: 14px; font-weight: 400; color: #42424a">Sessões de terapia e coaching online com especialistas em saúde emocional</span>
+</div>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5734d9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; transform: translateY(-0.5px)"><path d="m9 18 6-6-6-6"></path></svg>
+</div>
+</a>
+</sc-if>
+
+</main>
+</div>
+
+<!-- Teclado do celular (aparece com a busca em foco) -->
+<sc-if value="{{ui.kbOpen}}" hint-placeholder-val="{{ false }}">
+<div role="group" aria-label="Teclado" onMouseDown="{{kbMouseDown}}" style="position: absolute; left: 0; bottom: 0; width: 360px; height: 244px; z-index: 6; user-select: none">
+<img src="./assets/019e4127357d010dac16509e60cf779e.png" alt="" style="width: 360px; height: 244px; display: block; pointer-events: none">
+<sc-for list="{{keys}}" as="k" hint-placeholder-count="40">
+<button type="button" class="kb-key" aria-label="{{k.label}}" onClick="{{k.press}}" style="position: absolute; left: {{k.x}}px; top: {{k.y}}px; width: {{k.w}}px; height: {{k.h}}px; margin: 0; padding: 0; border: 0; border-radius: 6px; background: transparent; cursor: pointer"></button>
+</sc-for>
+</div>
+</sc-if>
+
+<!-- Detalhe do benefício (abre ao tocar em um card) -->
+<sc-if value="{{detail.open}}" hint-placeholder-val="{{ false }}">
+<div onClickCapture="{{detailBackCapture}}" data-overlay="1" style="position: absolute; left: 0; top: 0; width: 360px; height: var(--wp-h, 780px); z-index: 10; pointer-events: {{detail.pe}}">
+<div style="position: absolute; left: 0; top: 0; width: 360px; height: var(--wp-h, 780px); border-radius: 16px; background: rgba(23, 23, 28, 0.16); animation: {{detail.scrim}}"></div>
+<div style="position: absolute; left: 0; top: 0; width: 360px; height: var(--wp-h, 780px); border-radius: 16px; box-shadow: -4px 0 20px rgba(23, 23, 28, 0.14); animation: {{detail.anim}}">
+<dc-import name="SvaDetalhe" sva="{{detail.sva}}" on-back="{{closeDetail}}" close-detail="{{closeDetail}}" hint-size="360px,780px"></dc-import>
+</div>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":360,"height":780}}'>
+class Component extends DCLogic {
+componentDidMount() {
+// Relógio real: atualiza a hora da status bar quando o minuto muda
+var self = this;
+var proxMin = function () { var d = new Date(); return 60050 - d.getSeconds() * 1000 - d.getMilliseconds(); };
+var tick = function () { var d = new Date(); self.setState({ clockK: d.getHours() * 60 + d.getMinutes() }); self._clockT = setTimeout(tick, proxMin()); };
+// Relógio da status bar: acorda só na virada de cada minuto (em vez de checar a cada segundo)
+this._clockT = setTimeout(tick, proxMin());
+}
+componentWillUnmount() { clearTimeout(this._clockT); }
+renderVals() {
+var _d = new Date();
+var statusTime = _d.getHours() + ':' + ('0' + _d.getMinutes()).slice(-2);
+// Rolagem horizontal das categorias: roda do mouse, trackpad, toque e arrastar com o mouse.
+if (!this._chips) {
+var self = this;
+this._chips = {
+chipsRef: function (el) {
+if (self._chipsEl && self._chipsWheel) { self._chipsEl.removeEventListener('wheel', self._chipsWheel); }
+self._chipsEl = el;
+if (!el) return;
+self._chipsWheel = function (e) {
+if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+var max = el.scrollWidth - el.clientWidth;
+var next = Math.max(0, Math.min(max, el.scrollLeft + e.deltaY));
+if (next !== el.scrollLeft) { el.scrollLeft = next; e.preventDefault(); }
+};
+el.addEventListener('wheel', self._chipsWheel, { passive: false });
+},
+chipsDown: function (e) {
+if (e.pointerType !== 'mouse' || e.button !== 0) return;
+self._drag = { x: e.clientX, left: e.currentTarget.scrollLeft, moved: false };
+},
+chipsMove: function (e) {
+var d = self._drag;
+if (!d) return;
+var dx = e.clientX - d.x;
+if (Math.abs(dx) > 3) d.moved = true;
+if (d.moved) { e.currentTarget.scrollLeft = d.left - dx; }
+},
+chipsUp: function () {
+var d = self._drag;
+self._drag = null;
+if (d && d.moved) { self._suppressClick = true; setTimeout(function () { self._suppressClick = false; }, 0); }
+},
+chipsClick: function (e) {
+if (self._suppressClick) { e.preventDefault(); e.stopPropagation(); }
+}
+};
+}
+// Filtro por categoria: quais parceiros (SVAs) aparecem em cada opção.
+var CATS = {
+compras: ['bettanin'],
+educacao: ['edutivo', 'zenklub'],
+fitness: ['totalpass', 'wellhub'],
+saude: ['namu', 'rdSaude'],
+viagem: ['onfly']
+};
+var ALL = ['bettanin', 'edutivo', 'namu', 'onfly', 'rdSaude', 'totalpass', 'wellhub', 'zenklub'];
+var current = (this.state && this.state.cat) || 'todos';
+if (!this._picks) {
+var me = this;
+this._picks = {};
+['todos', 'compras', 'educacao', 'fitness', 'saude', 'viagem'].forEach(function (k) {
+me._picks[k] = function () { me.setState({ cat: k }); };
+});
+}
+var chip = {};
+var self2 = this;
+['todos', 'compras', 'educacao', 'fitness', 'saude', 'viagem'].forEach(function (k) {
+var on = k === current;
+chip[k] = { pressed: on ? 'true' : 'false', bg: on ? '#5734d9' : 'transparent', fg: on ? '#ffffff' : '#5734d9', pick: self2._picks[k] };
+});
+// Busca pelo nome dos benefícios
+var NAMES = { bettanin: 'Bettanin', edutivo: 'Edutivo', namu: 'Namu', onfly: 'Onfly', rdSaude: 'RD Saúde', totalpass: 'TotalPass', wellhub: 'Wellhub', zenklub: 'Zenklub' };
+var norm = function (t) { return String(t || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim(); };
+var st = this.state || {};
+var searching = !!st.searching;
+var query = st.query || '';
+var kbOpen = searching && !!st.kbOpen;
+var q = norm(query);
+var visible;
+if (searching) {
+visible = q ? ALL.filter(function (id) { return norm(NAMES[id]).indexOf(q) !== -1; }) : ALL;
+} else {
+visible = current === 'todos' ? ALL : CATS[current];
+}
+var show = {};
+ALL.forEach(function (id) { show[id] = visible.indexOf(id) !== -1; });
+if (!this._search) {
+var sx = this;
+var setQuery = function (v) { sx.setState({ query: v }); };
+var insert = function (ch) {
+var cur = (sx.state && sx.state.query) || '';
+var shift = sx.state && sx.state.shift;
+var c = ch;
+if (/[a-z]/i.test(ch)) { c = (cur.length === 0 || shift) ? ch.toUpperCase() : ch.toLowerCase(); }
+sx.setState({ query: cur + c, shift: false });
+};
+var finish = function () { if (sx._input) sx._input.blur(); sx.setState({ kbOpen: false }); };
+var keys = [];
+var add = function (label, x, y, w, h, fn) { keys.push({ label: label, x: x, y: y, w: w, h: h, press: fn }); };
+'1234567890'.split('').forEach(function (ch, i) { add(ch, Math.round((2 + 35.95 * i) * 100) / 100, 7.75, 33, 40.25, function () { insert(ch); }); });
+'QWERTYUIOP'.split('').forEach(function (ch, i) { add(ch, Math.round((2 + 35.95 * i) * 100) / 100, 51.75, 33, 42.5, function () { insert(ch); }); });
+'ASDFGHJKL'.split('').forEach(function (ch, i) { add(ch, Math.round((20.5 + 35.9 * i) * 100) / 100, 97.5, 32.5, 42.75, function () { insert(ch); }); });
+add('Shift', 2.75, 143.75, 52.25, 42.5, function () { sx.setState({ shift: !(sx.state && sx.state.shift) }); });
+'ZXCVBNM'.split('').forEach(function (ch, i) { add(ch, Math.round((58.75 + 35.4 * i) * 100) / 100, 143.75, 33, 42.5, function () { insert(ch); }); });
+add('Apagar', 305, 143.75, 52.25, 42.5, function () { var cur = (sx.state && sx.state.query) || ''; sx.setState({ query: cur.slice(0, -1) }); });
+add('Números e símbolos', 2.75, 191.75, 52.5, 46.5, function () {});
+add('Vírgula', 56.25, 191.75, 33, 46.5, function () { insert(','); });
+add('Espaço', 90.75, 191.75, 180, 46.5, function () { insert(' '); });
+add('Ponto', 272, 191.75, 32, 46.5, function () { insert('.'); });
+add('Buscar', 306, 191.75, 51.5, 46.5, finish);
+this._search = {
+keys: keys,
+openSearch: function (e) {
+if (e && e.preventDefault) e.preventDefault();
+sx.setState({ searching: true, query: '', kbOpen: true, shift: false }, function () { if (sx._input) sx._input.focus(); });
+},
+closeSearch: function (e) {
+if (e && e.preventDefault) e.preventDefault();
+if (sx._input) sx._input.blur();
+sx.setState({ searching: false, query: '', kbOpen: false, shift: false });
+},
+// Seta "Voltar": fecha a busca e deixa o link seguir para o Menu (tela que abriu o Clubii)
+backToMenu: function () {
+if (sx._input) sx._input.blur();
+sx.setState({ searching: false, query: '', kbOpen: false, shift: false });
+},
+inputRef: function (el) { sx._input = el; },
+onQuery: function (e) { setQuery(e.target.value); },
+onFocus: function () { sx.setState({ kbOpen: true }); },
+onBlur: function () { sx.setState({ kbOpen: false }); },
+onKey: function (e) { if (e.key === 'Enter') { e.preventDefault(); finish(); } },
+kbMouseDown: function (e) { e.preventDefault(); },
+fieldMouseDown: function (e) {
+var t = e.target;
+if (t === sx._input || (t.closest && t.closest('button'))) return;
+e.preventDefault();
+if (sx._input) sx._input.focus();
+}
+};
+}
+// Posição do cursor (caret) logo após o texto digitado
+var textW = 0;
+if (query) {
+try {
+var cv = this._cv || (this._cv = document.createElement('canvas').getContext('2d'));
+cv.font = '400 16px Urbanist, system-ui, sans-serif';
+textW = cv.measureText(query).width;
+} catch (err) { textW = query.length * 8; }
+}
+var ui = {
+normal: !searching,
+searching: searching,
+query: query,
+kbOpen: kbOpen,
+fieldBorder: kbOpen ? '#5734d9' : '#e5e5ea',
+showPlaceholder: !query,
+placeholderLeft: kbOpen ? 49 : 43,
+caretLeft: Math.min(233, 43 + (query ? Math.ceil(textW) + 4 : 0)),
+showResultsLabel: searching && !!q,
+empty: searching && !!q && visible.length === 0,
+mainTop: (searching && q) ? 7 : 16,
+kbPad: kbOpen ? 244 : 0
+};
+// Abrir / fechar o detalhe do SVA
+if (!this._opens) {
+var me2 = this;
+this._opens = {};
+ALL.forEach(function (id) {
+me2._opens[id] = function (e) { if (e && e.preventDefault) e.preventDefault(); me2.setState({ sva: id, detailClosing: false }); };
+});
+// Fecha o detalhe deslizando para a direita (como o "voltar" de um app)
+this._closeDetail = function () {
+if (!me2.state || !me2.state.sva || me2.state.detailClosing) return;
+me2.setState({ detailClosing: true });
+clearTimeout(me2._detT);
+me2._detT = setTimeout(function () { me2.setState({ sva: null, detailClosing: false }); }, 280);
+};
+// Garante que a seta "Voltar" do detalhe sempre retorna para a tela anterior (lista ou busca)
+this._detailBackCapture = function (e) {
+var t = e.target;
+var backLink = t && t.closest ? t.closest('a[aria-label="Voltar"]') : null;
+if (backLink) { e.preventDefault(); e.stopPropagation(); me2._closeDetail(); }
+};
+}
+var svaOpen = (this.state && this.state.sva) || null;
+var detClosing = !!(this.state && this.state.detailClosing);
+// Voltar: retorna para a tela que abriu o Clubii (Início ou Menu)
+var backHref = 'Main.dc.html';
+var fromVal = null;
+try { fromVal = window.sessionStorage.getItem('wiipo.clubiiFrom'); } catch (err) {}
+if (!fromVal) { try { var wn = JSON.parse(window.name || '{}'); if (wn && wn.clubiiFrom) fromVal = wn.clubiiFrom; } catch (err2) {} }
+if (!fromVal) { try { fromVal = window.localStorage.getItem('wiipo.clubiiFrom'); } catch (err3) {} }
+if (fromVal) backHref = fromVal;
+if (backHref !== 'Home.dc.html' && backHref !== 'Main.dc.html') backHref = 'Main.dc.html';
+return Object.assign({}, this._chips, this._search, {
+statusTime: statusTime,
+backHref: backHref,
+ui: ui,
+chip: chip,
+show: show,
+open: this._opens,
+detail: { open: !!svaOpen, sva: svaOpen || 'edutivo', pe: detClosing ? 'none' : 'auto', anim: detClosing ? 'wpPopOut 280ms cubic-bezier(0.32, 0, 0.24, 1) both' : 'wpPushIn 340ms cubic-bezier(0.22, 0.8, 0.26, 1) both', scrim: detClosing ? 'wpScrimOut 280ms cubic-bezier(0.32, 0, 0.24, 1) both' : 'wpScrimIn 340ms cubic-bezier(0.22, 0.8, 0.26, 1) both' },
+closeDetail: this._closeDetail,
+detailBackCapture: this._detailBackCapture
+});
+}
+}
+</script>
+</body>
+</html>
